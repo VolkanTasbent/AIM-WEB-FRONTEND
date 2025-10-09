@@ -1,0 +1,729 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url("./assets/AIM-bg.png") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+.navbar {
+ display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 80px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+   font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.navbar nav a {
+  margin-left: 28px;
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  padding: 6px 18px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+.navbar nav a.active {
+  background-color: white;
+  color: black;
+  font-weight: 600;
+}
+
+.navbar nav a:hover {
+  opacity: 0.8;
+}
+
+.hero-section {
+  margin-top: 100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 Etkinlik kısmı */
+.etkinlik-container {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.etkinlik-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.etkinlik-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1s ease;
+}
+
+.etkinlik-text {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  max-width: 600px;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
+}
+
+.etkinlik-text h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.etkinlik-text p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.etkinlik-text button {
+  background: #ff4b2b;
+  border: none;
+  padding: 10px 25px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.etkinlik-text button:hover {
+  background: #ff1c00;
+  transform: scale(1.05);
+}
+
+/* 🔹 Slider okları */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn.prev {
+  left: 20px;
+}
+
+.slider-btn.next {
+  right: 20px;
+}
+
+
+.sponsor-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.sponsor-marquee {
+  display: inline-block;
+  animation: slide-left 20s linear infinite;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.sponsor-logo {
+  height: 50px;
+  margin: 0 40px;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.sponsor-logo:hover {
+  opacity: 1;
+}
+
+
+.services-section,
+.haberler-section {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.service-card,
+.haber-card {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  width: 260px;
+  margin: 15px;
+  display: inline-block;
+}
+
+.footer {
+  background: #000;
+  padding: 40px;
+  text-align: center;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* 🔹 Popup kutusu */
+.popup-content {
+  background: rgba(25, 25, 25, 0.95);
+  border-radius: 20px;
+  padding: 30px 40px;
+  width: 600px;
+  max-width: 90%;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: scaleUp 0.25s ease;
+  overflow: hidden;
+}
+
+/* 🔹 Görsel alanı */
+.popup-image-container {
+  width: 100%;
+  max-height: 250px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.popup-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 6s ease;
+}
+
+.popup-image:hover {
+  transform: scale(1.05);
+}
+
+/* 🔹 Başlık */
+.popup-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+/* 🔹 İçerik */
+.popup-body {
+  max-height: 55vh;
+  overflow-y: auto;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #dcdcdc;
+  padding-right: 10px;
+}
+
+/* 🔹 Kapat butonu */
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+  color: #ff4444;
+  transform: scale(1.2);
+}
+
+/* 🔹 Next / Prev butonları */
+.popup-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.popup-nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.popup-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* 🔹 Animasyonlar */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+}
+
+.login-container input {
+  margin: 10px;
+  padding: 8px;
+  width: 250px;
+}
+
+.login-container button {
+  background-color: red;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.error-text {
+  color: rgb(255, 100, 100);
+}
+
+.admin-dashboard {
+  margin-top: 120px;
+  padding: 40px;
+  color: white;
+}
+
+.admin-dashboard section {
+  margin-bottom: 30px;
+  background: #111;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.admin-dashboard button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+}
+.service-detail-page {
+  min-height: 100vh;
+  color: #fff;
+  background-color: #0a0a0a;
+  padding-bottom: 80px;
+}
+
+.service-detail-hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.service-detail-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(60%);
+}
+
+.service-detail-hero .overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+}
+
+.service-detail-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.service-detail-content {
+  padding: 40px 80px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+.loading {
+  text-align: center;
+  color: #999;
+  margin-top: 50px;
+}
+/* 🔹 Services Section */
+.services-section {
+  padding: 80px 0;
+  background: none; /* 🔸 Arka plan tamamen şeffaf */
+  color: #fff;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.services-section p {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+/* 🔹 Slider kapsayıcı */
+.services-slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* 🔹 İçerik wrapper */
+.services-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.services-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* 🔹 Kart tasarımı */
+.service-card {
+  flex: 0 0 30%;
+  background: none; /* 🔸 Arka plan tamamen kaldırıldı */
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+}
+
+.service-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.service-card h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 15px 0 8px;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+  padding: 0 10px 10px;
+}
+
+/* 🔹 Read More butonu */
+.service-card button {
+  background: red;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  margin-top: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.service-card button:hover {
+  background: #ff3b3b;
+}
+
+/* 🔹 Ok butonları */
+.services-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 6px 14px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.services-btn:hover {
+  background: red;
+}
+
+.services-btn.prev {
+  left: 0;
+}
+
+.services-btn.next {
+  right: 0;
+}
+/* 🔹 ALT SERVISLER KISMI */
+.alt-servisler-section {
+  padding: 80px 0;
+  text-align: center;
+  color: white;
+  background: transparent;
+}
+
+.alt-servisler-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.alt-servisler-section p.section-desc {
+  font-size: 15px;
+  color: #ccc;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* Servis kartları 3 sütun şeklinde */
+.alt-servisler-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  justify-items: center;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.alt-servis-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 25px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.05);
+}
+
+.alt-servis-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.3);
+}
+
+.alt-servis-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ff3c3c;
+  margin-bottom: 12px;
+}
+
+.alt-servis-card p {
+  color: #e0e0e0;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .alt-servisler-section {
+    padding: 60px 20px;
+  }
+
+  .alt-servisler-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .alt-servis-card {
+    max-width: 90%;
+  }
+}
+/* 🔹 HABERLER SLIDER CONTAINER */
+.haberler-slider-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px; /* Butonlar için iç boşluk */
+  overflow: hidden;
+}
+
+/* 🔹 SLIDER OKLARI */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 42, 42, 0.85);
+  border: none;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 8px 16px;
+  z-index: 5;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.slider-btn.prev {
+  left: 15px;
+}
+
+.slider-btn.next {
+  right: 15px;
+}
+
+.slider-btn:hover {
+  background: #ff2a2a;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* 🔹 SLIDER İÇERİĞİ */
+.haberler-slider {
+  display: flex;
+  gap: 25px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.haber-card {
+  flex: 0 0 340px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.haber-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .haber-card {
+    flex: 0 0 280px;
+  }
+
+  .haberler-slider-container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-btn {
+    display: none;
+  }
+}
+/* 🔹 SLIDER OKLARI (şeffaf, hover'da kırmızı) */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;              /* Şeffaf başlangıç */
+  border: 2px solid rgba(255, 255, 255, 0.4); /* Beyaz yarı saydam çerçeve */
+  color: rgba(255, 255, 255, 0.8);      /* Beyaz ikon */
+  font-size: 32px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 6px 14px;
+  z-index: 5;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);           /* Hafif blur efekti */
+}
+
+.slider-btn.prev {
+  left: 15px;
+}
+
+.slider-btn.next {
+  right: 15px;
+}
+
+/* Hover durumu: kırmızı arka plan, beyaz ikon */
+.slider-btn:hover {
+  background: #ff2a2a;
+  border-color: #ff2a2a;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 42, 42, 0.6);
+}
