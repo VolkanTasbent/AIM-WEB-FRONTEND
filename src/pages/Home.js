@@ -19,20 +19,18 @@ const Home = () => {
   const [haberler, setHaberler] = useState([]);
   const [ayarlar, setAyarlar] = useState([]);
   const [altServisler, setAltServisler] = useState([]);
+  const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
   const [aktifHaber, setAktifHaber] = useState(0);
 
+  const sliderRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Popup için state
+  // Popup state
   const [popupIcerik, setPopupIcerik] = useState(null);
   const [popupListe, setPopupListe] = useState([]);
   const [popupIndex, setPopupIndex] = useState(0);
 
-  // Slider & Navigation
-  const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
-  const sliderRef = useRef(null);
-  const navigate = useNavigate();
-
-  // 🔹 Verileri backend'den çek
+  // 🔹 Backend verilerini çek
   useEffect(() => {
     getEtkinlikler().then((r) => setEtkinlikler(r.data));
     getSponsorlar().then((r) => setSponsorlar(r.data));
@@ -42,16 +40,30 @@ const Home = () => {
     getAltServisler().then((r) => setAltServisler(r.data));
   }, []);
 
-  // 🔹 Etkinlik slider (otomatik geçiş)
-  useEffect(() => {
-    if (etkinlikler.length === 0) return;
-    const timer = setInterval(() => {
-      setAktifEtkinlik((prev) => (prev + 1) % etkinlikler.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [etkinlikler]);
+  // 🔹 Etkinlik slider otomatik geçiş
+// 🧩 Etkinlik slider otomatik geçiş
+useEffect(() => {
+  // Veri yoksa hiçbir şey yapma
+  if (!etkinlikler || etkinlikler.length === 0) return;
 
-  // 🔹 Services kısmı kaydırma fonksiyonu
+  // Yeni etkinlik listesi yüklendiğinde sıfırdan başla
+  setAktifEtkinlik(0);
+
+  // Her 7 saniyede bir sonraki görsele geç
+  const timer = setInterval(() => {
+    setAktifEtkinlik((prev) => {
+      // Eğer son etkinlikteysek başa dön
+      if (prev >= etkinlikler.length - 1) return 0;
+      return prev + 1;
+    });
+  }, 7000);
+
+  // Temizlik (önceki timer’ı iptal et)
+  return () => clearInterval(timer);
+}, [etkinlikler]);
+
+
+  // 🔹 Services kaydırma
   const kaydir = (yon) => {
     const scrollMiktar = 350;
     if (sliderRef.current) {
@@ -62,18 +74,31 @@ const Home = () => {
     }
   };
 
+  // 🔹 Yedek resim (Cloudinary gelmezse)
+  const yedekResim = "/assets/AIM-bg.png";
+
   return (
     <div id="home" className="home-page">
       {/* 🏁 ETKİNLİKLER + SPONSORLAR */}
-      <section id="hero" className="hero-section">
+      <section
+        id="hero"
+        className="hero-section"
+        style={{
+          background:
+            etkinlikler.length === 0
+              ? `url(${yedekResim}) no-repeat center center / cover`
+              : "none",
+        }}
+      >
         {etkinlikler.length > 0 && (
           <div className="etkinlik-container">
             <div className="etkinlik-slider">
-              <img
-                src={etkinlikler[aktifEtkinlik].resimUrl}
-                alt="etkinlik"
-                className="etkinlik-image"
-              />
+            <img
+  src={etkinlikler[aktifEtkinlik]?.resimUrl || "/assets/AIM-bg.png"}
+  alt="etkinlik"
+  className="etkinlik-image"
+  onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+/>
               <div className="etkinlik-text">
                 <h1>{etkinlikler[aktifEtkinlik].baslik}</h1>
                 <p>{etkinlikler[aktifEtkinlik].aciklama}</p>
@@ -86,7 +111,7 @@ const Home = () => {
                 </button>
               </div>
 
-              {/* 🔹 Ok butonları */}
+              {/* Ok butonları */}
               <button
                 className="slider-btn prev"
                 onClick={() =>
@@ -112,15 +137,16 @@ const Home = () => {
           </div>
         )}
 
-        {/* 🔹 Sürekli kayan sponsor logoları */}
+        {/* Sponsor logoları */}
         <div className="sponsor-container">
           <div className="sponsor-marquee">
             {sponsorlar.concat(sponsorlar).map((s, i) => (
               <img
                 key={i}
-                src={s.logoUrl}
+                src={s.logoUrl || yedekResim}
                 alt="sponsor"
                 className="sponsor-logo"
+                onError={(e) => (e.target.src = yedekResim)}
               />
             ))}
           </div>
@@ -138,7 +164,11 @@ const Home = () => {
           <div className="services-wrapper" ref={sliderRef}>
             {servisler.map((srv) => (
               <div key={srv.id} className="service-card">
-                <img src={srv.resimUrl} alt="servis" />
+                <img
+                  src={srv.resimUrl || yedekResim}
+                  alt="servis"
+                  onError={(e) => (e.target.src = yedekResim)}
+                />
                 <h3>{srv.baslik}</h3>
                 <p>{srv.ozet}</p>
                 <button
@@ -162,34 +192,47 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 🧩 ALT SERVİSLER */}
-      <section className="alt-servisler-section">
-        <h2>Our comprehensive range of services</h2>
-        <div className="alt-servisler-grid">
-          {altServisler.map((as, index) => (
-            <div key={as.id} className="alt-servis-card">
-              {as.ikonUrl && <img src={as.ikonUrl} alt={as.baslik} />}
-              <h3>{as.baslik}</h3>
-              <p>{as.aciklama}</p>
-              <button
-                onClick={() => {
-                  setPopupListe(altServisler);
-                  setPopupIndex(index);
-                  setPopupIcerik({
-                    baslik: as.baslik,
-                    icerik: as.aciklama,
-                    resimUrl: as.ikonUrl,
-                  });
-                }}
-              >
-                Read More
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
+{/* 🧩 ALT SERVİSLER */}
+<section className="alt-servisler-section">
+  <h2>Our comprehensive range of services</h2>
+  <div className="alt-servisler-grid">
+    {altServisler.map((as, index) => (
+      <div key={as.id} className="alt-servis-card">
+        {/* 🔹 İkon / Görsel */}
+        {as.ikonUrl && (
+          <div className="alt-servis-icon">
+            <img
+              src={as.ikonUrl}
+              alt={as.baslik}
+              onError={(e) => (e.target.style.display = "none")}
+            />
+          </div>
+        )}
 
-      {/* 📰 HABERLER */}
+        {/* 🔹 Başlık ve Açıklama */}
+        <h3>{as.baslik}</h3>
+        <p>{as.aciklama}</p>
+
+        {/* 🔹 Popup butonu */}
+        <button
+          onClick={() => {
+            setPopupListe(altServisler);
+            setPopupIndex(index);
+            setPopupIcerik({
+              baslik: as.baslik,
+              icerik: as.detay || as.aciklama,
+              resimUrl: as.ikonUrl,
+            });
+          }}
+        >
+          Read More
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
+
+
 {/* 📰 HABERLER */}
 <section className="haberler-section">
   <h2>Latest News</h2>
@@ -200,34 +243,36 @@ const Home = () => {
       className="slider-btn prev"
       onClick={() =>
         setAktifHaber((prev) =>
-          prev > 0 ? prev - 1 : Math.max(0, haberler.length - 3)
+          prev === 0 ? haberler.length - 1 : prev - 1
         )
       }
     >
       ‹
     </button>
 
+    {/* Slider */}
     <div
       className="haberler-slider"
       style={{
-        transform: `translateX(-${aktifHaber * 360}px)`,
+        transform: `translateX(-${aktifHaber * 354}px)`,
       }}
     >
       {haberler.map((hab, index) => (
         <div key={hab.id} className="haber-card">
-          <img src={hab.resimUrl} alt={hab.baslik} className="haber-image" />
+          <img
+            src={hab.resimUrl || "/assets/AIM-bg.png"}
+            alt={hab.baslik}
+            className="haber-image"
+            onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+          />
           <h3>{hab.baslik}</h3>
-          <p>{hab.icerik}</p>
+          <p>
+            {hab.icerik?.length > 120
+              ? `${hab.icerik.substring(0, 120)}...`
+              : hab.icerik}
+          </p>
           <button
-            onClick={() => {
-              setPopupListe(haberler);
-              setPopupIndex(index);
-              setPopupIcerik({
-                baslik: hab.baslik,
-                icerik: hab.icerik || hab.detay,
-                resimUrl: hab.resimUrl,
-              });
-            }}
+            onClick={() => navigate(`/haber/${hab.id}`)}
           >
             Read More
           </button>
@@ -240,7 +285,7 @@ const Home = () => {
       className="slider-btn next"
       onClick={() =>
         setAktifHaber((prev) =>
-          prev < haberler.length - 3 ? prev + 1 : 0
+          prev >= haberler.length - 3 ? 0 : prev + 1
         )
       }
     >
@@ -248,6 +293,7 @@ const Home = () => {
     </button>
   </div>
 </section>
+
 
 
       {/* 🧭 FOOTER */}

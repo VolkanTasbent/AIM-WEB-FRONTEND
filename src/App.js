@@ -1,19 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import ServiceDetail from "./pages/ServiceDetail"; // yeni sayfa
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLogin from "./pages/AdminLogin"; // (isteğe bağlı giriş ekranı)
 
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
+        {/* 🌍 Kullanıcı anasayfası */}
         <Route path="/" element={<Home />} />
-        <Route path="/services/:slug" element={<ServiceDetail />} /> {/* yeni */}
+
+        {/* 🔒 Admin Panel Girişi (isteğe bağlı) */}
+        <Route path="/admin-login" element={<AdminLogin />} />
+
+        {/* 🧠 Admin Dashboard */}
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

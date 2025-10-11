@@ -1,29 +1,28 @@
 import React, { useState } from "react";
-import { login } from "../services/ApiService";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const AdminLogin = ({ onLoginSuccess }) => {
+const AdminLogin = () => {
   const [kullaniciAdi, setKullaniciAdi] = useState("");
   const [sifre, setSifre] = useState("");
-  const [hata, setHata] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    try {
-      const res = await login(kullaniciAdi, sifre);
-      if (res.status === 200) {
-        localStorage.setItem("admin", "true");
-        onLoginSuccess();
-      }
-    } catch (err) {
-      setHata("Giriş bilgileri hatalı!");
+
+    // 🧠 Geçici kontrol (backend auth eklenince burası güncellenir)
+    if (kullaniciAdi === "admin" && sifre === "12345") {
+      localStorage.setItem("adminAuth", "true");
+      navigate("/admin");
+    } else {
+      alert("Kullanıcı adı veya şifre hatalı!");
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Admin Paneli Girişi</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="login-page">
+      <form onSubmit={handleLogin} className="login-form">
+        <h2>Admin Girişi</h2>
         <input
           type="text"
           placeholder="Kullanıcı Adı"
@@ -38,7 +37,6 @@ const AdminLogin = ({ onLoginSuccess }) => {
         />
         <button type="submit">Giriş Yap</button>
       </form>
-      {hata && <p className="error-text">{hata}</p>}
     </div>
   );
 };
