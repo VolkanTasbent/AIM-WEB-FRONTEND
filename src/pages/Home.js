@@ -21,8 +21,10 @@ const Home = () => {
   const [altServisler, setAltServisler] = useState([]);
   const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
   const [aktifHaber, setAktifHaber] = useState(0);
+  const [kartGenisligi, setKartGenisligi] = useState(0);
 
   const sliderRef = useRef(null);
+  const haberSliderRef = useRef(null);
   const navigate = useNavigate();
 
   // Popup state
@@ -41,27 +43,45 @@ const Home = () => {
   }, []);
 
   // 🔹 Etkinlik slider otomatik geçiş
-// 🧩 Etkinlik slider otomatik geçiş
-useEffect(() => {
-  // Veri yoksa hiçbir şey yapma
-  if (!etkinlikler || etkinlikler.length === 0) return;
+  useEffect(() => {
+    if (!etkinlikler || etkinlikler.length === 0) return;
 
-  // Yeni etkinlik listesi yüklendiğinde sıfırdan başla
-  setAktifEtkinlik(0);
+    setAktifEtkinlik(0);
 
-  // Her 7 saniyede bir sonraki görsele geç
-  const timer = setInterval(() => {
-    setAktifEtkinlik((prev) => {
-      // Eğer son etkinlikteysek başa dön
-      if (prev >= etkinlikler.length - 1) return 0;
-      return prev + 1;
-    });
-  }, 7000);
+    const timer = setInterval(() => {
+      setAktifEtkinlik((prev) => {
+        if (prev >= etkinlikler.length - 1) return 0;
+        return prev + 1;
+      });
+    }, 7000);
 
-  // Temizlik (önceki timer’ı iptal et)
-  return () => clearInterval(timer);
-}, [etkinlikler]);
+    return () => clearInterval(timer);
+  }, [etkinlikler]);
 
+  // 🔹 Kart genişliğini hesapla
+  useEffect(() => {
+    const calculateCardWidth = () => {
+      const width = window.innerWidth;
+      if (width <= 768) {
+        return 100; // mobil: 1 kart
+      } else if (width <= 1024) {
+        return 50; // tablet: 2 kart
+      } else {
+        return 33.333; // desktop: 3 kart
+      }
+    };
+
+    setKartGenisligi(calculateCardWidth());
+
+    const handleResize = () => {
+      setKartGenisligi(calculateCardWidth());
+      // Ekran boyutu değiştiğinde slider'ı sıfırla
+      setAktifHaber(0);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // 🔹 Services kaydırma
   const kaydir = (yon) => {
@@ -72,6 +92,33 @@ useEffect(() => {
         behavior: "smooth",
       });
     }
+  };
+
+  // 🔹 Haber slider fonksiyonları - KESİN ÇÖZÜM
+  const nextHaberSlide = () => {
+    const maxSlide = Math.max(0, haberler.length - getVisibleCardsCount());
+    if (aktifHaber < maxSlide) {
+      setAktifHaber(prev => prev + 1);
+    }
+  };
+
+  const prevHaberSlide = () => {
+    if (aktifHaber > 0) {
+      setAktifHaber(prev => prev - 1);
+    }
+  };
+
+  // 🔹 Görünen kart sayısını hesapla
+  const getVisibleCardsCount = () => {
+    const width = window.innerWidth;
+    if (width <= 768) return 1;
+    if (width <= 1024) return 2;
+    return 3;
+  };
+
+  // 🔹 Maksimum slide sayısını hesapla
+  const getMaxSlide = () => {
+    return Math.max(0, haberler.length - getVisibleCardsCount());
   };
 
   // 🔹 Yedek resim (Cloudinary gelmezse)
@@ -93,19 +140,18 @@ useEffect(() => {
         {etkinlikler.length > 0 && (
           <div className="etkinlik-container">
             <div className="etkinlik-slider">
-            <img
-  src={etkinlikler[aktifEtkinlik]?.resimUrl || "/assets/AIM-bg.png"}
-  alt="etkinlik"
-  className="etkinlik-image"
-  onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
-/>
+              <img
+                src={etkinlikler[aktifEtkinlik]?.resimUrl || "/assets/AIM-bg.png"}
+                alt="etkinlik"
+                className="etkinlik-image"
+                onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+              />
               <div className="etkinlik-text">
                 <h1>{etkinlikler[aktifEtkinlik].baslik}</h1>
                 <p>{etkinlikler[aktifEtkinlik].aciklama}</p>
                 <button
                   onClick={() =>
-                    navigate(`/haber/${etkinlikler[aktifEtkinlik].id}`)
-                  }
+navigate(`/etkinlik/${etkinlikler[aktifEtkinlik].id}`)                  }
                 >
                   Detaylı İncele
                 </button>
@@ -154,147 +200,123 @@ useEffect(() => {
       </section>
 
       {/* 💼 SERVICES */}
-      <section id="services" className="services-section">
-        <h2>Services</h2>
-        <div className="services-slider">
-          <button className="services-btn prev" onClick={() => kaydir(-1)}>
-            ‹
-          </button>
-
-          <div className="services-wrapper" ref={sliderRef}>
-            {servisler.map((srv) => (
-              <div key={srv.id} className="service-card">
-                <img
-                  src={srv.resimUrl || yedekResim}
-                  alt="servis"
-                  onError={(e) => (e.target.src = yedekResim)}
-                />
-                <h3>{srv.baslik}</h3>
-                <p>{srv.ozet}</p>
-                <button
-                  onClick={() =>
-                    navigate(
-                      `/services/${srv.baslik
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")}`
-                    )
-                  }
-                >
-                  Read More
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <button className="services-btn next" onClick={() => kaydir(1)}>
-            ›
-          </button>
-        </div>
-      </section>
-
-{/* 🧩 ALT SERVİSLER */}
-<section className="alt-servisler-section">
-  <h2>Our comprehensive range of services</h2>
-  <div className="alt-servisler-grid">
-    {altServisler.map((as, index) => (
-      <div key={as.id} className="alt-servis-card">
-        {/* 🔹 İkon / Görsel */}
-        {as.ikonUrl && (
-          <div className="alt-servis-icon">
-            <img
-              src={as.ikonUrl}
-              alt={as.baslik}
-              onError={(e) => (e.target.style.display = "none")}
-            />
-          </div>
-        )}
-
-        {/* 🔹 Başlık ve Açıklama */}
-        <h3>{as.baslik}</h3>
-        <p>{as.aciklama}</p>
-
-        {/* 🔹 Popup butonu */}
-        <button
-          onClick={() => {
-            setPopupListe(altServisler);
-            setPopupIndex(index);
-            setPopupIcerik({
-              baslik: as.baslik,
-              icerik: as.detay || as.aciklama,
-              resimUrl: as.ikonUrl,
-            });
-          }}
-        >
-          Read More
-        </button>
-      </div>
-    ))}
-  </div>
-</section>
-
-
-{/* 📰 HABERLER */}
-<section className="haberler-section">
-  <h2>Latest News</h2>
-
-  <div className="haberler-slider-container">
-    {/* Sol ok */}
-    <button
-      className="slider-btn prev"
-      onClick={() =>
-        setAktifHaber((prev) =>
-          prev === 0 ? haberler.length - 1 : prev - 1
-        )
-      }
-    >
+<section id="services" className="services-section">
+  <h2>Services</h2>
+  <div className="services-slider">
+    <button className="services-btn prev" onClick={() => kaydir(-1)}>
       ‹
     </button>
 
-    {/* Slider */}
-    <div
-      className="haberler-slider"
-      style={{
-        transform: `translateX(-${aktifHaber * 354}px)`,
-      }}
-    >
-      {haberler.map((hab, index) => (
-        <div key={hab.id} className="haber-card">
+    <div className="services-wrapper" ref={sliderRef}>
+      {servisler.map((srv) => (
+        <div key={srv.id} className="service-card">
           <img
-            src={hab.resimUrl || "/assets/AIM-bg.png"}
-            alt={hab.baslik}
-            className="haber-image"
-            onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+            src={srv.resimUrl || yedekResim}
+            alt="servis"
+            onError={(e) => (e.target.src = yedekResim)}
           />
-          <h3>{hab.baslik}</h3>
-          <p>
-            {hab.icerik?.length > 120
-              ? `${hab.icerik.substring(0, 120)}...`
-              : hab.icerik}
-          </p>
-          <button
-            onClick={() => navigate(`/haber/${hab.id}`)}
-          >
+          <h3>{srv.baslik}</h3>
+          <p>{srv.ozet}</p>
+          <button onClick={() => navigate(`/servis/${srv.id}`)}>
             Read More
           </button>
         </div>
       ))}
     </div>
 
-    {/* Sağ ok */}
-    <button
-      className="slider-btn next"
-      onClick={() =>
-        setAktifHaber((prev) =>
-          prev >= haberler.length - 3 ? 0 : prev + 1
-        )
-      }
-    >
+    <button className="services-btn next" onClick={() => kaydir(1)}>
       ›
     </button>
   </div>
 </section>
 
 
+      {/* 🧩 ALT SERVİSLER */}
+      <section className="alt-servisler-section">
+        <h2>Our comprehensive range of services</h2>
+        <div className="alt-servisler-grid">
+          {altServisler.map((as, index) => (
+            <div key={as.id} className="alt-servis-card">
+              {/* 🔹 İkon / Görsel */}
+              {as.ikonUrl && (
+                <div className="alt-servis-icon">
+                  <img
+                    src={as.ikonUrl}
+                    alt={as.baslik}
+                    onError={(e) => (e.target.style.display = "none")}
+                  />
+                </div>
+              )}
+
+              {/* 🔹 Başlık ve Açıklama */}
+              <h3>{as.baslik}</h3>
+              <p>{as.aciklama}</p>
+
+              {/* 🔹 Popup butonu */}
+           
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 📰 HABERLER - DÜZELTİLMİŞ */}
+      <section className="haberler-section">
+        <h2>Latest News</h2>
+
+        <div className="haberler-slider-container">
+          {/* Sol ok */}
+          <button
+            className="slider-btn prev"
+            onClick={prevHaberSlide}
+            disabled={aktifHaber === 0}
+          >
+            ‹
+          </button>
+
+          {/* Slider Wrapper */}
+          <div className="haberler-slider-wrapper">
+            {/* Slider - GRID YÖNTEMİ */}
+            <div
+              className="haberler-slider"
+              ref={haberSliderRef}
+              style={{
+                transform: `translateX(-${aktifHaber * (100 / getVisibleCardsCount())}%)`
+              }}
+            >
+              {haberler.map((hab, index) => (
+                <div key={hab.id} className="haber-card">
+                  <img
+                    src={hab.resimUrl || "/assets/AIM-bg.png"}
+                    alt={hab.baslik}
+                    className="haber-image"
+                    onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+                  />
+                  <h3>{hab.baslik}</h3>
+                  <p>
+                    {hab.icerik?.length > 120
+                      ? `${hab.icerik.substring(0, 120)}...`
+                      : hab.icerik}
+                  </p>
+                  <button
+                    onClick={() => navigate(`/haber/${hab.id}`)}
+                  >
+                    Read More
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Sağ ok */}
+          <button
+            className="slider-btn next"
+            onClick={nextHaberSlide}
+            disabled={aktifHaber >= getMaxSlide()}
+          >
+            ›
+          </button>
+        </div>
+      </section>
 
       {/* 🧭 FOOTER */}
       <section id="contact" className="footer-section">

@@ -1,28 +1,82 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getHaberler } from "../services/ApiService";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../App.css";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
 const HaberDetay = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [haber, setHaber] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getHaberler().then((r) => {
-      const secili = r.data.find((h) => h.id === parseInt(id));
-      setHaber(secili);
-    });
+    axios
+      .get(`${API_URL}/haberler/${id}`)
+      .then((r) => {
+        console.log("Haber Detay Verisi:", r.data); // 👀 DEBUG
+        setHaber(r.data);
+      })
+      .catch((err) => console.error("Haber yüklenemedi:", err))
+      .finally(() => setLoading(false));
   }, [id]);
 
-  if (!haber) return <p>Loading...</p>;
+  if (loading)
+    return <p style={{ color: "white", textAlign: "center" }}>Yükleniyor...</p>;
+
+  if (!haber)
+    return (
+      <p style={{ color: "white", textAlign: "center" }}>
+        Haber bulunamadı ❌
+      </p>
+    );
 
   return (
-    <div className="haber-detay">
-      <img src={haber.resimUrl} alt={haber.baslik} className="haber-detay-img" />
-      <h1>{haber.baslik}</h1>
-      <p>{haber.icerik}</p>
+    <div className="haber-detay-container">
+      <img
+        src={haber.resimUrl || "/assets/AIM-bg.png"}
+        alt={haber.baslik}
+        className="haber-detay-resim"
+        onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+      />
+
       <div className="haber-detay-icerik">
-        {haber.detay && <p>{haber.detay}</p>}
+        <h1>{haber.baslik}</h1>
+
+        {haber.icerik && (
+          <p className="haber-detay-kisa">
+            {haber.icerik}
+          </p>
+        )}
+
+        {haber.detay && (
+          <div className="haber-detay-tam">
+            {haber.detay}
+          </div>
+        )}
+
+        {!haber.detay && (
+          <p style={{ color: "#aaa", marginTop: "10px" }}>
+            (Bu haberin detaylı açıklaması bulunamadı.)
+          </p>
+        )}
+
+        <button
+          onClick={() => navigate(-1)}
+          className="geri-btn"
+          style={{
+            marginTop: "30px",
+            background: "#e50914",
+            border: "none",
+            padding: "10px 25px",
+            color: "white",
+            borderRadius: "6px",
+            cursor: "pointer",
+          }}
+        >
+          ← Geri Dön
+        </button>
       </div>
     </div>
   );

@@ -617,13 +617,7 @@ body {
   }
 }
 /* 🔹 HABERLER SLIDER CONTAINER */
-.haberler-slider-container {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 60px; /* Butonlar için iç boşluk */
-  overflow: hidden;
-}
+
 
 /* 🔹 SLIDER OKLARI */
 .slider-btn {
@@ -658,81 +652,6 @@ body {
 
 /* 🔹 SLIDER İÇERİĞİ */
 /* 📰 HABERLER */
-.haberler-section {
-  padding: 60px 0;
-  background-color: #0a0a0a;
-  color: white;
-  text-align: center;
-}
-
-.haberler-slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-top: 30px;
-}
-
-.haberler-slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.haber-card {
-  background-color: #111;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-  margin: 0 12px;
-  width: 330px;
-  flex-shrink: 0;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.haber-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-}
-
-.haber-image {
-  width: 100%;
-  height: 200px; /* 🔹 Sabit yükseklik */
-  object-fit: cover; /* 🔹 Resmi kırp ama orantılı tut */
-  display: block;
-}
-
-.haber-card h3 {
-  font-size: 1.2rem;
-  margin: 12px 10px 6px;
-  text-align: left;
-  color: #fff;
-}
-
-.haber-card p {
-  font-size: 0.95rem;
-  color: #ccc;
-  margin: 0 10px 15px;
-  text-align: left;
-  max-height: 60px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.haber-card button {
-  background-color: #e50914;
-  border: none;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 15px;
-  transition: background 0.3s;
-}
-
-.haber-card button:hover {
-  background-color: #ff1c25;
-}
 
 .admin-form {
   background: rgba(255, 255, 255, 0.05);
@@ -1163,86 +1082,10 @@ body {
     font-size: 0.9rem;
   }
 }
-.haberler-section {
-  padding: 60px 0;
-  background-color: #0a0a0a;
-  color: white;
-  text-align: center;
-}
+/* =======================
+   📰 HABERLER (Son sürüm - tekrarlar temizlendi)
+   ======================= */
 
-.haberler-slider-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1150px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.haberler-slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: max-content;
-  padding: 0 10px;
-}
-
-.haber-card {
-  background-color: #111;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-  margin: 0 12px;
-  width: 330px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.haber-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-}
-
-.haber-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.haber-card h3 {
-  font-size: 1.2rem;
-  margin: 12px 10px 6px;
-  color: #fff;
-}
-
-.haber-card p {
-  font-size: 0.95rem;
-  color: #ccc;
-  margin: 0 10px 15px;
-  max-height: 60px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Read More butonu */
-.haber-card button {
-  background-color: #e50914;
-  border: none;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 0 auto 15px;
-  transition: background 0.3s;
-}
-
-.haber-card button:hover {
-  background-color: #ff1c25;
-}
 /* 🔹 ALT SERVİSLER - Kart ikonu */
 .alt-servis-icon {
   width: 80px;
@@ -1287,4 +1130,353 @@ body {
   background: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   margin-bottom: 15px;
+}
+/* =======================
+   📰 HABERLER SLIDER - TAMAMEN DÜZELTİLMİŞ
+   ======================= */
+
+.haberler-section {
+  padding: 80px 0;
+  background-color: #0a0a0a;
+  color: white;
+  text-align: center;
+}
+
+.haberler-slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Slider wrapper */
+.haberler-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 80px; /* Oklar için daha fazla boşluk */
+}
+
+/* Slider - GRID YÖNTEMİ */
+.haberler-slider {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(33.333% - 16px); /* 3 kart yan yana */
+  gap: 24px;
+  transition: transform 0.5s ease-in-out;
+  padding: 10px 0;
+}
+
+/* Tablet için 2'li görünüm */
+@media (max-width: 1024px) {
+  .haberler-slider {
+    grid-auto-columns: calc(50% - 12px); /* 2 kart yan yana */
+  }
+  
+  .haberler-slider-wrapper {
+    padding: 0 70px;
+  }
+}
+
+/* Mobil için tekli görünüm */
+@media (max-width: 768px) {
+  .haberler-slider {
+    grid-auto-columns: 100%; /* 1 kart yan yana */
+  }
+  
+  .haberler-slider-wrapper {
+    padding: 0 60px;
+  }
+}
+
+/* Kartlar */
+.haber-card {
+  background-color: #111;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  padding: 0 0 15px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.haber-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.haber-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.haber-card h3 {
+  font-size: 1.2rem;
+  margin: 12px 15px 6px;
+  color: #fff;
+  text-align: left;
+}
+
+.haber-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin: 0 15px 15px;
+  text-align: left;
+  max-height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.haber-card button {
+  background-color: #e50914;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 15px 15px;
+  transition: background 0.3s;
+  align-self: flex-start;
+}
+
+.haber-card button:hover {
+  background-color: #ff1c25;
+}
+
+/* Butonlar */
+.haberler-slider-container .slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 42, 42, 0.85);
+  border: none;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 12px 18px;
+  z-index: 5;
+  transition: all 0.3s ease;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.haberler-slider-container .slider-btn.prev {
+  left: 10px;
+}
+
+.haberler-slider-container .slider-btn.next {
+  right: 10px;
+}
+
+.haberler-slider-container .slider-btn:hover {
+  background: #ff2a2a;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.haberler-slider-container .slider-btn:disabled {
+  background: rgba(255, 42, 42, 0.4);
+  cursor: not-allowed;
+  transform: translateY(-50%) scale(1);
+}
+
+.haberler-slider-container .slider-btn:disabled:hover {
+  background: rgba(255, 42, 42, 0.4);
+  transform: translateY(-50%) scale(1);
+}
+/* 🔹 Etkinlik Detay Sayfası */
+.etkinlik-detay-container {
+  background-color: #0a0a0a;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+}
+
+/* Üstteki büyük resim */
+.etkinlik-detay-header {
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.etkinlik-detay-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(85%);
+}
+
+/* Alt kısım: içerik */
+.etkinlik-detay-content {
+  max-width: 900px;
+  width: 90%;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.etkinlik-detay-content h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ff3b3b;
+  border-bottom: 2px solid #ff3b3b;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.etkinlik-detay-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ddd;
+  text-align: justify;
+  margin-bottom: 40px;
+}
+
+/* Geri dön butonu */
+.geri-don-btn {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.geri-don-btn:hover {
+  background-color: #ff1c25;
+  transform: scale(1.05);
+}
+.haber-detay-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #fff;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.haber-detay-header {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.haber-detay-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.haber-detay-baslik {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e50914;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.haber-detay-icerik {
+  max-width: 1000px;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  color: #ddd;
+  text-align: justify;
+}
+
+.haber-loading, .haber-error {
+  color: white;
+  text-align: center;
+  padding: 60px;
+  font-size: 1.2rem;
+}
+.etkinlik-detay-text {
+  font-size: 1.1rem;
+  color: #ddd;
+  line-height: 1.6;
+  padding: 20px;
+  white-space: pre-line; /* satır atlamaları korunsun */
+}
+/* 🔹 Servis Detay Sayfası */
+.servis-detay-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0b0b0b;
+  color: #fff;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+.servis-detay-header {
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.servis-detay-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  filter: brightness(0.8);
+  transition: transform 0.4s ease-in-out;
+}
+
+
+
+.servis-detay-content {
+  max-width: 900px;
+  margin-top: 40px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+
+
+.servis-detay-ozet {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #d1d1d1;
+  margin-bottom: 25px;
+}
+
+.servis-detay-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #eaeaea;
+  text-align: justify;
+  margin-bottom: 40px;
+}
+
+
+
+
+
+/* 🔹 Yükleniyor kısmı */
+.servis-detay-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  color: #fff;
+  font-size: 1.4rem;
 }

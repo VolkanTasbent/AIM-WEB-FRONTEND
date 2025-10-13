@@ -48,8 +48,7 @@ const AdminDashboard = () => {
     if (!file) return alert("Lütfen resim seçin!");
     setLoading(true);
     try {
-      console.log("Cloudinary’ye yükleniyor:", file.name);
-const url = await uploadToCloudinary(file, activeSection);
+      const url = await uploadToCloudinary(file, activeSection);
       setImageUrl(url);
       alert("Resim başarıyla yüklendi ✅");
     } catch (err) {
@@ -60,114 +59,131 @@ const url = await uploadToCloudinary(file, activeSection);
     }
   };
 
-const handleRemoveImage = () => {
-  if (!window.confirm("Resmi kaldırmak istiyor musun?")) return;
-  setImageUrl("");
-  setFile(null);
-  alert("Resim kaldırıldı. Kaydet'e basarak güncellemeyi tamamla ✅");
-};
-
-
-  // 🔹 Ekleme / Güncelleme
-const handleAddOrUpdate = async () => {
-  if (activeSection === "sponsor" && !formData.ad)
-    return alert("Sponsor adı zorunludur!");
-  if (activeSection !== "sponsor" && !formData.baslik)
-    return alert("Başlık zorunludur!");
-
-  setLoading(true);
-
-  try {
-    // 🔹 1. Resim otomatik yüklensin
-    let finalImageUrl = imageUrl;
-    if (!finalImageUrl && file) {
-      const uploadedUrl = await uploadToCloudinary(file);
-      finalImageUrl = uploadedUrl;
-      setImageUrl(uploadedUrl);
-    }
-
-    // 🔹 2. Gönderilecek veriyi hazırla
-    let data = {};
-    if (activeSection === "sponsor") {
-      data = {
-        ad: formData.ad,
-        logoUrl: finalImageUrl || "",
-      };
-    } else if (activeSection === "altservis") {
-      data = {
-        baslik: formData.baslik,
-        aciklama: formData.aciklama,
-        ikonUrl: finalImageUrl || "",
-      };
-    } else if (activeSection === "haber") {
-   data = {
-  baslik: formData.baslik,
-  icerik: formData.aciklama, // 🔹 backend’deki icerik alanına eşitliyoruz
-  detay: formData.detay,
-  resimUrl: finalImageUrl || "",
-};
-
-    } else {
-      // etkinlik, servis vs.
-      data = {
-        baslik: formData.baslik,
-        aciklama: formData.aciklama,
-        detay: formData.detay,
-        ozet: formData.ozet,
-        resimUrl: finalImageUrl || "",
-      };
-    }
-
-    // 🔹 3. Endpoint seçimi
-    let endpoint = "";
-    if (activeSection === "etkinlik") endpoint = "/etkinlikler";
-    else if (activeSection === "haber") endpoint = "/haberler";
-    else if (activeSection === "servis") endpoint = "/servisler";
-    else if (activeSection === "altservis") endpoint = "/alt-servisler";
-    else if (activeSection === "sponsor") endpoint = "/sponsorlar";
-
-    // 🔹 4. PUT veya POST işlemi
-    if (isEditing && formData.id) {
-      await axios.put(`${API_URL}${endpoint}/${formData.id}`, data);
-      alert("Güncellendi ✅");
-    } else {
-      await axios.post(`${API_URL}${endpoint}`, data);
-      alert("Yeni kayıt eklendi 🎉");
-    }
-
-    // 🔹 5. Listeyi yenile
-    if (activeSection === "etkinlik")
-      getEtkinlikler().then((r) => setEtkinlikler(r.data));
-    else if (activeSection === "haber")
-      getHaberler().then((r) => setHaberler(r.data));
-    else if (activeSection === "servis")
-      getServisler().then((r) => setServisler(r.data));
-    else if (activeSection === "altservis")
-      getAltServisler().then((r) => setAltServisler(r.data));
-    else if (activeSection === "sponsor")
-      getSponsorlar().then((r) => setSponsorlar(r.data));
-
-    // 🔹 6. Form sıfırlama
-    setFormData({
-      id: null,
-      baslik: "",
-      aciklama: "",
-      detay: "",
-      ozet: "",
-      ad: "",
-    });
+  const handleRemoveImage = () => {
+    if (!window.confirm("Resmi kaldırmak istiyor musun?")) return;
     setImageUrl("");
     setFile(null);
-    setIsEditing(false);
-  } catch (err) {
-    console.error("Kaydetme hatası:", err);
-    alert("Kayıt işlemi sırasında hata oluştu ❌");
-  } finally {
-    setLoading(false);
-  }
-};
+    alert("Resim kaldırıldı. Kaydet'e basarak güncellemeyi tamamla ✅");
+  };
 
+  // 🔹 Ekleme / Güncelleme
+  const handleAddOrUpdate = async () => {
+    if (activeSection === "sponsor" && !formData.ad)
+      return alert("Sponsor adı zorunludur!");
+    if (activeSection !== "sponsor" && !formData.baslik)
+      return alert("Başlık zorunludur!");
 
+    setLoading(true);
+
+    try {
+      // 🔹 1. Görsel yükle
+      let finalImageUrl = imageUrl;
+      if (!finalImageUrl && file) {
+        const uploadedUrl = await uploadToCloudinary(file);
+        finalImageUrl = uploadedUrl;
+        setImageUrl(uploadedUrl);
+      }
+
+      // 🔹 2. Veri oluştur
+      let data = {};
+      if (activeSection === "sponsor") {
+        data = {
+          ad: formData.ad,
+          logoUrl: finalImageUrl || "",
+        };
+      } else if (activeSection === "altservis") {
+        data = {
+          baslik: formData.baslik,
+          aciklama: formData.aciklama,
+          detay: formData.detay, // ✅ EKLENDİ
+          ikonUrl: finalImageUrl || "",
+        };
+      } else if (activeSection === "haber") {
+        data = {
+          baslik: formData.baslik,
+          icerik: formData.aciklama, // kısa açıklama
+          detay: formData.detay, // uzun açıklama
+          resimUrl: finalImageUrl || "",
+        };
+      } else if (activeSection === "etkinlik") {
+        data = {
+          baslik: formData.baslik,
+          aciklama: formData.aciklama, // kısa açıklama
+          detay: formData.detay, // uzun açıklama
+          resimUrl: finalImageUrl || "",
+        };
+      } else if (activeSection === "servis") {
+        data = {
+          baslik: formData.baslik,
+          ozet: formData.ozet,
+          detay: formData.detay, // ✅ EKLENDİ
+          resimUrl: finalImageUrl || "",
+        };
+      } else {
+        data = {
+          baslik: formData.baslik,
+          aciklama: formData.aciklama,
+          detay: formData.detay,
+          ozet: formData.ozet,
+          resimUrl: finalImageUrl || "",
+        };
+      }
+
+      // 🔹 3. Endpoint seç
+      let endpoint = "";
+      if (activeSection === "etkinlik") endpoint = "/etkinlikler";
+      else if (activeSection === "haber") endpoint = "/haberler";
+      else if (activeSection === "servis") endpoint = "/servisler";
+      else if (activeSection === "altservis") endpoint = "/alt-servisler";
+      else if (activeSection === "sponsor") endpoint = "/sponsorlar";
+
+      // 🔹 4. Güncelle / Ekle
+      if (isEditing) {
+        if (!formData.id || isNaN(formData.id)) {
+          alert("ID geçersiz! Lütfen düzenlemek istediğin kaydı yeniden seç.");
+          setLoading(false);
+          return;
+        }
+        await axios.put(`${API_URL}${endpoint}/${Number(formData.id)}`, data);
+        alert("Güncellendi ✅");
+      } else {
+        await axios.post(`${API_URL}${endpoint}`, data);
+        alert("Yeni kayıt eklendi 🎉");
+      }
+
+      // 🔹 5. Liste yenile
+      if (activeSection === "etkinlik")
+        getEtkinlikler().then((r) => setEtkinlikler(r.data));
+      else if (activeSection === "haber")
+        getHaberler().then((r) => setHaberler(r.data));
+      else if (activeSection === "servis")
+        getServisler().then((r) => setServisler(r.data));
+      else if (activeSection === "altservis")
+        getAltServisler().then((r) => setAltServisler(r.data));
+      else if (activeSection === "sponsor")
+        getSponsorlar().then((r) => setSponsorlar(r.data));
+
+      // 🔹 6. Form sıfırla
+      setFormData({
+        id: null,
+        baslik: "",
+        aciklama: "",
+        detay: "",
+        ozet: "",
+        ad: "",
+      });
+      setImageUrl("");
+      setFile(null);
+      setIsEditing(false);
+    } catch (err) {
+      console.error("Kaydetme hatası:", err);
+      alert("Kayıt işlemi sırasında hata oluştu ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 🔹 Liste yenileme
   const refreshList = (section) => {
     if (section === "etkinlik")
       getEtkinlikler().then((r) => setEtkinlikler(r.data));
@@ -195,18 +211,24 @@ const handleAddOrUpdate = async () => {
   };
 
   // 🔹 Düzenleme
-const handleEdit = (item) => {
-  setFormData({
-    id: item.id,
-    baslik: item.baslik || "",
-    aciklama: item.aciklama || "",
-    detay: item.detay || "",
-    ozet: item.ozet || "",
-    ad: item.ad || "",
-  });
-  setImageUrl(item.resimUrl || item.logoUrl || item.ikonUrl || "");
-  setIsEditing(true);
-};
+  const handleEdit = (item) => {
+    if (!item || !item.id) {
+      alert("Bu kaydın ID bilgisi bulunamadı!");
+      return;
+    }
+
+    setFormData({
+      id: Number(item.id),
+      baslik: item.baslik || "",
+      aciklama: item.aciklama || item.icerik || "",
+      detay: item.detay || "",
+      ozet: item.ozet || "",
+      ad: item.ad || "",
+    });
+
+    setImageUrl(item.resimUrl || item.logoUrl || item.ikonUrl || "");
+    setIsEditing(true);
+  };
 
   // 🔹 Silme
   const handleDelete = async (id) => {
@@ -310,24 +332,107 @@ const handleEdit = (item) => {
               type="text"
               placeholder="Başlık"
               value={formData.baslik}
-              onChange={(e) => setFormData({ ...formData, baslik: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, baslik: e.target.value })
+              }
             />
+
+            {/* SERVİS */}
             {activeSection === "servis" && (
-              <textarea
-                placeholder="Özet"
-                value={formData.ozet}
-                onChange={(e) => setFormData({ ...formData, ozet: e.target.value })}
-              />
+              <>
+                <textarea
+                  placeholder="Özet"
+                  value={formData.ozet}
+                  onChange={(e) =>
+                    setFormData({ ...formData, ozet: e.target.value })
+                  }
+                />
+                <textarea
+                  placeholder="Servis Detay (detay sayfasında gözükecek)"
+                  value={formData.detay}
+                  onChange={(e) =>
+                    setFormData({ ...formData, detay: e.target.value })
+                  }
+                  rows={6}
+                />
+              </>
             )}
-            <textarea
-              placeholder="Açıklama / Detay"
-              value={formData.aciklama}
-              onChange={(e) => setFormData({ ...formData, aciklama: e.target.value })}
-            />
+
+            {/* ETKİNLİK */}
+            {activeSection === "etkinlik" && (
+              <>
+                <textarea
+                  placeholder="Kısa Açıklama (ana sayfada gözükecek)"
+                  value={formData.aciklama}
+                  onChange={(e) =>
+                    setFormData({ ...formData, aciklama: e.target.value })
+                  }
+                  rows={3}
+                />
+                <textarea
+                  placeholder="Detaylı Açıklama (detay sayfasında gözükecek)"
+                  value={formData.detay}
+                  onChange={(e) =>
+                    setFormData({ ...formData, detay: e.target.value })
+                  }
+                  rows={8}
+                />
+              </>
+            )}
+
+            {/* HABER */}
+            {activeSection === "haber" && (
+              <>
+                <textarea
+                  placeholder="Kısa Açıklama (ana sayfada gözükecek)"
+                  value={formData.aciklama}
+                  onChange={(e) =>
+                    setFormData({ ...formData, aciklama: e.target.value })
+                  }
+                  rows={3}
+                />
+                <textarea
+                  placeholder="Detaylı Açıklama (Read More sayfasında gözükecek)"
+                  value={formData.detay}
+                  onChange={(e) =>
+                    setFormData({ ...formData, detay: e.target.value })
+                  }
+                  rows={8}
+                />
+              </>
+            )}
+
+            {/* ALT SERVİS */}
+            {activeSection === "altservis" && (
+              <>
+                <textarea
+                  placeholder="Açıklama"
+                  value={formData.aciklama}
+                  onChange={(e) =>
+                    setFormData({ ...formData, aciklama: e.target.value })
+                  }
+                />
+            
+              </>
+            )}
+
+            {/* DİĞERLERİ */}
+            {activeSection !== "haber" &&
+              activeSection !== "etkinlik" &&
+              activeSection !== "servis" &&
+              activeSection !== "altservis" && (
+                <textarea
+                  placeholder="Açıklama"
+                  value={formData.aciklama}
+                  onChange={(e) =>
+                    setFormData({ ...formData, aciklama: e.target.value })
+                  }
+                />
+              )}
           </>
         )}
 
-        {/* Görsel Alanı */}
+        {/* GÖRSEL YÜKLEME */}
         <div className="image-upload-box">
           {imageUrl ? (
             <div className="image-preview">
@@ -341,7 +446,11 @@ const handleEdit = (item) => {
             </div>
           ) : (
             <>
-              <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
               <button onClick={handleUpload} disabled={loading}>
                 {loading ? "Yükleniyor..." : "Resmi Yükle"}
               </button>
@@ -349,7 +458,9 @@ const handleEdit = (item) => {
           )}
         </div>
 
-        <button onClick={handleAddOrUpdate}>{isEditing ? "Güncelle" : "Kaydet"}</button>
+        <button onClick={handleAddOrUpdate}>
+          {isEditing ? "Güncelle" : "Kaydet"}
+        </button>
       </div>
     </div>
   );
