@@ -8,43 +8,67 @@ body {
   overflow-x: hidden;
 }
 
+/* 🔹 Navbar */
 .navbar {
- display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 80px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  position: fixed;
   width: 100%;
+  position: fixed;
   top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: linear-gradient(90deg, #000, #111, #200);
+  padding: 15px 60px;
   z-index: 100;
 }
 
-.navbar .logo {
-   font-weight: 700;
-  font-size: 22px;
-  letter-spacing: 2px;
+.nav-links {
+  display: flex;
+  gap: 40px;
 }
 
-.navbar nav a {
-  margin-left: 28px;
+.nav-item {
+  color: #fff;
   text-decoration: none;
-  color: white;
-  font-size: 15px;
-  padding: 6px 18px;
-  border-radius: 25px;
-  transition: all 0.3s ease;
-}
-.navbar nav a.active {
-  background-color: white;
-  color: black;
-  font-weight: 600;
+  font-weight: 500;
+  position: relative;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
 }
 
-.navbar nav a:hover {
-  opacity: 0.8;
+.nav-item:hover {
+  color: #ffcc00;
 }
+
+/* Aktif sayfa */
+.nav-item.active {
+  color: #000;
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 8px 20px;
+}
+
+/* 🔹 Footer */
+.footer {
+  background-color: #0b0b0b;
+  color: #dcdcdc;
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 0.95rem;
+  border-top: 1px solid #222;
+  margin-top: 100px;
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+/* Sayfa düzeni */
+main {
+  margin-top: 80px; /* Navbar boşluğu */
+  min-height: 80vh;
+}
+
 
 .hero-section {
   margin-top: 100px;
@@ -1479,4 +1503,122 @@ body {
   height: 80vh;
   color: #fff;
   font-size: 1.4rem;
+}
+/* === CUSTOM FOOTER TASARIMI === */
+
+.custom-footer {
+  background: radial-gradient(circle at center, #0a0a0a 50%, #000 100%);
+  color: #f1f1f1;
+  padding: 60px 100px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-column h4 {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-column p {
+  color: #bfbfbf;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.footer-icon {
+  color: #ffcc00;
+  margin-right: 6px;
+}
+
+/* === ORTA KISIM === */
+.footer-center {
+  text-align: center;
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.footer-center h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-social a {
+  color: #fff;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #ffcc00;
+  transform: scale(1.1);
+}
+
+/* === SAĞ KISIM (SAYFA LİNKLERİ) === */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffcc00;
+}
+
+/* === ALT KISIM === */
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: #777;
+  border-top: 1px solid #222;
+  padding-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  .footer-links {
+    align-items: center;
+  }
 }

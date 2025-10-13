@@ -1,25 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import "../App.css";
 
 const Navbar = () => {
-  const [active, setActive] = useState("Home");
-
   return (
-    <header className="navbar">
-      <div className="logo">AIM AGENCY</div>
-      <nav>
-        {["Home", "Works", "References", "Contact"].map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            className={active === item ? "active" : ""}
-            onClick={() => setActive(item)}
-          >
-            {item}
-          </a>
-        ))}
-      </nav>
-    </header>
+    <nav className="navbar">
+      <div className="nav-links">
+        <NavLink to="/" className="nav-item">
+          Home
+        </NavLink>
+        <NavLink to="/works" className="nav-item">
+          Works
+        </NavLink>
+        <NavLink to="/references" className="nav-item">
+          References
+        </NavLink>
+        <NavLink to="/contact" className="nav-item">
+          Contact
+        </NavLink>
+      </div>
+    </nav>
   );
 };
 

@@ -6,25 +6,46 @@ import AdminLogin from "./pages/AdminLogin";
 import EtkinlikDetay from "./pages/EtkinlikDetay";
 import HaberDetay from "./pages/HaberDetay";
 import ServisDetay from "./pages/ServisDetay";
+import Works from "./pages/Works";
+import References from "./pages/References";
+import Contact from "./pages/Contact";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* 🌍 Kullanıcı anasayfası */}
-        <Route path="/" element={<Home />} />
+      <div className="app-container">
+        {/* 🔹 Üst Menü */}
+        <Navbar />
 
-        {/* 🔒 Admin Panel Girişi */}
-        <Route path="/admin-login" element={<AdminLogin />} />
+        <main>
+          <Routes>
+            {/* 🌍 Kullanıcı anasayfası */}
+            <Route path="/" element={<Home />} />
 
-        {/* 🧠 Admin Dashboard */}
-        <Route path="/admin" element={<AdminDashboard />} />
+            {/* 🔒 Admin Panel Girişi */}
+            <Route path="/admin-login" element={<AdminLogin />} />
 
-        {/* 🎉 Etkinlik, Haber, Servis detay sayfaları */}
-        <Route path="/etkinlik/:id" element={<EtkinlikDetay />} />
-        <Route path="/haber/:id" element={<HaberDetay />} />
-        <Route path="/servis/:id" element={<ServisDetay />} />
-      </Routes>
+            {/* 🧠 Admin Dashboard */}
+            <Route path="/admin" element={<AdminDashboard />} />
+
+            {/* 🎉 Etkinlik, Haber, Servis detay sayfaları */}
+            <Route path="/etkinlik/:id" element={<EtkinlikDetay />} />
+            <Route path="/haber/:id" element={<HaberDetay />} />
+            <Route path="/servis/:id" element={<ServisDetay />} />
+
+            {/* 💼 Boş sayfalar (ileride doldurulacak) */}
+            <Route path="/works" element={<Works />} />
+            <Route path="/references" element={<References />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+
+        {/* 🔹 Alt Bilgi (Footer) */}
+        <Footer />
+      </div>
     </Router>
   );
 }
