@@ -65,3 +65,7 @@ export const getSponsorlar = () => axios.get(`${API_URL}/sponsorlar`);
 export const getAyarlar = () => axios.get(`${API_URL}/ayarlar`);
 export const login = (kullaniciAdi, sifre) =>
   axios.post(`${API_URL}/kullanicilar/login`, { kullaniciAdi, sifre });
+export const getCrew = () => axios.get(`${API_URL}/crew`);
+export const addCrew = (data) => axios.post(`${API_URL}/crew`, data);
+export const updateCrew = (id, data) => axios.put(`${API_URL}/crew/${id}`, data);
+export const deleteCrew = (id) => axios.delete(`${API_URL}/crew/${id}`);

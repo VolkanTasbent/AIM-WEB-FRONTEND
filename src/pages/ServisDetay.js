@@ -25,12 +25,22 @@ const ServisDetay = () => {
     );
   }
 
+  // 🔹 Cloudinary'den gelen görselleri optimize et
+  const optimizeImageUrl = (url) => {
+    if (!url) return "/assets/AIM-bg.png";
+    // Eğer Cloudinary URL'si ise kalite optimizasyonu ekle
+    if (url.includes("res.cloudinary.com")) {
+      return `${url}?f_auto&q_auto:best`;
+    }
+    return url;
+  };
+
   return (
     <div className="servis-detay-container">
       {/* 🔹 Üstte Resim */}
       <div className="servis-detay-header">
         <img
-          src={servis.resimUrl || "/assets/AIM-bg.png"}
+          src={optimizeImageUrl(servis.resimUrl)}
           alt={servis.baslik}
           className="servis-detay-image"
           onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
@@ -40,7 +50,8 @@ const ServisDetay = () => {
       {/* 🔹 İçerik */}
       <div className="servis-detay-content">
         <h1>{servis.baslik}</h1>
-        <p className="servis-ozet">{servis.ozet}</p>
+
+        {servis.ozet && <p className="servis-ozet">{servis.ozet}</p>}
 
         {servis.detay ? (
           <p className="servis-detay-text">{servis.detay}</p>

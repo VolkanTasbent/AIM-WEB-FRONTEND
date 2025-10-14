@@ -412,12 +412,7 @@ main {
   overflow: hidden;
 }
 
-.service-detail-hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(60%);
-}
+
 
 .service-detail-hero .overlay {
   position: absolute;
@@ -1621,4 +1616,154 @@ main {
   .footer-links {
     align-items: center;
   }
+}
+.etkinlik-detay-image,
+.servis-detay-image {
+  width: 100%;
+  max-height: 500px; /* istersen 400–600px arası değiştirebilirsin */
+  object-fit: contain; /* 🔹 cover yerine contain */
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+.etkinlik-detay-image,
+.servis-detay-image {
+  width: 100%;
+  height: auto;
+  max-height: 60vh; /* ekran yüksekliğinin %60’ı */
+  object-fit: contain;
+  border-radius: 10px;
+}
+.service-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain; /* cover değil contain */
+  border-radius: 10px;
+  background-color: #000; /* isteğe bağlı, kenarlarda boşluk olursa */
+}
+.service-card img {
+  width: 100%;
+  aspect-ratio: 16/9; /* 🔹 orantılı görünüm */
+  object-fit: contain;
+}
+.service-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain; /* 🔹 resmi kırpmadan gösterir */
+  background-color: #000; /* siyah arka plan (isteğe bağlı) */
+  border-radius: 10px;
+}
+  /* 🔹 Our Crew Bölümü */
+.ourcrew-section {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #000000, #300000);
+  padding: 80px 0;
+  text-align: center;
+  color: #fff;
+}
+
+.ourcrew-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+/* 🔹 Grid */
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+/* 🔹 Kart */
+.crew-card {
+  background: linear-gradient(to bottom, #2b0000, #000);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.crew-card:hover {
+  transform: scale(1.03);
+}
+
+/* 🔹 Resim */
+.crew-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  filter: brightness(85%);
+  transition: filter 0.3s ease;
+}
+.crew-card:hover .crew-image img {
+  filter: brightness(100%);
+}
+
+/* 🔹 Bilgi */
+.crew-info {
+  padding: 20px;
+}
+.crew-info h3 {
+  margin: 10px 0 5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.crew-info p {
+  margin: 0;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+.crew-info button {
+  margin-top: 15px;
+  background: #fff;
+  color: #700;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.crew-info button:hover {
+  background: #e50914;
+  color: #fff;
+}
+
+/* 🔹 Detaylar */
+.crew-details {
+  background: #200000;
+  color: #ddd;
+  padding: 20px 25px;
+  border-top: 1px solid #700;
+  text-align: left;
+}
+.crew-details p {
+  margin: 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.crew-languages {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 🔹 Sosyal medya ikonları */
+.crew-socials {
+  margin-top: 20px;
+}
+.crew-socials .icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+.crew-socials a {
+  color: #fff;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+}
+.crew-socials a:hover {
+  color: #e50914;
 }

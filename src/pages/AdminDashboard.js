@@ -5,6 +5,7 @@ import {
   getServisler,
   getAltServisler,
   getSponsorlar,
+  getCrew,
   uploadToCloudinary,
 } from "../services/ApiService";
 import axios from "axios";
@@ -18,6 +19,7 @@ const AdminDashboard = () => {
   const [servisler, setServisler] = useState([]);
   const [altServisler, setAltServisler] = useState([]);
   const [sponsorlar, setSponsorlar] = useState([]);
+  const [crewList, setCrewList] = useState([]); // 🆕 EKLENDİ
   const [activeSection, setActiveSection] = useState("etkinlik");
 
   const [formData, setFormData] = useState({
@@ -27,6 +29,13 @@ const AdminDashboard = () => {
     detay: "",
     ozet: "",
     ad: "",
+    adSoyad: "", // 🆕 EKLENDİ
+    unvan: "", // 🆕 EKLENDİ
+    diller: "", // 🆕 EKLENDİ
+    linkedin: "", // 🆕 EKLENDİ
+    instagram: "", // 🆕 EKLENDİ
+    youtube: "", // 🆕 EKLENDİ
+    tiktok: "", // 🆕 EKLENDİ
   });
 
   const [file, setFile] = useState(null);
@@ -41,6 +50,7 @@ const AdminDashboard = () => {
     getServisler().then((r) => setServisler(r.data));
     getAltServisler().then((r) => setAltServisler(r.data));
     getSponsorlar().then((r) => setSponsorlar(r.data));
+    getCrew().then((r) => setCrewList(r.data)); // 🆕 EKLENDİ
   }, []);
 
   // 🔹 Cloudinary Görsel Yükleme
@@ -70,7 +80,9 @@ const AdminDashboard = () => {
   const handleAddOrUpdate = async () => {
     if (activeSection === "sponsor" && !formData.ad)
       return alert("Sponsor adı zorunludur!");
-    if (activeSection !== "sponsor" && !formData.baslik)
+    if (activeSection === "crew" && !formData.adSoyad) // 🆕 EKLENDİ
+      return alert("Ad Soyad zorunludur!");
+    if (activeSection !== "sponsor" && activeSection !== "crew" && !formData.baslik)
       return alert("Başlık zorunludur!");
 
     setLoading(true);
@@ -95,28 +107,41 @@ const AdminDashboard = () => {
         data = {
           baslik: formData.baslik,
           aciklama: formData.aciklama,
-          detay: formData.detay, // ✅ EKLENDİ
+          detay: formData.detay,
           ikonUrl: finalImageUrl || "",
         };
       } else if (activeSection === "haber") {
         data = {
           baslik: formData.baslik,
-          icerik: formData.aciklama, // kısa açıklama
-          detay: formData.detay, // uzun açıklama
+          icerik: formData.aciklama,
+          detay: formData.detay,
           resimUrl: finalImageUrl || "",
         };
       } else if (activeSection === "etkinlik") {
         data = {
           baslik: formData.baslik,
-          aciklama: formData.aciklama, // kısa açıklama
-          detay: formData.detay, // uzun açıklama
+          aciklama: formData.aciklama,
+          detay: formData.detay,
           resimUrl: finalImageUrl || "",
         };
       } else if (activeSection === "servis") {
         data = {
           baslik: formData.baslik,
           ozet: formData.ozet,
-          detay: formData.detay, // ✅ EKLENDİ
+          detay: formData.detay,
+          resimUrl: finalImageUrl || "",
+        };
+      } else if (activeSection === "crew") { // 🆕 EKLENDİ
+        data = {
+          adSoyad: formData.adSoyad,
+          unvan: formData.unvan,
+          aciklama: formData.aciklama,
+          detay: formData.detay,
+          diller: formData.diller,
+          linkedin: formData.linkedin,
+          instagram: formData.instagram,
+          youtube: formData.youtube,
+          tiktok: formData.tiktok,
           resimUrl: finalImageUrl || "",
         };
       } else {
@@ -136,6 +161,7 @@ const AdminDashboard = () => {
       else if (activeSection === "servis") endpoint = "/servisler";
       else if (activeSection === "altservis") endpoint = "/alt-servisler";
       else if (activeSection === "sponsor") endpoint = "/sponsorlar";
+      else if (activeSection === "crew") endpoint = "/crew"; // 🆕 EKLENDİ
 
       // 🔹 4. Güncelle / Ekle
       if (isEditing) {
@@ -162,6 +188,8 @@ const AdminDashboard = () => {
         getAltServisler().then((r) => setAltServisler(r.data));
       else if (activeSection === "sponsor")
         getSponsorlar().then((r) => setSponsorlar(r.data));
+      else if (activeSection === "crew") // 🆕 EKLENDİ
+        getCrew().then((r) => setCrewList(r.data));
 
       // 🔹 6. Form sıfırla
       setFormData({
@@ -171,6 +199,13 @@ const AdminDashboard = () => {
         detay: "",
         ozet: "",
         ad: "",
+        adSoyad: "", // 🆕 EKLENDİ
+        unvan: "", // 🆕 EKLENDİ
+        diller: "", // 🆕 EKLENDİ
+        linkedin: "", // 🆕 EKLENDİ
+        instagram: "", // 🆕 EKLENDİ
+        youtube: "", // 🆕 EKLENDİ
+        tiktok: "", // 🆕 EKLENDİ
       });
       setImageUrl("");
       setFile(null);
@@ -194,6 +229,8 @@ const AdminDashboard = () => {
       getAltServisler().then((r) => setAltServisler(r.data));
     else if (section === "sponsor")
       getSponsorlar().then((r) => setSponsorlar(r.data));
+    else if (section === "crew") // 🆕 EKLENDİ
+      getCrew().then((r) => setCrewList(r.data));
   };
 
   const resetForm = () => {
@@ -204,6 +241,13 @@ const AdminDashboard = () => {
       detay: "",
       ozet: "",
       ad: "",
+      adSoyad: "", // 🆕 EKLENDİ
+      unvan: "", // 🆕 EKLENDİ
+      diller: "", // 🆕 EKLENDİ
+      linkedin: "", // 🆕 EKLENDİ
+      instagram: "", // 🆕 EKLENDİ
+      youtube: "", // 🆕 EKLENDİ
+      tiktok: "", // 🆕 EKLENDİ
     });
     setImageUrl("");
     setFile(null);
@@ -217,16 +261,32 @@ const AdminDashboard = () => {
       return;
     }
 
-    setFormData({
-      id: Number(item.id),
-      baslik: item.baslik || "",
-      aciklama: item.aciklama || item.icerik || "",
-      detay: item.detay || "",
-      ozet: item.ozet || "",
-      ad: item.ad || "",
-    });
-
-    setImageUrl(item.resimUrl || item.logoUrl || item.ikonUrl || "");
+    if (activeSection === "crew") { // 🆕 EKLENDİ
+      setFormData({
+        id: Number(item.id),
+        adSoyad: item.adSoyad || "",
+        unvan: item.unvan || "",
+        aciklama: item.aciklama || "",
+        detay: item.detay || "",
+        diller: item.diller || "",
+        linkedin: item.linkedin || "",
+        instagram: item.instagram || "",
+        youtube: item.youtube || "",
+        tiktok: item.tiktok || "",
+      });
+      setImageUrl(item.resimUrl || "");
+    } else {
+      setFormData({
+        id: Number(item.id),
+        baslik: item.baslik || "",
+        aciklama: item.aciklama || item.icerik || "",
+        detay: item.detay || "",
+        ozet: item.ozet || "",
+        ad: item.ad || "",
+      });
+      setImageUrl(item.resimUrl || item.logoUrl || item.ikonUrl || "");
+    }
+    
     setIsEditing(true);
   };
 
@@ -251,6 +311,9 @@ const AdminDashboard = () => {
       case "sponsor":
         endpoint = "/sponsorlar";
         break;
+      case "crew": // 🆕 EKLENDİ
+        endpoint = "/crew";
+        break;
       default:
         break;
     }
@@ -266,7 +329,7 @@ const AdminDashboard = () => {
 
       {/* 🔹 Sekmeler */}
       <div className="tab-buttons">
-        {["etkinlik", "haber", "servis", "altservis", "sponsor"].map((sec) => (
+        {["etkinlik", "haber", "servis", "altservis", "sponsor", "crew"].map((sec) => ( // 🆕 EKLENDİ
           <button
             key={sec}
             onClick={() => {
@@ -283,7 +346,9 @@ const AdminDashboard = () => {
               ? "Servisler"
               : sec === "altservis"
               ? "Alt Servisler"
-              : "Sponsorlar"}
+              : sec === "sponsor"
+              ? "Sponsorlar"
+              : "Crew"} {/* 🆕 EKLENDİ */}
           </button>
         ))}
       </div>
@@ -293,6 +358,8 @@ const AdminDashboard = () => {
         <h3>
           {activeSection === "sponsor"
             ? "Sponsor Listesi"
+            : activeSection === "crew" // 🆕 EKLENDİ
+            ? "Crew Listesi"
             : `${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} Listesi`}
         </h3>
         <ul>
@@ -304,10 +371,12 @@ const AdminDashboard = () => {
             ? servisler
             : activeSection === "altservis"
             ? altServisler
-            : sponsorlar
+            : activeSection === "sponsor" // 🆕 EKLENDİ
+            ? sponsorlar
+            : crewList
           ).map((item) => (
             <li key={item.id}>
-              <b>{item.baslik || item.ad}</b>
+              <b>{item.baslik || item.adSoyad || item.ad}</b> {/* 🆕 EKLENDİ */}
               <button onClick={() => handleEdit(item)}>✏️ Düzenle</button>
               <button onClick={() => handleDelete(item.id)}>🗑 Sil</button>
             </li>
@@ -326,6 +395,62 @@ const AdminDashboard = () => {
             value={formData.ad}
             onChange={(e) => setFormData({ ...formData, ad: e.target.value })}
           />
+        ) : activeSection === "crew" ? ( // 🆕 EKLENDİ
+          <>
+            <input
+              type="text"
+              placeholder="Ad Soyad"
+              value={formData.adSoyad}
+              onChange={(e) => setFormData({ ...formData, adSoyad: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Ünvan"
+              value={formData.unvan}
+              onChange={(e) => setFormData({ ...formData, unvan: e.target.value })}
+            />
+            <textarea
+              placeholder="Kısa Açıklama"
+              value={formData.aciklama}
+              onChange={(e) => setFormData({ ...formData, aciklama: e.target.value })}
+            />
+            <textarea
+              placeholder="Detaylı Açıklama"
+              value={formData.detay}
+              onChange={(e) => setFormData({ ...formData, detay: e.target.value })}
+              rows={5}
+            />
+            <input
+              type="text"
+              placeholder="Diller (örnek: 🇹🇷 🇬🇧 🇩🇪)"
+              value={formData.diller}
+              onChange={(e) => setFormData({ ...formData, diller: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="LinkedIn URL"
+              value={formData.linkedin}
+              onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="Instagram URL"
+              value={formData.instagram}
+              onChange={(e) => setFormData({ ...formData, instagram: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="YouTube URL"
+              value={formData.youtube}
+              onChange={(e) => setFormData({ ...formData, youtube: e.target.value })}
+            />
+            <input
+              type="text"
+              placeholder="TikTok URL"
+              value={formData.tiktok}
+              onChange={(e) => setFormData({ ...formData, tiktok: e.target.value })}
+            />
+          </>
         ) : (
           <>
             <input
@@ -412,7 +537,6 @@ const AdminDashboard = () => {
                     setFormData({ ...formData, aciklama: e.target.value })
                   }
                 />
-            
               </>
             )}
 

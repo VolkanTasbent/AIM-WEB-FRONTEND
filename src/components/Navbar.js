@@ -18,6 +18,11 @@ const Navbar = () => {
         <NavLink to="/contact" className="nav-item">
           Contact
         </NavLink>
+
+        {/* 🔹 Yeni eklenen Our Crew sekmesi */}
+        <NavLink to="/ourcrew" className="nav-item">
+          Our Crew
+        </NavLink>
       </div>
     </nav>
   );

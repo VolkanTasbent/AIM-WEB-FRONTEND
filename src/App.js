@@ -12,6 +12,10 @@ import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
+import OurCrew from "./pages/OurCrew";
+
 
 function App() {
   return (
@@ -40,6 +44,8 @@ function App() {
             <Route path="/works" element={<Works />} />
             <Route path="/references" element={<References />} />
             <Route path="/contact" element={<Contact />} />
+
+            <Route path="/ourcrew" element={<OurCrew />} /> 
           </Routes>
         </main>
 
