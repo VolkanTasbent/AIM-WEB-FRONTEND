@@ -15,6 +15,9 @@ const ServisDetay = () => {
       .get(`${API_URL}/servisler/${id}`)
       .then((res) => setServis(res.data))
       .catch((err) => console.error("Servis yüklenemedi:", err));
+
+    // Sayfa açıldığında en üste git
+    window.scrollTo(0, 0);
   }, [id]);
 
   if (!servis) {
@@ -25,33 +28,24 @@ const ServisDetay = () => {
     );
   }
 
-  // 🔹 Cloudinary'den gelen görselleri optimize et
-  const optimizeImageUrl = (url) => {
-    if (!url) return "/assets/AIM-bg.png";
-    // Eğer Cloudinary URL'si ise kalite optimizasyonu ekle
-    if (url.includes("res.cloudinary.com")) {
-      return `${url}?f_auto&q_auto:best`;
-    }
-    return url;
-  };
-
   return (
     <div className="servis-detay-container">
-      {/* 🔹 Üstte Resim */}
+      {/* 🔹 Üstte Resim + Başlık */}
       <div className="servis-detay-header">
         <img
-          src={optimizeImageUrl(servis.resimUrl)}
+          src={servis.resimUrl || "/assets/AIM-bg.png"}
           alt={servis.baslik}
           className="servis-detay-image"
           onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
         />
+        <div className="servis-detay-overlay">
+          <h1>{servis.baslik}</h1>
+        </div>
       </div>
 
       {/* 🔹 İçerik */}
       <div className="servis-detay-content">
-        <h1>{servis.baslik}</h1>
-
-        {servis.ozet && <p className="servis-ozet">{servis.ozet}</p>}
+        <p className="servis-ozet">{servis.ozet}</p>
 
         {servis.detay ? (
           <p className="servis-detay-text">{servis.detay}</p>

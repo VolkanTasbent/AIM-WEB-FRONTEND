@@ -22,9 +22,12 @@ const Home = () => {
   const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
   const [aktifHaber, setAktifHaber] = useState(0);
   const [kartGenisligi, setKartGenisligi] = useState(0);
+  const [aktifSayfa, setAktifSayfa] = useState(0);
+
 
   const sliderRef = useRef(null);
   const haberSliderRef = useRef(null);
+  const hikayeSliderRef = useRef(null);
   const navigate = useNavigate();
 
   // Popup state
@@ -42,21 +45,29 @@ const Home = () => {
     getAltServisler().then((r) => setAltServisler(r.data));
   }, []);
 
-  // 🔹 Etkinlik slider otomatik geçiş
+  // 🔹 Hikaye slider otomatik geçiş
   useEffect(() => {
     if (!etkinlikler || etkinlikler.length === 0) return;
-
-    setAktifEtkinlik(0);
 
     const timer = setInterval(() => {
       setAktifEtkinlik((prev) => {
         if (prev >= etkinlikler.length - 1) return 0;
         return prev + 1;
       });
-    }, 7000);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, [etkinlikler]);
+
+  // 🔹 Hikaye slider scroll
+  useEffect(() => {
+    if (hikayeSliderRef.current) {
+      hikayeSliderRef.current.scrollTo({
+        left: aktifEtkinlik * window.innerWidth,
+        behavior: "smooth"
+      });
+    }
+  }, [aktifEtkinlik]);
 
   // 🔹 Kart genişliğini hesapla
   useEffect(() => {
@@ -84,15 +95,16 @@ const Home = () => {
   }, []);
 
   // 🔹 Services kaydırma
-  const kaydir = (yon) => {
-    const scrollMiktar = 350;
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({
-        left: yon * scrollMiktar,
-        behavior: "smooth",
-      });
-    }
-  };
+const kaydir = (yon) => {
+  if (sliderRef.current) {
+    const containerWidth = sliderRef.current.offsetWidth;
+    sliderRef.current.scrollBy({
+      left: yon * containerWidth,
+      behavior: "smooth",
+    });
+  }
+};
+
 
   // 🔹 Haber slider fonksiyonları - KESİN ÇÖZÜM
   const nextHaberSlide = () => {
@@ -126,60 +138,76 @@ const Home = () => {
 
   return (
     <div id="home" className="home-page">
-      {/* 🏁 ETKİNLİKLER + SPONSORLAR */}
-      <section
-        id="hero"
-        className="hero-section"
-        style={{
-          background:
-            etkinlikler.length === 0
-              ? `url(${yedekResim}) no-repeat center center / cover`
-              : "none",
-        }}
-      >
-        {etkinlikler.length > 0 && (
-          <div className="etkinlik-container">
-            <div className="etkinlik-slider">
+      
+      {/* 🏁 ETKİNLİKLER - HİKAYE TARZI SLIDER */}
+      <section id="hero" className="hero-section hikaye-style">
+        <div className="etkinlik-horizontal-scroll" ref={hikayeSliderRef}>
+          {etkinlikler.map((etk, index) => (
+            <div 
+              key={etk.id} 
+              className={`etkinlik-card ${index === aktifEtkinlik ? 'aktif' : ''}`}
+            >
               <img
-                src={etkinlikler[aktifEtkinlik]?.resimUrl || "/assets/AIM-bg.png"}
-                alt="etkinlik"
-                className="etkinlik-image"
+                src={etk.resimUrl || "/assets/AIM-bg.png"}
+                alt={etk.baslik}
+                className="etkinlik-full-image"
                 onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
               />
-              <div className="etkinlik-text">
-                <h1>{etkinlikler[aktifEtkinlik].baslik}</h1>
-                <p>{etkinlikler[aktifEtkinlik].aciklama}</p>
-                <button
-                  onClick={() =>
-navigate(`/etkinlik/${etkinlikler[aktifEtkinlik].id}`)                  }
-                >
+              <div className="etkinlik-overlay">
+                <h1>{etk.baslik}</h1>
+                <p>{etk.aciklama}</p>
+                <button onClick={() => navigate(`/etkinlik/${etk.id}`)}>
                   Detaylı İncele
                 </button>
               </div>
-
-              {/* Ok butonları */}
-              <button
-                className="slider-btn prev"
-                onClick={() =>
-                  setAktifEtkinlik(
-                    (prev) =>
-                      (prev - 1 + etkinlikler.length) % etkinlikler.length
-                  )
-                }
-              >
-                ‹
-              </button>
-              <button
-                className="slider-btn next"
-                onClick={() =>
-                  setAktifEtkinlik(
-                    (prev) => (prev + 1) % etkinlikler.length
-                  )
-                }
-              >
-                ›
-              </button>
             </div>
+          ))}
+        </div>
+
+        {/* Hikaye slider kontrolleri */}
+        {etkinlikler.length > 0 && (
+          <div className="hikaye-kontroller">
+            <button
+              className="slider-btn prev"
+              onClick={() =>
+                setAktifEtkinlik(
+                  (prev) =>
+                    (prev - 1 + etkinlikler.length) % etkinlikler.length
+                )
+              }
+            >
+              ‹
+            </button>
+            
+            {/* İlerleme çubukları */}
+            <div className="hikaye-progress">
+              {etkinlikler.map((_, index) => (
+                <div 
+                  key={index} 
+                  className={`progress-bar ${index === aktifEtkinlik ? 'aktif' : ''}`}
+                  onClick={() => setAktifEtkinlik(index)}
+                >
+                  <div 
+                    className="progress-fill" 
+                    style={{
+                      width: index === aktifEtkinlik ? '100%' : '0%',
+                      animation: index === aktifEtkinlik ? 'progress 5s linear' : 'none'
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <button
+              className="slider-btn next"
+              onClick={() =>
+                setAktifEtkinlik(
+                  (prev) => (prev + 1) % etkinlikler.length
+                )
+              }
+            >
+              ›
+            </button>
           </div>
         )}
 
@@ -200,36 +228,35 @@ navigate(`/etkinlik/${etkinlikler[aktifEtkinlik].id}`)                  }
       </section>
 
       {/* 💼 SERVICES */}
-<section id="services" className="services-section">
-  <h2>Services</h2>
-  <div className="services-slider">
-    <button className="services-btn prev" onClick={() => kaydir(-1)}>
-      ‹
-    </button>
+      <section id="services" className="services-section">
+        <h2>Services</h2>
+        <div className="services-slider">
+          <button className="services-btn prev" onClick={() => kaydir(-1)}>
+            ‹
+          </button>
 
-    <div className="services-wrapper" ref={sliderRef}>
-      {servisler.map((srv) => (
-        <div key={srv.id} className="service-card">
-          <img
-            src={srv.resimUrl || yedekResim}
-            alt="servis"
-            onError={(e) => (e.target.src = yedekResim)}
-          />
-          <h3>{srv.baslik}</h3>
-          <p>{srv.ozet}</p>
-          <button onClick={() => navigate(`/servis/${srv.id}`)}>
-            Read More
+          <div className="services-wrapper" ref={sliderRef}>
+            {servisler.map((srv) => (
+            <div key={srv.id} className="service-card">
+  <img
+    src={srv.resimUrl || yedekResim}
+    alt="servis"
+    onError={(e) => (e.target.src = yedekResim)}
+  />
+  <div className="service-card-content">
+    <h3>{srv.baslik}</h3>
+    <p>{srv.ozet}</p>
+    <button onClick={() => navigate(`/servis/${srv.id}`)}>Read More</button>
+  </div>
+</div>
+            ))}
+          </div>
+
+          <button className="services-btn next" onClick={() => kaydir(1)}>
+            ›
           </button>
         </div>
-      ))}
-    </div>
-
-    <button className="services-btn next" onClick={() => kaydir(1)}>
-      ›
-    </button>
-  </div>
-</section>
-
+      </section>
 
       {/* 🧩 ALT SERVİSLER */}
       <section className="alt-servisler-section">
@@ -253,7 +280,6 @@ navigate(`/etkinlik/${etkinlikler[aktifEtkinlik].id}`)                  }
               <p>{as.aciklama}</p>
 
               {/* 🔹 Popup butonu */}
-           
             </div>
           ))}
         </div>
