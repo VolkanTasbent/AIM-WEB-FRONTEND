@@ -80,7 +80,7 @@ const AdminDashboard = () => {
   const handleAddOrUpdate = async () => {
     if (activeSection === "sponsor" && !formData.ad)
       return alert("Sponsor adı zorunludur!");
-    if (activeSection === "crew" && !formData.adSoyad) // 🆕 EKLENDİ
+    if (activeSection === "crew" && !formData.adSoyad)
       return alert("Ad Soyad zorunludur!");
     if (activeSection !== "sponsor" && activeSection !== "crew" && !formData.baslik)
       return alert("Başlık zorunludur!");
@@ -131,7 +131,7 @@ const AdminDashboard = () => {
           detay: formData.detay,
           resimUrl: finalImageUrl || "",
         };
-      } else if (activeSection === "crew") { // 🆕 EKLENDİ
+      } else if (activeSection === "crew") {
         data = {
           adSoyad: formData.adSoyad,
           unvan: formData.unvan,
@@ -161,7 +161,7 @@ const AdminDashboard = () => {
       else if (activeSection === "servis") endpoint = "/servisler";
       else if (activeSection === "altservis") endpoint = "/alt-servisler";
       else if (activeSection === "sponsor") endpoint = "/sponsorlar";
-      else if (activeSection === "crew") endpoint = "/crew"; // 🆕 EKLENDİ
+      else if (activeSection === "crew") endpoint = "/crew";
 
       // 🔹 4. Güncelle / Ekle
       if (isEditing) {
@@ -188,7 +188,7 @@ const AdminDashboard = () => {
         getAltServisler().then((r) => setAltServisler(r.data));
       else if (activeSection === "sponsor")
         getSponsorlar().then((r) => setSponsorlar(r.data));
-      else if (activeSection === "crew") // 🆕 EKLENDİ
+      else if (activeSection === "crew")
         getCrew().then((r) => setCrewList(r.data));
 
       // 🔹 6. Form sıfırla
@@ -199,13 +199,13 @@ const AdminDashboard = () => {
         detay: "",
         ozet: "",
         ad: "",
-        adSoyad: "", // 🆕 EKLENDİ
-        unvan: "", // 🆕 EKLENDİ
-        diller: "", // 🆕 EKLENDİ
-        linkedin: "", // 🆕 EKLENDİ
-        instagram: "", // 🆕 EKLENDİ
-        youtube: "", // 🆕 EKLENDİ
-        tiktok: "", // 🆕 EKLENDİ
+        adSoyad: "",
+        unvan: "",
+        diller: "",
+        linkedin: "",
+        instagram: "",
+        youtube: "",
+        tiktok: "",
       });
       setImageUrl("");
       setFile(null);
@@ -222,17 +222,19 @@ const AdminDashboard = () => {
   const refreshList = (section) => {
     if (section === "etkinlik")
       getEtkinlikler().then((r) => setEtkinlikler(r.data));
-    else if (section === "haber") getHaberler().then((r) => setHaberler(r.data));
+    else if (section === "haber")
+      getHaberler().then((r) => setHaberler(r.data));
     else if (section === "servis")
       getServisler().then((r) => setServisler(r.data));
     else if (section === "altservis")
       getAltServisler().then((r) => setAltServisler(r.data));
     else if (section === "sponsor")
       getSponsorlar().then((r) => setSponsorlar(r.data));
-    else if (section === "crew") // 🆕 EKLENDİ
+    else if (section === "crew")
       getCrew().then((r) => setCrewList(r.data));
   };
 
+  // 🔹 Form sıfırlama
   const resetForm = () => {
     setFormData({
       id: null,
@@ -241,13 +243,13 @@ const AdminDashboard = () => {
       detay: "",
       ozet: "",
       ad: "",
-      adSoyad: "", // 🆕 EKLENDİ
-      unvan: "", // 🆕 EKLENDİ
-      diller: "", // 🆕 EKLENDİ
-      linkedin: "", // 🆕 EKLENDİ
-      instagram: "", // 🆕 EKLENDİ
-      youtube: "", // 🆕 EKLENDİ
-      tiktok: "", // 🆕 EKLENDİ
+      adSoyad: "",
+      unvan: "",
+      diller: "",
+      linkedin: "",
+      instagram: "",
+      youtube: "",
+      tiktok: "",
     });
     setImageUrl("");
     setFile(null);
@@ -261,7 +263,7 @@ const AdminDashboard = () => {
       return;
     }
 
-    if (activeSection === "crew") { // 🆕 EKLENDİ
+    if (activeSection === "crew") {
       setFormData({
         id: Number(item.id),
         adSoyad: item.adSoyad || "",
@@ -286,7 +288,7 @@ const AdminDashboard = () => {
       });
       setImageUrl(item.resimUrl || item.logoUrl || item.ikonUrl || "");
     }
-    
+
     setIsEditing(true);
   };
 
@@ -311,7 +313,7 @@ const AdminDashboard = () => {
       case "sponsor":
         endpoint = "/sponsorlar";
         break;
-      case "crew": // 🆕 EKLENDİ
+      case "crew":
         endpoint = "/crew";
         break;
       default:
@@ -329,7 +331,7 @@ const AdminDashboard = () => {
 
       {/* 🔹 Sekmeler */}
       <div className="tab-buttons">
-        {["etkinlik", "haber", "servis", "altservis", "sponsor", "crew"].map((sec) => ( // 🆕 EKLENDİ
+        {["etkinlik", "haber", "servis", "altservis", "sponsor", "crew"].map((sec) => (
           <button
             key={sec}
             onClick={() => {
@@ -348,7 +350,7 @@ const AdminDashboard = () => {
               ? "Alt Servisler"
               : sec === "sponsor"
               ? "Sponsorlar"
-              : "Crew"} {/* 🆕 EKLENDİ */}
+              : "Crew"}
           </button>
         ))}
       </div>
@@ -358,10 +360,11 @@ const AdminDashboard = () => {
         <h3>
           {activeSection === "sponsor"
             ? "Sponsor Listesi"
-            : activeSection === "crew" // 🆕 EKLENDİ
+            : activeSection === "crew"
             ? "Crew Listesi"
             : `${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} Listesi`}
         </h3>
+
         <ul>
           {(activeSection === "etkinlik"
             ? etkinlikler
@@ -371,12 +374,12 @@ const AdminDashboard = () => {
             ? servisler
             : activeSection === "altservis"
             ? altServisler
-            : activeSection === "sponsor" // 🆕 EKLENDİ
+            : activeSection === "sponsor"
             ? sponsorlar
             : crewList
           ).map((item) => (
             <li key={item.id}>
-              <b>{item.baslik || item.adSoyad || item.ad}</b> {/* 🆕 EKLENDİ */}
+              <b>{item.baslik || item.adSoyad || item.ad}</b>
               <button onClick={() => handleEdit(item)}>✏️ Düzenle</button>
               <button onClick={() => handleDelete(item.id)}>🗑 Sil</button>
             </li>
@@ -395,7 +398,7 @@ const AdminDashboard = () => {
             value={formData.ad}
             onChange={(e) => setFormData({ ...formData, ad: e.target.value })}
           />
-        ) : activeSection === "crew" ? ( // 🆕 EKLENDİ
+        ) : activeSection === "crew" ? (
           <>
             <input
               type="text"
@@ -457,90 +460,69 @@ const AdminDashboard = () => {
               type="text"
               placeholder="Başlık"
               value={formData.baslik}
-              onChange={(e) =>
-                setFormData({ ...formData, baslik: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, baslik: e.target.value })}
             />
 
-            {/* SERVİS */}
             {activeSection === "servis" && (
               <>
                 <textarea
                   placeholder="Özet"
                   value={formData.ozet}
-                  onChange={(e) =>
-                    setFormData({ ...formData, ozet: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, ozet: e.target.value })}
                 />
                 <textarea
                   placeholder="Servis Detay (detay sayfasında gözükecek)"
                   value={formData.detay}
-                  onChange={(e) =>
-                    setFormData({ ...formData, detay: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, detay: e.target.value })}
                   rows={6}
                 />
               </>
             )}
 
-            {/* ETKİNLİK */}
             {activeSection === "etkinlik" && (
               <>
                 <textarea
                   placeholder="Kısa Açıklama (ana sayfada gözükecek)"
                   value={formData.aciklama}
-                  onChange={(e) =>
-                    setFormData({ ...formData, aciklama: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, aciklama: e.target.value })}
                   rows={3}
                 />
                 <textarea
                   placeholder="Detaylı Açıklama (detay sayfasında gözükecek)"
                   value={formData.detay}
-                  onChange={(e) =>
-                    setFormData({ ...formData, detay: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, detay: e.target.value })}
                   rows={8}
                 />
               </>
             )}
 
-            {/* HABER */}
             {activeSection === "haber" && (
               <>
                 <textarea
                   placeholder="Kısa Açıklama (ana sayfada gözükecek)"
                   value={formData.aciklama}
-                  onChange={(e) =>
-                    setFormData({ ...formData, aciklama: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, aciklama: e.target.value })}
                   rows={3}
                 />
                 <textarea
                   placeholder="Detaylı Açıklama (Read More sayfasında gözükecek)"
                   value={formData.detay}
-                  onChange={(e) =>
-                    setFormData({ ...formData, detay: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, detay: e.target.value })}
                   rows={8}
                 />
               </>
             )}
 
-            {/* ALT SERVİS */}
             {activeSection === "altservis" && (
               <>
                 <textarea
                   placeholder="Açıklama"
                   value={formData.aciklama}
-                  onChange={(e) =>
-                    setFormData({ ...formData, aciklama: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, aciklama: e.target.value })}
                 />
               </>
             )}
 
-            {/* DİĞERLERİ */}
             {activeSection !== "haber" &&
               activeSection !== "etkinlik" &&
               activeSection !== "servis" &&
@@ -548,9 +530,7 @@ const AdminDashboard = () => {
                 <textarea
                   placeholder="Açıklama"
                   value={formData.aciklama}
-                  onChange={(e) =>
-                    setFormData({ ...formData, aciklama: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, aciklama: e.target.value })}
                 />
               )}
           </>

@@ -2611,3 +2611,438 @@ main {
   background: #000;
   transition: transform 0.3s ease;
 }
+/* 🔹 HABERLER KAPSAYICI */
+.haberler-section {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+/* 🔹 SLIDER */
+.haberler-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* 🔹 SLIDER KARTLARI */
+.haberler-slider {
+  display: flex;
+  gap: 20px; /* 🔸 Kartlar arası az boşluk */
+  transition: transform 0.6s ease-in-out;
+}
+
+/* 🔹 TEK HABER KARTI */
+.haber-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 🔸 Tam 3 kart sığacak şekilde */
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: white;
+}
+
+/* 🔹 HABER GÖRSELİ */
+.haber-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+/* 🔹 ALT KIRMIZI ÇİZGİ */
+
+
+/* 🔹 BAŞLIK VE AÇIKLAMA */
+.haber-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 10px 0 8px 0;
+  text-align: left; /* 🔹 sola yaslı başlık */
+  padding: 0 10px;
+}
+
+.haber-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ddd;
+  text-align: left; /* 🔹 sola yaslı açıklama */
+  padding: 0 10px 20px 10px;
+}
+
+/* 🔹 READ MORE BUTONU */
+.haber-card button {
+  background-color: #d60000;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-left: 10px;
+  align-self: flex-start;
+  transition: background 0.3s ease;
+}
+
+.haber-card button:hover {
+  background-color: #ff1a1a;
+}
+
+/* 🔹 SLIDER OKLARI */
+.slider-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.slider-btn:hover {
+  opacity: 0.7;
+}
+/* 🔹 HABERLER KAPSAYICI */
+.haberler-section {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+/* 🔹 SLIDER */
+.haberler-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* 🔹 SLIDER KARTLARI */
+.haberler-slider {
+  display: flex;
+  gap: 20px; /* 🔸 Kartlar arası az boşluk */
+  transition: transform 0.6s ease-in-out;
+}
+
+/* 🔹 TEK HABER KARTI */
+.haber-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 🔸 Tam 3 kart sığacak şekilde */
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: white;
+  position: relative; /* 🔹 Kırmızı çizgi için gerekli */
+  height: auto; /* 🔹 Yüksekliği içeriğe göre ayarla */
+}
+
+/* 🔹 HABER GÖRSELİ */
+.haber-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+
+
+/* 🔹 KART İÇERİK KAPSAYICI - YENİ EKLENDİ */
+.haber-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px; /* 🔹 Kırmızı çizgi için boşluk */
+  position: relative;
+}
+
+/* 🔹 BAŞLIK VE AÇIKLAMA */
+.haber-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 10px 0 8px 0;
+  text-align: left; /* 🔹 sola yaslı başlık */
+  padding: 0 10px;
+}
+
+.haber-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ddd;
+  text-align: left; /* 🔹 sola yaslı açıklama */
+  padding: 0 10px;
+  margin-bottom: 10px;
+  flex: 1; /* 🔹 Açıklama metni uzadığında kartın büyümesini engeller */
+}
+
+/* 🔹 READ MORE BUTONU */
+.haber-card button {
+  background-color: #d60000;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin: 0 10px;
+  align-self: flex-start;
+  transition: background 0.3s ease;
+}
+
+.haber-card button:hover {
+  background-color: #ff1a1a;
+}
+
+/* 🔹 SLIDER OKLARI */
+.slider-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.slider-btn:hover {
+  opacity: 0.7;
+}/* 🔹 HABERLER KAPSAYICI */
+.haberler-section {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+/* 🔹 SLIDER */
+.haberler-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* 🔹 SLIDER KARTLARI */
+.haberler-slider {
+  display: flex;
+  gap: 20px; /* 🔸 Kartlar arası az boşluk */
+  transition: transform 0.6s ease-in-out;
+}
+
+/* 🔹 TEK HABER KARTI */
+.haber-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 🔸 Tam 3 kart sığacak şekilde */
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: white;
+}
+
+/* 🔹 HABER GÖRSELİ */
+.haber-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+/* 🔹 ALT KIRMIZI ÇİZGİ */
+
+
+/* 🔹 BAŞLIK VE AÇIKLAMA */
+.haber-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 10px 0 8px 0;
+  text-align: left; /* 🔹 sola yaslı başlık */
+  padding: 0 10px;
+}
+
+.haber-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #ddd;
+  text-align: left; /* 🔹 sola yaslı açıklama */
+  padding: 0 10px 20px 10px;
+}
+
+/* 🔹 READ MORE BUTONU */
+.haber-card button {
+  background-color: #d60000;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-left: 10px;
+  align-self: flex-start;
+  transition: background 0.3s ease;
+}
+
+.haber-card button:hover {
+  background-color: #ff1a1a;
+}
+
+/* 🔹 SLIDER OKLARI */
+.slider-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.slider-btn:hover {
+  opacity: 0.7;
+}
+.haber-card {
+  flex: 0 0 calc((100% - 60px) / 3); /* 🔹 Tam 3 kart sığsın */
+  background: transparent;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 440px; /* sabit yükseklik */
+  color: white;
+  position: relative;
+  margin: 0 10px; /* 🔸 aralarda az boşluk */
+}
+
+/* 🔹 Görsel */
+.haber-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 🔹 Kırmızı çizgi: resmin altında, başlığın üstünde */
+.haber-card .kirmizi-cizgi {
+  width: 100%;
+  height: 5px;
+  background-color: #d60000;
+  margin: 5px 0 12px 0;
+}
+
+/* 🔹 Başlık */
+.haber-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  padding: 0 10px;
+  margin-bottom: 8px;
+  min-height: 50px; /* hizayı sabitler */
+}
+
+/* 🔹 Açıklama */
+.haber-card p {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #ddd;
+  text-align: left;
+  padding: 0 10px;
+  margin: 0;
+  max-height: 4.3em; /* yaklaşık 3 satır */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+/* 🔹 Read More butonu */
+.haber-card button {
+  background-color: #d60000;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin: auto 0 0 10px;
+  align-self: flex-start;
+  transition: background 0.3s ease;
+}
+
+.haber-card button:hover {
+  background-color: #ff1a1a;
+}
+
+/* 🔹 Slider hizası (son kart tam görünsün) */
+.haber-slider {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  overflow: hidden;
+  padding: 0 40px; /* sağ-sol az boşluk bırak */
+  scroll-snap-type: x mandatory;
+}
+
+.haber-card {
+  scroll-snap-align: start;
+}
+.haber-card button {
+  background-color: #fff;          /* beyaz arka plan */
+  color: #d60000;                  /* kırmızı yazı */
+  border: 2px solid #d60000;       /* kırmızı çerçeve */
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: auto 0 0 10px;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}/* 🔹 Sadece haberler kısmındaki ok butonları */
+.haberler-section .slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  background-color: #fff; /* beyaz zemin */
+  color: #000; /* siyah ok */
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+/* Hover efekti */
+.haberler-section .slider-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  background-color: #f2f2f2;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* Sol ok */
+.haberler-section .slider-btn.prev {
+  left: 10px;
+}
+
+/* Sağ ok */
+.haberler-section .slider-btn.next {
+  right: 10px;
+}

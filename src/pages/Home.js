@@ -313,10 +313,12 @@ const kaydir = (yon) => {
                 <div key={hab.id} className="haber-card">
                   <img
                     src={hab.resimUrl || "/assets/AIM-bg.png"}
+                    
                     alt={hab.baslik}
                     className="haber-image"
                     onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
                   />
+                  <div className="kirmizi-cizgi"></div> 
                   <h3>{hab.baslik}</h3>
                   <p>
                     {hab.icerik?.length > 120
