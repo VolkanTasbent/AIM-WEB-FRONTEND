@@ -28,6 +28,16 @@ const ServisDetay = () => {
     );
   }
 
+  // 🔹 Eğer servis adı Esports ise otomatik yönlendirme yap
+  if (servis.baslik && servis.baslik.toLowerCase() === "esports") {
+    navigate("/esports");
+    return null;
+  }
+  
+  if (servis.baslik && servis.baslik.toLowerCase() === "influencers") {
+  navigate("/services/influencers");
+  return null;
+}
   return (
     <div className="servis-detay-container">
       {/* 🔹 Üstte Resim + Başlık */}

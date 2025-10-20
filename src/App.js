@@ -13,8 +13,15 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import EsportsDetailPage from "./pages/EsportsDetailPage";
 
 import OurCrew from "./pages/OurCrew";
+
+import EsportsPage from "./pages/EsportsPage";
+
+import InfluencerPage from "./pages/InfluencerPage.js";
+
+
 
 
 function App() {
@@ -46,7 +53,14 @@ function App() {
             <Route path="/contact" element={<Contact />} />
 
             <Route path="/ourcrew" element={<OurCrew />} /> 
-          </Routes>
+
+
+  <Route path="/esports" element={<EsportsPage />} />
+  <Route path="/esports/:id" element={<EsportsDetailPage />} />
+
+<Route path="/services/influencers" element={<InfluencerPage />} />
+
+         </Routes>
         </main>
 
         {/* 🔹 Alt Bilgi (Footer) */}

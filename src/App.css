@@ -3046,3 +3046,4463 @@ main {
 .haberler-section .slider-btn.next {
   right: 10px;
 }
+.esports-page {
+  background-color: #000;
+  color: #fff;
+  padding: 80px 100px;
+  min-height: 100vh;
+}
+
+/* Üst başlık kısmı */
+.esports-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.esports-icon {
+  font-size: 60px;
+  color: #d10000;
+}
+
+.esports-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.esports-header p {
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 700px;
+}
+
+/* Oyuncu kartları grid */
+.esports-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* Kartın kendisi */
+.player-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.player-card:hover {
+  transform: scale(1.03);
+}
+
+/* Görsel */
+.player-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  filter: grayscale(0);
+  transition: 0.4s ease;
+}
+
+.player-card:hover img {
+  filter: grayscale(100%);
+}
+
+/* Hover overlay */
+.player-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(209, 0, 0, 0.8), transparent 60%);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 25px;
+  transition: opacity 0.4s ease;
+  text-align: center;
+}
+
+.player-card:hover .player-overlay {
+  opacity: 1;
+}
+
+/* Oyuncu adı ve unvanı */
+.player-overlay h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.player-overlay p {
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+/* Read More butonu */
+.read-more-btn {
+  background-color: #fff;
+  color: #d10000;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+  background-color: #d10000;
+  color: #fff;
+}
+.esports-detail-page {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  padding: 60px 100px;
+}
+
+.back-btn {
+  background: none;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 30px;
+}
+
+.back-btn:hover {
+  background: #d10000;
+  border-color: #d10000;
+}
+
+.player-detail-container {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.player-image img {
+  width: 400px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 15px;
+  filter: grayscale(30%);
+}
+
+.player-info {
+  flex: 1;
+}
+
+.player-info h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.player-info h3 {
+  color: #d10000;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.player-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.achievements, .teams {
+  margin-bottom: 25px;
+}
+
+.achievements h2, .teams h2 {
+  color: #d10000;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.social-links a {
+  font-size: 1.8rem;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: #d10000;
+}
+.esports-container {
+  background-color: #0b0b0b;
+  color: white;
+  min-height: 100vh;
+  padding: 100px 50px;
+}
+
+.esports-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.esports-header h1 {
+  font-size: 2.5rem;
+  color: #e63946;
+  letter-spacing: 2px;
+}
+
+.esports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.esports-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.esports-card:hover {
+  transform: translateY(-5px);
+}
+
+.esports-image-wrapper img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.esports-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.esports-info h3 {
+  font-size: 1.4rem;
+  color: white;
+}
+
+.esports-info h4 {
+  color: #e63946;
+  margin-bottom: 10px;
+}
+
+.takim, .basarilar, .aciklama {
+  font-size: 0.95rem;
+  margin: 5px 0;
+  color: #ddd;
+}
+
+.sosyal-linkler {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sosyal-linkler a {
+  color: #e63946;
+  text-decoration: none;
+  border: 1px solid #e63946;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sosyal-linkler a:hover {
+  background: #e63946;
+  color: white;
+}
+.esports-container {
+  background-color: #0a0a0a;
+  color: #fff;
+  min-height: 100vh;
+  padding: 60px 40px;
+}
+
+.esports-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  gap: 20px;
+}
+
+.esports-icon {
+  font-size: 3rem;
+}
+
+.esports-title-box h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #e63946;
+}
+
+.esports-title-box p {
+  color: #bbb;
+  margin-top: 10px;
+}
+
+.esports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.esports-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.esports-image {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  filter: grayscale(100%);
+}
+
+.esports-card:hover .esports-image {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.esports-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.8), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.esports-card:hover .esports-overlay {
+  opacity: 1;
+}
+
+.esports-overlay h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.read-more-btn {
+  background: white;
+  color: red;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+/* 🔥 ESPORTS SAYFASI TASARIMI BAŞLANGIÇ */
+
+.esports-container {
+  background: linear-gradient(to bottom, #000000, #1a0000, #330000);
+  color: #fff;
+  min-height: 100vh;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.esports-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.esports-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e11b22;
+}
+
+.esports-header p {
+  color: #ccc;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+.esports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.esports-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  width: 260px;
+}
+
+.esports-card:hover {
+  transform: scale(1.04);
+}
+
+.esports-image {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: 0.4s ease;
+}
+
+.esports-card:hover .esports-image {
+  filter: grayscale(0%);
+}
+
+.esports-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.9), transparent);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 20px;
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.esports-card:hover .esports-overlay {
+  opacity: 1;
+}
+
+.esports-overlay h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.esports-overlay p {
+  font-size: 0.9rem;
+  color: #eee;
+}
+
+.read-more-btn {
+  background: white;
+  color: red;
+  font-weight: bold;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.read-more-btn:hover {
+  background: #e11b22;
+  color: #fff;
+}
+
+/* 🔹 Oyuncu Detay Sayfası */
+.esports-detail-container {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  text-align: center;
+  padding-bottom: 80px;
+}
+
+.esports-detail-header {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.esports-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+}
+
+.esports-detail-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  text-align: left;
+}
+
+.esports-detail-overlay h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.esports-detail-overlay p {
+  font-size: 1.3rem;
+  color: #ddd;
+}
+
+.esports-detail-content {
+  padding: 40px 80px;
+  text-align: left;
+  line-height: 1.8;
+  color: #ccc;
+}
+
+.esports-detail-content h2 {
+  color: #e11b22;
+  margin-bottom: 15px;
+}
+
+.esports-detail-links a {
+  color: #fff;
+  background: #e11b22;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-right: 8px;
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.esports-detail-links a:hover {
+  background: #a00;
+}
+
+.geri-btn {
+  margin-top: 40px;
+  background: transparent;
+  border: 1px solid #e11b22;
+  color: #e11b22;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.geri-btn:hover {
+  background: #e11b22;
+  color: white;
+}
+
+/* 🔥 ESPORTS SAYFASI TASARIMI BİTİŞ */
+.esports-section {
+  background: #000;
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 40px;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.player-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.player-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: 0.4s ease;
+  filter: grayscale(100%);
+}
+
+.player-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.6);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s ease;
+}
+
+.player-image-container:hover .player-overlay {
+  opacity: 1;
+}
+
+.read-more-btn {
+  margin-top: 10px;
+  background: white;
+  color: red;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.esports-detail {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.player-hero {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%);
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+}
+
+.hero-overlay h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.hero-overlay h3 {
+  color: #ff5b5b;
+}
+
+.detail-container {
+  padding: 50px 80px;
+}
+
+.achievements-box ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.achievements-box li::before {
+  content: "• ";
+  color: #ff4444;
+}
+
+.social-box {
+  margin-top: 40px;
+}
+
+.social-box a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.social-box a:hover {
+  color: #ff4444;
+}
+.esports-detail-page {
+  color: #fff;
+  background-color: #0a0a0a;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  padding: 60px 80px;
+  background: linear-gradient(90deg, #000, #111);
+}
+
+.player-image {
+  width: 260px;
+  height: 260px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-right: 50px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+}
+
+.player-info h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.player-info h3 {
+  font-size: 1.4rem;
+  color: #aaa;
+}
+
+.social-links a {
+  color: #fff;
+  margin-right: 15px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.social-links a:hover {
+  border-color: #fff;
+}
+
+.achievements-section,
+.teams-section {
+  background-size: cover;
+  background-position: center;
+  padding: 120px 80px;
+  position: relative;
+}
+
+.achievements-section .overlay,
+.teams-section .overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 16px;
+}
+
+.achievements-section h2,
+.teams-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.achievements-text,
+.teams-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.player-detail {
+  padding: 80px;
+  background: #111;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+/* 🎯 Varsayılan degrade (fallback) efektleri */
+
+.achievements-section {
+  background: linear-gradient(135deg, #5a189a, #240046, #10002b);
+  background-size: cover;
+  background-position: center;
+  padding: 120px 80px;
+  position: relative;
+  transition: background-image 0.3s ease;
+}
+
+.achievements-section[data-has-bg="true"] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.teams-section {
+  background: linear-gradient(135deg, #023e8a, #03045e, #000);
+  background-size: cover;
+  background-position: center;
+  padding: 120px 80px;
+  position: relative;
+  transition: background-image 0.3s ease;
+}
+
+.teams-section[data-has-bg="true"] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 🎯 Varsayılan degrade (fallback) efektleri */
+
+.achievements-section {
+  background: linear-gradient(135deg, #5a189a, #240046, #10002b);
+  background-size: cover;
+  background-position: center;
+  padding: 120px 80px;
+  position: relative;
+  transition: background-image 0.3s ease;
+}
+
+.achievements-section[data-has-bg="true"] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.teams-section {
+  background: linear-gradient(135deg, #023e8a, #03045e, #000);
+  background-size: cover;
+  background-position: center;
+  padding: 120px 80px;
+  position: relative;
+  transition: background-image 0.3s ease;
+}
+
+.teams-section[data-has-bg="true"] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.esports-detail-container {
+  background: #000;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.esports-header-info {
+  text-align: center;
+  padding: 30px;
+  border-bottom: 1px solid #c00;
+  color: #fff;
+  font-size: 18px;
+}
+
+.esports-detail-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 80px;
+  gap: 30px;
+}
+
+/* Sol Kısım */
+.esports-left {
+  flex: 1;
+  position: relative;
+}
+
+.esports-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.esports-image {
+  width: 100%;
+  filter: grayscale(100%);
+  transition: 0.3s ease;
+}
+
+.esports-image-wrapper:hover .esports-image {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.esports-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(255, 0, 0, 0.6);
+  padding: 25px;
+  transition: 0.3s;
+}
+
+.read-more-btn {
+  background: #fff;
+  color: red;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.esports-overlay h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.esports-overlay .team-name {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+/* Sağ Kısım */
+.esports-right {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.achievements-box,
+.teams-box {
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievements-overlay,
+.teams-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+}
+
+.achievements-overlay h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.achievements-overlay ul {
+  columns: 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievements-overlay li {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #eee;
+}
+
+.teams-overlay {
+  text-align: center;
+}
+
+.team-description {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.team-logos {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.team-logos img {
+  height: 40px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.team-logos img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+/* 🎮 Esports Genel Sayfa */
+.esports-page {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  padding: 60px 80px;
+  font-family: "Poppins", sans-serif;
+}
+
+.esports-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.esports-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.esports-header p {
+  color: #ccc;
+  margin-top: 10px;
+}
+
+/* 🎯 Grid Yapısı */
+.esports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+}
+
+/* 🧩 Kart */
+.esports-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.esports-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Görsel */
+.esports-card-image img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.esports-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Hover Overlay */
+.esports-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.85), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.esports-card:hover .esports-card-overlay {
+  height: 60%;
+  opacity: 1;
+}
+
+/* İçerik */
+.esports-short-desc {
+  font-size: 0.9rem;
+  color: #eee;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.esports-player-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.esports-read-btn {
+  background: #fff;
+  color: #c00;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.esports-read-btn:hover {
+  background: #c00;
+  color: #fff;
+}
+/* 🔹 Esports Oyuncu Grid Tasarımı */
+.esports-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Her satırda 3 kart */
+  gap: 40px; /* Kartlar arası boşluk */
+  justify-items: center;
+  align-items: start;
+  padding: 40px 0;
+}
+
+/* Mobilde otomatik uyum */
+@media (max-width: 992px) {
+  .esports-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .esports-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* Kart boyutu ve hizalama */
+.esports-card {
+  width: 100%;
+  max-width: 320px;
+  height: 460px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.esports-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s ease;
+  filter: brightness(100%);
+}
+
+.esports-card:hover img {
+  transform: scale(1.03);
+  filter: brightness(90%);
+}
+
+/* Hover overlay kısmı */
+.esports-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.7), transparent);
+  padding: 20px;
+  text-align: center;
+  height: 0%;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.esports-card:hover .esports-card-overlay {
+  height: 40%;
+  opacity: 1;
+}
+
+/* Metinler */
+.esports-short-desc {
+  font-size: 0.85rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.esports-player-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.esports-read-btn {
+  margin-top: 10px;
+  background: #fff;
+  color: #c00;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.esports-read-btn:hover {
+  background: #c00;
+  color: #fff;
+}
+.esports-card {
+  width: 100%;
+  max-width: 380px;   /* 🔹 eskisi 320px’ti */
+  height: 520px;      /* 🔹 eskisi 460px’ti */
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+/* === DETAY SAYFASI === */
+.esports-detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+  padding: 60px 80px;
+}
+
+/* 🔹 Sol taraftaki uzun kart */
+.esports-detail-left {
+  flex: 1;
+  min-width: 360px;
+  max-width: 480px;
+  display: flex;
+  justify-content: center;
+}
+
+.esports-detail-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.esports-detail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(85%);
+}
+
+.esports-detail-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.9), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 30px;
+}
+
+.esports-detail-info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.esports-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.esports-team {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #eee;
+}
+
+.esports-role {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #ddd;
+  margin-top: 4px;
+}
+
+/* 🔹 Sağdaki başarılar kısmı */
+.esports-detail-right {
+  flex: 2;
+  padding-top: 30px;
+}
+
+.esports-detail-right h2 {
+  color: #ff4a4a;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.esports-detail-right ul {
+  list-style-type: none;
+  padding: 0;
+  line-height: 1.8;
+}
+
+.esports-detail-right li::before {
+  content: "• ";
+  color: #ff4a4a;
+}
+
+.esports-detail-right p {
+  color: #ddd;
+  line-height: 1.8;
+}
+.esports-detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+  padding: 60px 80px;
+}
+
+/* 🔹 Sol: Oyuncu kartı */
+.esports-detail-left {
+  flex: 1;
+  min-width: 360px;
+  max-width: 480px;
+  display: flex;
+  justify-content: center;
+}
+
+.esports-detail-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.esports-detail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(85%);
+}
+
+.esports-detail-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.8), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 40px;
+}
+
+.esports-detail-info {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.esports-name {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.esports-team {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #eee;
+}
+
+.esports-role {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #ddd;
+  margin-top: 4px;
+}
+
+/* 🔹 Sağ: Arka planlı bölümler */
+.esports-detail-right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.esports-achievements-section,
+.esports-teams-section {
+  background-size: cover;
+  background-position: center;
+  min-height: 340px;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.overlay-red {
+  background: rgba(180, 0, 0, 0.75);
+  width: 100%;
+  height: 100%;
+  padding: 50px 60px;
+}
+
+.overlay-dark {
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  padding: 50px 60px;
+}
+
+.esports-achievements-section h2,
+.esports-teams-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.esports-achievements-section ul {
+  list-style: none;
+  padding: 0;
+  line-height: 1.8;
+  columns: 2;
+}
+
+.esports-achievements-section li::before {
+  content: "• ";
+  color: #fff;
+}
+
+.team-info {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.team-desc {
+  color: #ddd;
+  line-height: 1.7;
+}
+  /* === ESPORTS ANA SAYFA KARTLARI === */
+.esports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 45px;
+  justify-items: center;
+  padding: 80px 0;
+}
+
+/* 🔹 Kart kutusu */
+.esports-card {
+  position: relative;
+  width: 400px;       /* Oran: 400x632 */
+  height: 632px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: #111;
+  transition: transform 0.4s ease;
+}
+
+.esports-card:hover {
+  transform: scale(1.02);
+}
+
+/* 🔹 Oyuncu resmi */
+.esports-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.4s ease, transform 0.6s ease;
+}
+
+.esports-card:hover img {
+  filter: brightness(70%);
+  transform: scale(1.03);
+}
+
+/* 🔹 Alt overlay (kırmızı degrade) */
+.esports-card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.85), transparent);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  padding-bottom: 35px;
+}
+
+.esports-card:hover .esports-card-overlay,
+.esports-card.hovered .esports-card-overlay {
+  opacity: 1;
+}
+
+/* 🔹 Read More butonu */
+.read-more-btn {
+  background: #fff;
+  color: #c80000;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+  background: #c80000;
+  color: #fff;
+}
+
+/* 🔹 Alt yazılar */
+.esports-card-info {
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.esports-role {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #eaeaea;
+  margin-bottom: 5px;
+}
+
+.esports-name {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+/* === DETAY SAYFASINDAKİ SABİT HALİ === */
+.esports-card.hovered {
+  transform: none;
+  pointer-events: none; /* Tıklanamaz olur */
+}
+.esports-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.esports-card:hover {
+  transform: scale(1.02);
+}
+
+.esports-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.esports-card:hover .esports-card-img,
+.esports-card.hovered .esports-card-img {
+  transform: scale(1.05);
+  filter: brightness(70%);
+}
+
+.esports-card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.8), transparent);
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.esports-card:hover .esports-card-overlay,
+.esports-card.hovered .esports-card-overlay {
+  opacity: 1;
+}
+
+.read-more-btn {
+  background: white;
+  color: #d00000;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn.active {
+  opacity: 1;
+}
+
+.esports-card-info {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.esports-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-top: 5px;
+}
+/* === E-SPOR DETAY ANA KAPSAYICI === */
+.esports-detail {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 50px 80px;
+  background-color: #000;
+  color: #fff;
+}
+
+/* === SOL KART === */
+.esports-card {
+  position: relative;
+  width: 420px;
+  height: 720px;
+  border-radius: 0;
+  overflow: hidden;
+  background-color: #111;
+}
+
+.esports-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(85%);
+}
+
+/* overlay (sabit kırmızı kısım) */
+.esports-card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 38%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.9), transparent);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.read-more-btn {
+  background: #fff;
+  color: #c80000;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.esports-role {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #eaeaea;
+  margin-bottom: 4px;
+}
+
+.esports-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* === SAĞ TARAF (Achievements + Teams) === */
+.esports-detail-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 720px; /* sol kartla hizalı */
+  width: 650px;
+}
+
+/* Üst blok (Achievements) */
+.esports-achievements {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0;
+  padding: 30px 50px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-blend-mode: overlay;
+  background-color: rgba(255, 0, 0, 0.85);
+}
+
+.esports-achievements h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.esports-achievements ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  columns: 2;
+}
+
+/* Alt blok (Teams) */
+.esports-teams {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0;
+  padding: 30px 50px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.esports-teams h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  color: #ff0000;
+  letter-spacing: 2px;
+}
+
+.esports-teams p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+/* === Detay Sayfa === */
+.esports-detail-container {
+  display: flex;
+  gap: 40px;
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  padding: 40px 60px;
+}
+
+/* 🔹 Sol Kart */
+.esports-detail-left {
+  position: relative;
+  width: 523px;
+  height: 891px;
+}
+
+.esports-detail-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.esports-detail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(90%);
+}
+
+.esports-detail-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(255, 0, 0, 0.9), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.esports-read-btn {
+  background-color: #fff;
+  color: #c80000;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 25px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.esports-detail-info {
+  text-align: center;
+}
+
+.esports-name {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.esports-team {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.esports-role {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* 🔹 Geri Butonu */
+.geri-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.geri-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 🔹 Sağ Taraf */
+.esports-detail-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* === Achievements === */
+.esports-achievements {
+  padding: 40px 50px;
+  border-radius: 10px;
+  color: #fff;
+  min-height: 380px;
+}
+
+.esports-achievements h2 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.esports-achievements ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* === Teams === */
+.esports-teams {
+  padding: 40px 50px;
+  border-radius: 10px;
+  color: #fff;
+  min-height: 360px;
+}
+
+.esports-teams h2 {
+  font-size: 1.8rem;
+  color: #ff4444;
+  margin-bottom: 15px;
+}
+.esports-achievements {
+  border-radius: 10px;
+  padding: 50px 60px;
+  color: #fff;
+  min-height: 380px;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.esports-achievements h2 {
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.esports-achievements ul {
+  columns: 2;
+  column-gap: 60px;
+  list-style: none;
+  padding-left: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.esports-achievements ul li::before {
+  content: "• ";
+}
+.esports-container {
+  padding-top: 100px; /* 🔹 Yukarıdan boşluk — istediğin gibi ayarlanabilir */
+}
+
+.esports-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+/* 🔹 Detay Sayfası Genel Düzen */
+.esports-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  background-color: #000;
+  min-height: 100vh;
+}
+
+/* 🔹 Sol Taraftaki Kart Alanı */
+.esports-detail-left {
+  flex: 0 0 523px;
+}
+
+.esports-detail-card {
+  position: relative;
+  width: 523px;
+  height: 891px;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.esports-detail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.esports-detail-card:hover img {
+  transform: scale(1.02);
+}
+
+/* 🔹 Kart Üzerindeki Bilgiler */
+.esports-detail-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    transparent 100%
+  );
+  color: #fff;
+  text-align: center;
+}
+
+.esports-read-btn {
+  background: #fff;
+  color: #d00;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.3s ease;
+}
+
+.esports-read-btn:hover {
+  background: #e40000;
+  color: #fff;
+}
+
+/* 🔹 Sağ Kısım */
+.esports-detail-right {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* 🔹 Achievements Alanı — Soft Kırmızı Geçişli */
+.esports-achievements {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.12) 0%,
+    rgba(255, 0, 0, 0.08) 30%,
+    rgba(255, 0, 0, 0.05) 60%,
+    rgba(255, 0, 0, 0.02) 100%
+  );
+  border-radius: 10px;
+  padding: 40px 50px;
+  color: #fff;
+  min-height: 300px;
+}
+
+/* 🔹 Teams Alanı — Hafif Siyah Transparan */
+.esports-teams {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  border-radius: 10px;
+  padding: 40px 50px;
+  color: #fff;
+  min-height: 280px;
+}
+
+/* 🔹 Başlıklar */
+.esports-achievements h2,
+.esports-teams h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* 🔹 Liste */
+.esports-achievements ul {
+  list-style-type: disc;
+  margin-left: 30px;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* 🔹 Responsive Ayar */
+@media (max-width: 1200px) {
+  .esports-detail-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .esports-detail-right {
+    width: 90%;
+  }
+}
+.esports-detail-card {
+  position: relative;
+  width: 523px;
+  height: 720px; /* 🔹 Daha kısa — sağdaki kutularla hizalı */
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.esports-detail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.esports-detail-card:hover img {
+  transform: scale(1.02);
+}
+.esports-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  background-color: #000;
+  min-height: 100vh;
+}
+
+/* 🔹 Sol kart */
+.esports-detail-left {
+  flex: 0 0 520px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.esports-detail-card {
+  position: relative;
+  width: 523px;
+  height: 680px; /* 🔹 Kısaltıldı — sağ kutularla hizalı */
+  overflow: hidden;
+  border-radius: 0; /* 🔹 Köşeler keskin */
+  transition: transform 0.3s ease;
+}
+
+.esports-detail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.esports-detail-card:hover img {
+  transform: scale(1.02);
+}
+
+/* 🔹 Sağ kutular hizalı */
+.esports-detail-right {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 🔹 Eşit hiza */
+  gap: 25px;
+}
+
+/* 🔹 Achievements kutusu — soft kırmızı */
+.esports-achievements {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.12) 0%,
+    rgba(255, 0, 0, 0.08) 35%,
+    rgba(255, 0, 0, 0.04) 70%,
+    rgba(255, 0, 0, 0.02) 100%
+  );
+  color: #fff;
+  padding: 40px;
+  border-radius: 0; /* 🔹 Düz kenar */
+  height: 48%;
+}
+
+/* 🔹 Teams kutusu — siyah transparan */
+.esports-teams {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  color: #fff;
+  padding: 40px;
+  border-radius: 0; /* 🔹 Düz kenar */
+  height: 48%;
+}
+/* 🎯 Ana ekrandaki E-Spor oyuncu kartları */
+.esports-card {
+  position: relative;
+  width: 523px;
+  height: 570px; /* 🔹 Daha kısa, önceki 891 yerine */
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 0; /* 🔹 Düz kenarlar, detay sayfası ile uyumlu */
+}
+
+.esports-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.esports-card:hover img {
+  transform: scale(1.03);
+}
+
+.esports-card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 25px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.3) 60%,
+    transparent 100%
+  );
+  color: white;
+  text-align: center;
+}
+
+/* 🎯 Hover efekti: alt kısmı kırmızı tonla */
+.esports-card:hover .esports-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(220, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    transparent 100%
+  );
+}
+
+/* Yazı biçimleri */
+.esports-card .read-more {
+  background: #fff;
+  color: #d00;
+  padding: 10px 22px;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.esports-card .read-more:hover {
+  background: #d00;
+  color: #fff;
+}
+
+.esports-card .team {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.esports-card .name {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+.esports-card {
+  position: relative;
+  width: 523px;
+  height: 575 px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 0; /* Köşeler net */
+}
+
+.esports-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.esports-card:hover img {
+  transform: scale(1.05);
+}
+
+/* 🔹 Alt kısımdaki kırmızı overlay */
+.esports-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(220, 0, 0, 0.8) 0%,
+    rgba(220, 0, 0, 0.6) 30%,
+    rgba(220, 0, 0, 0.2) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.esports-card:hover::after {
+  opacity: 1;
+}
+
+/* 🔹 Yazı ve buton alanı */
+.esports-card-content {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.esports-card:hover .esports-card-content {
+  bottom: 60px;
+}
+
+/* 🔹 Read More butonu */
+.esports-card-content .read-more {
+  background: #fff;
+  color: #b80000;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.esports-card-content .read-more:hover {
+  background: #b80000;
+  color: #fff;
+}
+
+/* 🔹 Alt kısımdaki bilgiler */
+.esports-card-content .team-role {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.esports-card-content .player-name {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.esports-card-content .player-name {
+  font-size: 4rem !important;
+  font-weight: 800;
+}
+/* 🎯 E-Sports Detail Sayfası */
+.esports-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 80px 60px;
+  background: #0a0a0a;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Sol kart */
+.esports-detail-left {
+  position: relative;
+}
+
+.geri-btn {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.geri-btn:hover {
+  color: #ff0000;
+}
+
+/* Sağ taraf */
+.esports-detail-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Gradient alanlar */
+.esports-achievements,
+.esports-teams {
+  border-radius: 0;
+  padding: 40px;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+}
+
+.esports-achievements h2,
+.esports-teams h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.esports-achievements ul {
+  list-style: none;
+  padding: 0;
+}
+
+.esports-achievements li {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.esports-teams p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+/* 🔹 E-spor kartının genel görünümü */
+.esports-card {
+  position: relative;
+  width: 523px;
+  height: 570px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0;
+  transition: transform 0.3s ease;
+}
+
+.esports-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* 🔹 Hover'da resmi hafif büyüt */
+.esports-card:hover img {
+  transform: scale(1.05);
+}
+
+/* 🔹 Alt kırmızı gradient (hover’da aktif) */
+.esports-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(220, 0, 0, 0.8) 0%,
+    rgba(220, 0, 0, 0.5) 40%,
+    rgba(220, 0, 0, 0.2) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.esports-card:hover::after {
+  opacity: 1;
+}
+
+/* 🔹 İçerik alanı (başta gizli) */
+.esports-card-content {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  z-index: 2;
+  opacity: 0; /* 🧠 Başta gizli */
+  transform: translateY(40px);
+  transition: all 0.4s ease;
+}
+
+/* 🔹 Hover olunca görünür olacak */
+.esports-card:hover .esports-card-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 🔹 Read More butonu */
+.esports-card-content .read-more {
+  background: #fff;
+  color: #b80000;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.esports-card-content .read-more:hover {
+  background: #b80000;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* 🔹 Alt yazılar */
+.esports-card-content .team-role {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+.esports-card-content .player-name {
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+/* 🎯 Oyuncu ismi (kart ve detay sayfası) */
+.player-name {
+  font-size: 4rem !important; /* büyük başlık */
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff !important;
+  line-height: 1.1;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+/* 🎯 Oyuncunun rolü veya takımı */
+.team-role {
+  font-size: 0.8rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.95;
+  color: #ddd !important;
+  margin-bottom: 8px;
+}
+
+/* 🎯 Read More butonu */
+.read-more {
+  background: #fff !important;
+  color: #b80000 !important;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  background: #b80000 !important;
+  color: #fff !important;
+}
+.influencer-card {
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.influencer-card.expanded {
+  transform: scale(1.02);
+}
+
+/* Smooth transitions for expand/collapse */
+.influencer-card > div {
+  transition: all 0.3s ease-in-out;
+}
+/* Influencer Page Styles */
+.min-h-screen.bg-black.text-white.py-16.px-4 {
+  padding-top: 100px;
+}
+
+/* Influencer Grid Layout */
+.grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Influencer Card */
+.influencer-card {
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.influencer-card.expanded {
+  transform: scale(1.02);
+}
+
+/* Card Image */
+.influencer-card .relative.overflow-hidden.rounded-lg {
+  border-radius: 0;
+  position: relative;
+  height: 500px;
+}
+
+.influencer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Yellow Gradient Overlay (EXACTLY like screenshot) */
+.influencer-card .absolute.inset-0.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.95) 0%,
+    rgba(201, 168, 74, 0.7) 15%,
+    rgba(201, 168, 74, 0.4) 30%,
+    rgba(201, 168, 74, 0.2) 45%,
+    transparent 70%
+  ) !important;
+  pointer-events: none;
+}
+
+/* Bottom Content Area */
+.influencer-card .absolute.bottom-0 {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 20px;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Read More Button */
+.influencer-card .bg-white.text-\[\#c9a84a\] {
+  background: #fff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.influencer-card .bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.05);
+}
+
+/* Title Text */
+.influencer-card .text-white.text-sm.font-medium.mb-2 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #fff;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Name Text (BIG TEXT like screenshot) */
+.influencer-card .text-white.text-6xl.font-bold.tracking-wider {
+  font-size: 4rem !important;
+  font-weight: 900 !important;
+  color: #fff !important;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Expanded State Styles */
+.influencer-card .bg-gradient-to-b.from-\[\#c9a84a\].to-\[\#b89b3f\] {
+  background: linear-gradient(to bottom, #c9a84a, #b89b3f) !important;
+  border-radius: 0;
+  padding: 40px 30px;
+  margin-top: -2px;
+  position: relative;
+}
+
+/* Expanded Name */
+.influencer-card .text-white.text-5xl.font-bold.mb-4 {
+  font-size: 3rem !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Description Text */
+.influencer-card .text-white\/90.text-base.leading-relaxed {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Social Media Stats */
+.influencer-card .space-y-4.mb-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.influencer-card .flex.items-center.gap-4.text-white {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.influencer-card .w-8.h-8 {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+}
+
+.influencer-card .text-2xl.font-bold {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Close Button */
+.influencer-card .w-full.bg-white.text-\[\#c9a84a\] {
+  width: 100%;
+  background: #fff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.influencer-card .w-full.bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.02);
+}
+
+/* Bottom Gradient Effect for Expanded State */
+.influencer-card .absolute.bottom-0.left-0.right-0.h-24.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.4) 0%,
+    rgba(201, 168, 74, 0.2) 30%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .influencer-card .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: 1fr;
+  }
+  
+  .influencer-card .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 2.5rem !important;
+  }
+  
+  .min-h-screen.bg-black.text-white.py-16.px-4 {
+    padding: 80px 20px;
+  }
+}
+
+/* Page Header Styles */
+.text-5xl.font-bold.text-center.mb-4 {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.text-center.text-gray-400.mb-16.text-lg {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 60px;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+/* Influencer Page Styles */
+.min-h-screen.bg-black.text-white.py-16.px-4 {
+  padding-top: 100px;
+  background: #000;
+}
+
+/* Influencer Grid Layout */
+.grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Influencer Card */
+.influencer-card {
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.influencer-card.expanded {
+  transform: scale(1.02);
+}
+
+/* Card Image Container */
+.influencer-card .relative.overflow-hidden.rounded-lg {
+  border-radius: 0;
+  position: relative;
+  height: 500px;
+}
+
+.influencer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Yellow Gradient Overlay */
+.influencer-card .absolute.inset-0.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.95) 0%,
+    rgba(201, 168, 74, 0.7) 20%,
+    rgba(201, 168, 74, 0.4) 40%,
+    rgba(201, 168, 74, 0.1) 60%,
+    transparent 80%
+  ) !important;
+  pointer-events: none;
+}
+
+/* Bottom Content Area - FIXED POSITIONING */
+.influencer-card .absolute.bottom-0 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 20px 30px 20px;
+  text-align: center;
+  z-index: 10;
+}
+
+/* READ MORE BUTTON - FIXED STYLING */
+.influencer-card .bg-white.text-\[\#c9a84a\] {
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 12px 35px !important;
+  border-radius: 25px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  margin-bottom: 20px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 20;
+}
+
+.influencer-card .bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.05);
+}
+
+/* Title Text */
+.influencer-card .text-white.text-sm.font-medium.mb-2 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #ffffff;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Name Text */
+.influencer-card .text-white.text-6xl.font-bold.tracking-wider {
+  font-size: 3.5rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  position: relative;
+  z-index: 10;
+}
+
+/* Expanded State Styles */
+.influencer-card .bg-gradient-to-b.from-\[\#c9a84a\].to-\[\#b89b3f\] {
+  background: linear-gradient(to bottom, #c9a84a, #b89b3f) !important;
+  border-radius: 0;
+  padding: 40px 30px;
+  margin-top: -2px;
+  position: relative;
+}
+
+/* Expanded Name */
+.influencer-card .text-white.text-5xl.font-bold.mb-4 {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Description Text */
+.influencer-card .text-white\/90.text-base.leading-relaxed {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Social Media Stats */
+.influencer-card .space-y-4.mb-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.influencer-card .flex.items-center.gap-4.text-white {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.influencer-card .w-8.h-8 {
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+}
+
+.influencer-card .text-2xl.font-bold {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Close Button */
+.influencer-card .w-full.bg-white.text-\[\#c9a84a\] {
+  width: 100%;
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.influencer-card .w-full.bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.02);
+}
+
+/* Bottom Gradient Effect for Expanded State */
+.influencer-card .absolute.bottom-0.left-0.right-0.h-24.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.4) 0%,
+    rgba(201, 168, 74, 0.2) 30%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+/* Page Header Styles */
+.text-5xl.font-bold.text-center.mb-4 {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.text-center.text-gray-400.mb-16.text-lg {
+  text-align: center;
+  color: #cccccc;
+  margin-bottom: 60px;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Loading State */
+.min-h-screen.bg-black.text-white.flex.items-center.justify-center {
+  background: #000;
+  color: #fff;
+}
+
+/* Ensure buttons are visible */
+button {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .influencer-card .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 2.8rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: 1fr;
+  }
+  
+  .influencer-card .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 2.2rem !important;
+  }
+  
+  .min-h-screen.bg-black.text-white.py-16.px-4 {
+    padding: 80px 20px;
+  }
+  
+  .influencer-card .absolute.bottom-0 {
+    padding: 30px 15px 20px 15px;
+  }
+}/* Influencer Page Styles */
+.min-h-screen.bg-black.text-white.py-16.px-4 {
+  padding-top: 100px;
+  background: #000;
+}
+
+/* Influencer Grid Layout */
+.grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Influencer Card */
+.influencer-card {
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.influencer-card.expanded {
+  transform: scale(1.02);
+}
+
+/* Card Image Container */
+.influencer-card .relative.overflow-hidden.rounded-lg {
+  border-radius: 0;
+  position: relative;
+  height: 500px;
+}
+
+.influencer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* READ MORE BASILMADAN ÖNCE - Resimdeki gibi alttan yukarı sarı gradient */
+.influencer-card:not(.expanded) .absolute.inset-0.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.95) 0%,
+    rgba(201, 168, 74, 0.8) 15%,
+    rgba(201, 168, 74, 0.6) 30%,
+    rgba(201, 168, 74, 0.4) 45%,
+    rgba(201, 168, 74, 0.2) 60%,
+    rgba(201, 168, 74, 0.1) 75%,
+    transparent 90%
+  ) !important;
+  pointer-events: none;
+}
+
+/* Bottom Content Area */
+.influencer-card .absolute.bottom-0 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 50px 20px 30px 20px;
+  text-align: center;
+  z-index: 10;
+}
+
+/* READ MORE BUTTON - Beyaz buton altın yazı */
+.influencer-card .bg-white.text-\[\#c9a84a\] {
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 12px 40px !important;
+  border-radius: 25px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  margin-bottom: 25px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block !important;
+  position: relative;
+  z-index: 20;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.influencer-card .bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.05);
+}
+
+/* Title Text - STREAMER | ONKICK gibi */
+.influencer-card .text-white.text-sm.font-medium.mb-2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Name Text - WTCN gibi BÜYÜK YAZI */
+.influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+  font-size: 4.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 0.9;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 10;
+}
+
+/* READ MORE BASILDIKTAN SONRA - Expanded State */
+.influencer-card.expanded .bg-gradient-to-b.from-\[\#c9a84a\].to-\[\#b89b3f\] {
+  background: linear-gradient(
+    to bottom,
+    rgba(201, 168, 74, 0.98) 0%,
+    rgba(201, 168, 74, 0.85) 20%,
+    rgba(201, 168, 74, 0.7) 40%,
+    rgba(201, 168, 74, 0.5) 60%,
+    rgba(201, 168, 74, 0.3) 80%,
+    transparent 100%
+  ) !important;
+  border-radius: 0;
+  padding: 50px 30px 40px 30px;
+  margin-top: -2px;
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Expanded Name */
+.influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+  font-size: 3.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  line-height: 1;
+}
+
+/* Description Text */
+.influencer-card.expanded .text-white\/90.text-base.leading-relaxed {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* Social Media Stats - 297B Abone gibi */
+.influencer-card.expanded .space-y-4.mb-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.influencer-card.expanded .flex.items-center.gap-4.text-white {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.influencer-card.expanded .w-8.h-8 {
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+}
+
+.influencer-card.expanded .text-2xl.font-bold {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+/* Close Button */
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\] {
+  width: 100%;
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 16px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.02);
+}
+
+/* READ MORE BASILDIKTAN SONRA - Alttan Yukarı Gradient */
+.influencer-card.expanded .absolute.bottom-0.left-0.right-0.h-24.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.8) 0%,
+    rgba(201, 168, 74, 0.5) 25%,
+    rgba(201, 168, 74, 0.3) 50%,
+    rgba(201, 168, 74, 0.1) 75%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  border-radius: 0;
+  height: 120px;
+}
+
+/* Page Header Styles */
+.text-5xl.font-bold.text-center.mb-4 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.text-center.text-gray-400.mb-16.text-lg {
+  text-align: center;
+  color: #cccccc;
+  margin-bottom: 60px;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Loading State */
+.min-h-screen.bg-black.text-white.flex.items-center.justify-center {
+  background: #000;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: 1fr;
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3rem !important;
+  }
+  
+  .min-h-screen.bg-black.text-white.py-16.px-4 {
+    padding: 80px 20px;
+  }
+  
+  .influencer-card .absolute.bottom-0 {
+    padding: 40px 15px 25px 15px;
+  }
+  
+  .influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+    font-size: 2.5rem !important;
+  }
+}/* Influencer Page Styles */
+.min-h-screen.bg-black.text-white.py-16.px-4 {
+  padding-top: 100px;
+  background: #000;
+}
+
+/* Influencer Grid Layout */
+.grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Influencer Card */
+.influencer-card {
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.influencer-card.expanded {
+  transform: scale(1.02);
+}
+
+/* Card Image Container - FOTOĞRAF BACKGROUND GİBİ */
+.influencer-card .relative.overflow-hidden.rounded-lg {
+  border-radius: 0;
+  position: relative;
+  height: 500px;
+  background: #000; /* Arka plan siyah */
+}
+
+.influencer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* READ MORE BASILMADAN ÖNCE - FOTOĞRAF ÜZERİNDE SARI GRADIENT OVERLAY */
+.influencer-card:not(.expanded) .absolute.inset-0.bg-gradient-to-t {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.95) 0%,
+    rgba(201, 168, 74, 0.7) 20%,
+    rgba(201, 168, 74, 0.5) 40%,
+    rgba(201, 168, 74, 0.3) 60%,
+    rgba(201, 168, 74, 0.15) 80%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Bottom Content Area - GRADIENT ÜZERİNDE */
+.influencer-card .absolute.bottom-0 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 50px 20px 30px 20px;
+  text-align: center;
+  z-index: 3; /* Gradient'in üstünde */
+}
+
+/* READ MORE BUTTON */
+.influencer-card .bg-white.text-\[\#c9a84a\] {
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 12px 40px !important;
+  border-radius: 25px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  margin-bottom: 25px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block !important;
+  position: relative;
+  z-index: 4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.influencer-card .bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.05);
+}
+
+/* Title Text */
+.influencer-card .text-white.text-sm.font-medium.mb-2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Name Text - BÜYÜK YAZI */
+.influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+  font-size: 4.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 0.9;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 3;
+}
+
+/* READ MORE BASILDIKTAN SONRA - Expanded State */
+.influencer-card.expanded .bg-gradient-to-b.from-\[\#c9a84a\].to-\[\#b89b3f\] {
+  background: linear-gradient(
+    to bottom,
+    rgba(201, 168, 74, 0.98) 0%,
+    rgba(201, 168, 74, 0.85) 20%,
+    rgba(201, 168, 74, 0.7) 40%,
+    rgba(201, 168, 74, 0.5) 60%,
+    rgba(201, 168, 74, 0.3) 80%,
+    transparent 100%
+  ) !important;
+  border-radius: 0;
+  padding: 50px 30px 40px 30px;
+  margin-top: -2px;
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+/* Expanded Name */
+.influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+  font-size: 3.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  line-height: 1;
+}
+
+/* Description Text */
+.influencer-card.expanded .text-white\/90.text-base.leading-relaxed {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* Social Media Stats */
+.influencer-card.expanded .space-y-4.mb-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.influencer-card.expanded .flex.items-center.gap-4.text-white {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.influencer-card.expanded .w-8.h-8 {
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+}
+
+.influencer-card.expanded .text-2xl.font-bold {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+/* Close Button */
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\] {
+  width: 100%;
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 16px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 3;
+}
+
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.02);
+}
+
+/* READ MORE BASILDIKTAN SONRA - Alttan Yukarı Gradient */
+.influencer-card.expanded .absolute.bottom-0.left-0.right-0.h-24.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.8) 0%,
+    rgba(201, 168, 74, 0.5) 25%,
+    rgba(201, 168, 74, 0.3) 50%,
+    rgba(201, 168, 74, 0.1) 75%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  border-radius: 0;
+  height: 120px;
+  z-index: 1;
+}
+
+/* Page Header Styles */
+.text-5xl.font-bold.text-center.mb-4 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.text-center.text-gray-400.mb-16.text-lg {
+  text-align: center;
+  color: #cccccc;
+  margin-bottom: 60px;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Loading State */
+.min-h-screen.bg-black.text-white.flex.items-center.justify-center {
+  background: #000;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: 1fr;
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3rem !important;
+  }
+  
+  .min-h-screen.bg-black.text-white.py-16.px-4 {
+    padding: 80px 20px;
+  }
+  
+  .influencer-card .absolute.bottom-0 {
+    padding: 40px 15px 25px 15px;
+  }
+  
+  .influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+    font-size: 2.5rem !important;
+  }
+}/* Influencer Page Styles */
+.min-h-screen.bg-black.text-white.py-16.px-4 {
+  padding-top: 100px;
+  background: #000;
+}
+
+/* Influencer Grid Layout */
+.grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Influencer Card */
+.influencer-card {
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 0;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+}
+
+.influencer-card.expanded {
+  transform: scale(1.02);
+}
+
+/* Card Image Container */
+.influencer-card .relative.overflow-hidden.rounded-lg {
+  border-radius: 0;
+  position: relative;
+  height: 500px;
+  background: #000;
+}
+
+.influencer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.influencer-card:hover img {
+  transform: scale(1.05);
+}
+
+/* SARI GRADIENT OVERLAY - SADECE HOVER'DA GÖRÜNSÜN */
+.influencer-card .absolute.inset-0.bg-gradient-to-t {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.95) 0%,
+    rgba(201, 168, 74, 0.7) 20%,
+    rgba(201, 168, 74, 0.5) 40%,
+    rgba(201, 168, 74, 0.3) 60%,
+    rgba(201, 168, 74, 0.15) 80%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.influencer-card:hover .absolute.inset-0.bg-gradient-to-t {
+  opacity: 1;
+}
+
+/* Bottom Content Area - SADECE HOVER'DA GÖRÜNSÜN */
+.influencer-card .absolute.bottom-0 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 50px 20px 30px 20px;
+  text-align: center;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+.influencer-card:hover .absolute.bottom-0 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* READ MORE BUTTON - SADECE HOVER'DA GÖRÜNSÜN */
+.influencer-card .bg-white.text-\[\#c9a84a\] {
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 12px 40px !important;
+  border-radius: 25px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  margin-bottom: 25px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block !important;
+  position: relative;
+  z-index: 4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.1s;
+}
+
+.influencer-card:hover .bg-white.text-\[\#c9a84a\] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.influencer-card .bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Title Text - SADECE HOVER'DA GÖRÜNSÜN */
+.influencer-card .text-white.text-sm.font-medium.mb-2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+  opacity: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 3;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.05s;
+}
+
+.influencer-card:hover .text-white.text-sm.font-medium.mb-2 {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+/* Name Text - SADECE HOVER'DA GÖRÜNSÜN */
+.influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+  font-size: 4.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 0.9;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.1s;
+}
+
+.influencer-card:hover:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* READ MORE BASILDIKTAN SONRA - Expanded State (bu kısım açık kalacak) */
+.influencer-card.expanded .bg-gradient-to-b.from-\[\#c9a84a\].to-\[\#b89b3f\] {
+  background: linear-gradient(
+    to bottom,
+    rgba(201, 168, 74, 0.98) 0%,
+    rgba(201, 168, 74, 0.85) 20%,
+    rgba(201, 168, 74, 0.7) 40%,
+    rgba(201, 168, 74, 0.5) 60%,
+    rgba(201, 168, 74, 0.3) 80%,
+    transparent 100%
+  ) !important;
+  border-radius: 0;
+  padding: 50px 30px 40px 30px;
+  margin-top: -2px;
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+/* Expanded Name (açık durumda her zaman görünür) */
+.influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+  font-size: 3.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  line-height: 1;
+  opacity: 1 !important;
+}
+
+/* Description Text (açık durumda her zaman görünür) */
+.influencer-card.expanded .text-white\/90.text-base.leading-relaxed {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  opacity: 1 !important;
+}
+
+/* Social Media Stats (açık durumda her zaman görünür) */
+.influencer-card.expanded .space-y-4.mb-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 35px;
+  opacity: 1 !important;
+}
+
+.influencer-card.expanded .flex.items-center.gap-4.text-white {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  opacity: 1 !important;
+}
+
+.influencer-card.expanded .w-8.h-8 {
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+}
+
+.influencer-card.expanded .text-2xl.font-bold {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+/* Close Button (açık durumda her zaman görünür) */
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\] {
+  width: 100%;
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 16px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 3;
+  opacity: 1 !important;
+}
+
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.02);
+}
+
+/* READ MORE BASILDIKTAN SONRA - Alttan Yukarı Gradient */
+.influencer-card.expanded .absolute.bottom-0.left-0.right-0.h-24.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.8) 0%,
+    rgba(201, 168, 74, 0.5) 25%,
+    rgba(201, 168, 74, 0.3) 50%,
+    rgba(201, 168, 74, 0.1) 75%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  border-radius: 0;
+  height: 120px;
+  z-index: 1;
+}
+
+/* Page Header Styles */
+.text-5xl.font-bold.text-center.mb-4 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.text-center.text-gray-400.mb-16.text-lg {
+  text-align: center;
+  color: #cccccc;
+  margin-bottom: 60px;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Loading State */
+.min-h-screen.bg-black.text-white.flex.items-center.justify-center {
+  background: #000;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: 1fr;
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3rem !important;
+  }
+  
+  .min-h-screen.bg-black.text-white.py-16.px-4 {
+    padding: 80px 20px;
+  }
+  
+  .influencer-card .absolute.bottom-0 {
+    padding: 40px 15px 25px 15px;
+  }
+  
+  .influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+    font-size: 2.5rem !important;
+  }
+}/* Influencer Page Styles */
+.min-h-screen.bg-black.text-white.py-16.px-4 {
+  padding-top: 100px;
+  background: #000;
+}
+
+/* Influencer Grid Layout */
+.grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Influencer Card */
+.influencer-card {
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 0;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+}
+
+.influencer-card.expanded {
+  transform: scale(1.02);
+}
+
+/* Card Image Container */
+.influencer-card .relative.overflow-hidden.rounded-lg {
+  border-radius: 0;
+  position: relative;
+  height: 500px;
+  background: #000;
+}
+
+.influencer-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.influencer-card:hover img {
+  transform: scale(1.05);
+}
+
+/* SARI GRADIENT OVERLAY - HOVER'DA VE EXPANDED'DA GÖRÜNSÜN */
+.influencer-card .absolute.inset-0.bg-gradient-to-t {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.95) 0%,
+    rgba(201, 168, 74, 0.7) 20%,
+    rgba(201, 168, 74, 0.5) 40%,
+    rgba(201, 168, 74, 0.3) 60%,
+    rgba(201, 168, 74, 0.15) 80%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Hover durumunda görünür */
+.influencer-card:hover .absolute.inset-0.bg-gradient-to-t {
+  opacity: 1;
+}
+
+/* Expanded durumunda da görünür kalsın */
+.influencer-card.expanded .absolute.inset-0.bg-gradient-to-t {
+  opacity: 1 !important;
+}
+
+/* Bottom Content Area */
+.influencer-card .absolute.bottom-0 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 50px 20px 30px 20px;
+  text-align: center;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+.influencer-card:hover .absolute.bottom-0 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Expanded durumunda da görünür kalsın (sadece Read More butonu hariç) */
+.influencer-card.expanded .absolute.bottom-0 {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* READ MORE BUTTON - SADECE HOVER'DA GÖRÜNSÜN, EXPANDED'DA GİZLi */
+.influencer-card .bg-white.text-\[\#c9a84a\] {
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 12px 40px !important;
+  border-radius: 25px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  margin-bottom: 25px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block !important;
+  position: relative;
+  z-index: 4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.1s;
+}
+
+/* Hover durumunda görünür */
+.influencer-card:hover .bg-white.text-\[\#c9a84a\] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* EXPANDED DURUMUNDA READ MORE BUTONU GİZLİ */
+.influencer-card.expanded .bg-white.text-\[\#c9a84a\] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.influencer-card .bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Title Text - HOVER VE EXPANDED'DA GÖRÜNSÜN */
+.influencer-card .text-white.text-sm.font-medium.mb-2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+  opacity: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 3;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.05s;
+}
+
+.influencer-card:hover .text-white.text-sm.font-medium.mb-2 {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+/* Expanded durumunda da görünür kalsın */
+.influencer-card.expanded .text-white.text-sm.font-medium.mb-2 {
+  opacity: 0.9 !important;
+  transform: translateY(0) !important;
+}
+
+/* Name Text - HOVER VE EXPANDED'DA GÖRÜNSÜN */
+.influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+  font-size: 4.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 0.9;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease 0.1s;
+}
+
+.influencer-card:hover:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Expanded durumunda da görünür kalsın */
+.influencer-card.expanded .text-white.text-6xl.font-bold.tracking-wider {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* READ MORE BASILDIKTAN SONRA - Expanded State (aşağıya açılan kısım) */
+.influencer-card.expanded .bg-gradient-to-b.from-\[\#c9a84a\].to-\[\#b89b3f\] {
+  background: linear-gradient(
+    to bottom,
+    rgba(201, 168, 74, 0.98) 0%,
+    rgba(201, 168, 74, 0.85) 20%,
+    rgba(201, 168, 74, 0.7) 40%,
+    rgba(201, 168, 74, 0.5) 60%,
+    rgba(201, 168, 74, 0.3) 80%,
+    transparent 100%
+  ) !important;
+  border-radius: 0;
+  padding: 50px 30px 40px 30px;
+  margin-top: -2px;
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+/* Expanded Name (açık durumda her zaman görünür) */
+.influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+  font-size: 3.2rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  line-height: 1;
+  opacity: 1 !important;
+}
+
+/* Description Text (açık durumda her zaman görünür) */
+.influencer-card.expanded .text-white\/90.text-base.leading-relaxed {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  opacity: 1 !important;
+}
+
+/* Social Media Stats (açık durumda her zaman görünür) */
+.influencer-card.expanded .space-y-4.mb-6 {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 35px;
+  opacity: 1 !important;
+}
+
+.influencer-card.expanded .flex.items-center.gap-4.text-white {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  opacity: 1 !important;
+}
+
+.influencer-card.expanded .w-8.h-8 {
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+}
+
+.influencer-card.expanded .text-2xl.font-bold {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+/* Close Button (açık durumda her zaman görünür) */
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\] {
+  width: 100%;
+  background: #ffffff !important;
+  color: #c9a84a !important;
+  border: none;
+  padding: 16px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 3;
+  opacity: 1 !important;
+}
+
+.influencer-card.expanded .w-full.bg-white.text-\[\#c9a84a\]:hover {
+  background: #f8f8f8 !important;
+  transform: scale(1.02);
+}
+
+/* READ MORE BASILDIKTAN SONRA - Alttan Yukarı Gradient */
+.influencer-card.expanded .absolute.bottom-0.left-0.right-0.h-24.bg-gradient-to-t {
+  background: linear-gradient(
+    to top,
+    rgba(201, 168, 74, 0.8) 0%,
+    rgba(201, 168, 74, 0.5) 25%,
+    rgba(201, 168, 74, 0.3) 50%,
+    rgba(201, 168, 74, 0.1) 75%,
+    transparent 100%
+  ) !important;
+  pointer-events: none;
+  border-radius: 0;
+  height: 120px;
+  z-index: 1;
+}
+
+/* Page Header Styles */
+.text-5xl.font-bold.text-center.mb-4 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.text-center.text-gray-400.mb-16.text-lg {
+  text-align: center;
+  color: #cccccc;
+  margin-bottom: 60px;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Loading State */
+.min-h-screen.bg-black.text-white.flex.items-center.justify-center {
+  background: #000;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3.gap-8 {
+    grid-template-columns: 1fr;
+  }
+  
+  .influencer-card:not(.expanded) .text-white.text-6xl.font-bold.tracking-wider {
+    font-size: 3rem !important;
+  }
+  
+  .min-h-screen.bg-black.text-white.py-16.px-4 {
+    padding: 80px 20px;
+  }
+  
+  .influencer-card .absolute.bottom-0 {
+    padding: 40px 15px 25px 15px;
+  }
+  
+  .influencer-card.expanded .text-white.text-5xl.font-bold.mb-4 {
+    font-size: 2.5rem !important;
+  }
+}/* ===================== 🔥 Influencer Kartı ===================== */
+.influencer-card {
+  position: relative;
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  max-height: 550px; /* 📌 Kapalıyken yüksekliği sabit */
+}
+
+.influencer-card.expanded {
+  max-height: 950px; /* 📌 Açıldığında yüksekliği artar */
+}
+
+/* İçeriğin yumuşak geçişle görünmesi */
+.influencer-card .bg-gradient-to-b {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.influencer-card.expanded .bg-gradient-to-b {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Detay alanı animasyonu */
+.influencer-card .expanded .p-8 {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.influencer-card.expanded .p-8 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive için */
+@media (max-width: 768px) {
+  .influencer-card {
+    max-height: 500px;
+  }
+  .influencer-card.expanded {
+    max-height: 1000px;
+  }
+}
+/* Influencer overlay sabit kalsın */
+.influencer-card .absolute.inset-0 {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.influencer-card img {
+  position: relative;
+  z-index: 0;
+}
+
+.influencer-card.expanded .absolute.inset-0 {
+  opacity: 1; /* 📌 Expanded olsa bile görünür */
+}
+.influencer-card {
+  transition: max-height 0.6s ease-in-out, transform 0.4s ease;
+  max-height: 550px;
+  position: relative;
+}
+
+.influencer-card.expanded {
+  max-height: 1000px;
+  transform: translateY(0px);
+}
+
+.influencer-card img {
+  transition: transform 0.6s ease;
+}
+
+.influencer-card:hover img {
+  transform: scale(1.03);
+}
+/* ——— Boyut reset ——— */
+.influencer-card { position: relative; }                /* sadece konumlandırma, BOYUTA ETKİ YOK */
+.influencer-card, .influencer-card.expanded { 
+  max-height: initial !important; 
+  transform: none !important; 
+}
+.influencer-card img { transform: none !important; }    /* olası hover/scale denemelerini iptal eder */
+html, body {
+  background: linear-gradient(to bottom, #d4b253, #c9a84a, #b38b2e) !important;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  background: linear-gradient(to bottom, #d4b253, #c9a84a, #b38b2e) !important;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+  .influencer-card.expanded {
+  background: linear-gradient(to bottom, #d4b253, #c9a84a, #b38b2e);
+}

@@ -69,3 +69,5 @@ export const getCrew = () => axios.get(`${API_URL}/crew`);
 export const addCrew = (data) => axios.post(`${API_URL}/crew`, data);
 export const updateCrew = (id, data) => axios.put(`${API_URL}/crew/${id}`, data);
 export const deleteCrew = (id) => axios.delete(`${API_URL}/crew/${id}`);
+export const getEsportsPlayers = () => axios.get(`${API_URL}/esports`);
+export const getEsportsPlayerById = (id) => axios.get(`${API_URL}/esports/${id}`);
