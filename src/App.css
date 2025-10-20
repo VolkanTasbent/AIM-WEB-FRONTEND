@@ -7491,18 +7491,13 @@ button {
   transform: none !important; 
 }
 .influencer-card img { transform: none !important; }    /* olası hover/scale denemelerini iptal eder */
-html, body {
-  background: linear-gradient(to bottom, #d4b253, #c9a84a, #b38b2e) !important;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-html, body {
-  background: linear-gradient(to bottom, #d4b253, #c9a84a, #b38b2e) !important;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
+
+
   .influencer-card.expanded {
   background: linear-gradient(to bottom, #d4b253, #c9a84a, #b38b2e);
+}
+html, body {
+  background: #000;   /* ✅ tüm sayfa zeminini siyah yap */
+  margin: 0;
+  padding: 0;
 }

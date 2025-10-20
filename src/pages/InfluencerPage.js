@@ -48,17 +48,17 @@ const InfluencerPage = () => {
               className={`influencer-card ${expandedId === influencer.id ? "expanded" : ""}`}
             >
               <div className="relative overflow-hidden rounded-lg">
-                {/* Foto */}
+                {/* 📸 Fotoğraf */}
                 <img
                   src={influencer.resimUrl || "/assets/default-influencer.jpg"}
                   alt={influencer.adSoyad}
                   className="w-full h-[500px] object-cover relative z-0"
                 />
 
-                {/* Sarı efekt (foto üstünde kalır) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#b38b2e] via-[#d4b253cc] to-transparent pointer-events-none transition-all duration-500 z-10" />
+                {/* 🟡 Sarı efekt */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#b38b2e] via-[#d4b253cc] to-transparent pointer-events-none z-10" />
 
-                {/* İsim + unvan (HER ZAMAN aynı yerde) */}
+                {/* 📍 İsim + unvan */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-center z-20">
                   <p className="text-white text-sm font-medium mb-2">
                     {influencer.unvan}
@@ -67,21 +67,21 @@ const InfluencerPage = () => {
                     {influencer.adSoyad}
                   </h2>
 
-                  {/* Read More sadece kapalıyken */}
+                  {/* 📍 Read More butonu */}
                   {expandedId !== influencer.id && (
                     <button
                       onClick={() => toggleExpand(influencer.id)}
                       style={{
-                        background: '#ffffff',
-                        color: '#c9a84a',
-                        border: 'none',
-                        padding: '12px 35px',
-                        borderRadius: '25px',
-                        fontWeight: '700',
-                        fontSize: '16px',
-                        marginTop: '20px',
-                        cursor: 'pointer',
-                        display: 'inline-block',
+                        background: "#ffffff",
+                        color: "#c9a84a",
+                        border: "none",
+                        padding: "12px 35px",
+                        borderRadius: "25px",
+                        fontWeight: "700",
+                        fontSize: "16px",
+                        marginTop: "20px",
+                        cursor: "pointer",
+                        display: "inline-block",
                       }}
                       className="read-more-btn"
                     >
@@ -91,9 +91,14 @@ const InfluencerPage = () => {
                 </div>
               </div>
 
-              {/* AÇILAN KISIM — sadece rengi sarı gradient yaptık, BOYUTLARA DOKUNMADIK */}
+              {/* 📍 Read More sonrası detay alanı */}
               {expandedId === influencer.id && (
-<div className="rounded-lg p-8 -mt-2 relative z-30 bg-gradient-to-b from-[#d4b253] via-[#c9a84a] to-[#b38b2e]">
+               <div
+  className="rounded-lg p-8 -mt-2 relative z-30"
+  style={{
+    background: "linear-gradient(to bottom, #d4b253,)",
+  }}
+>
                   <div className="text-center mb-6">
                     <p className="text-white/90 text-base leading-relaxed">
                       {influencer.aciklama}
@@ -121,20 +126,21 @@ const InfluencerPage = () => {
                     </div>
                   </div>
 
+                  {/* ✅ Kapat butonu */}
                   <button
                     onClick={() => toggleExpand(influencer.id)}
                     style={{
-                      width: '100%',
-                      background: '#ffffff',
-                      color: '#c9a84a',
-                      border: 'none',
-                      padding: '14px',
-                      borderRadius: '25px',
-                      fontWeight: '700',
-                      fontSize: '16px',
-                      cursor: 'pointer',
-                      position: 'relative',
+                      width: "100%",
+                      background: "#ffffff",
+                      color: "#c9a84a",
+                      border: "none",
+                      padding: "14px",
+                      borderRadius: "25px",
+                      fontWeight: "700",
+                      fontSize: "16px",
+                      cursor: "pointer",
                       zIndex: 50,
+                      position: "relative",
                     }}
                   >
                     Kapat
