@@ -4,7 +4,6 @@ import axios from "axios";
 import "../App.css";
 import { FaChevronLeft } from "react-icons/fa";
 
-
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
 const EsportsDetailPage = () => {
@@ -26,39 +25,50 @@ const EsportsDetailPage = () => {
   return (
     <div className="esports-detail-container">
       {/* 🔹 Sol Kart */}
-<div className="esports-detail-left">
-  <div className="esports-card">
-    <button className="geri-btn" onClick={() => navigate("/esports")}>
-  <FaChevronLeft />
-</button>  {/* ✅ Artık resmin üstünde */}
-    <img
-      src={player.resimUrl || "/assets/default-player.jpg"}
-      alt={player.adSoyad}
-    />
-    <div className="esports-card-content">
-      {!showDetails ? (
-        <>
-          <button
-            className="read-more"
-            onClick={() => setShowDetails(true)}
-          >
-            Read More
+      <div className="esports-detail-left">
+        <div className="esports-detail-card">
+          {/* 🔙 Geri Butonu */}
+          <button className="geri-btn" onClick={() => navigate("/esports")}>
+            <FaChevronLeft />
           </button>
-          <p className="team-role">
-            {player.takim?.toUpperCase()} | {player.unvan}
-          </p>
-          <h1 className="player-name">{player.adSoyad}</h1>
-        </>
-      ) : (
-        <>
-          <h2>About</h2>
-          <p>{player.aciklama}</p>
-        </>
-      )}
-    </div>
-  </div>
-</div>
 
+          <img
+            src={player.resimUrl || "/assets/default-player.jpg"}
+            alt={player.adSoyad}
+            className="esports-detail-image"
+          />
+
+          <div className="esports-detail-overlay">
+            {!showDetails ? (
+              <>
+                <button
+                  className="esports-read-btn"
+                  onClick={() => setShowDetails(true)}
+                >
+                  Read More
+                </button>
+                <div className="esports-detail-info">
+                  <p className="esports-team">
+                    {player.takim?.toUpperCase()} | {player.unvan}
+                  </p>
+                  <h1 className="esports-name">{player.adSoyad}</h1>
+                </div>
+              </>
+            ) : (
+              <div className="esports-expanded-info">
+                <h2>About</h2>
+                <p>{player.aciklama}</p>
+                <button
+                  className="esports-read-btn"
+                  onClick={() => setShowDetails(false)}
+                >
+                  Show Less
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
 
       {/* 🔹 Sağ Taraf */}
       <div className="esports-detail-right">
@@ -98,7 +108,24 @@ const EsportsDetailPage = () => {
             backgroundPosition: "center",
           }}
         >
-          <h2>TEAMS</h2>
+          <h2>TEAMS
+            
+          </h2>
+          {player.teamLogos && (
+  <div className="team-logos">
+    {(() => {
+      try {
+        return JSON.parse(player.teamLogos).map((logo, i) => (
+          <img key={i} src={logo} alt={`team-logo-${i}`} className="team-logo" />
+        ));
+      } catch (e) {
+        console.error("Logo JSON parse hatası:", e);
+        return <p>Logo yüklenemedi</p>;
+      }
+    })()}
+  </div>
+)}
+
           <p>{player.detay}</p>
         </div>
       </div>

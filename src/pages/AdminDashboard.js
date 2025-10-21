@@ -21,12 +21,13 @@ const AdminDashboard = () => {
   const [sponsorlar, setSponsorlar] = useState([]);
   const [crewList, setCrewList] = useState([]);
   const [esportsList, setEsportsList] = useState([]);
-  const [influencers, setInfluencers] = useState([]); // 🆕 EKLENDİ
+  const [influencers, setInfluencers] = useState([]);
 
   const [activeSection, setActiveSection] = useState("etkinlik");
 
   const [achievementsFile, setAchievementsFile] = useState(null);
   const [teamsFile, setTeamsFile] = useState(null);
+  const [logosFile, setLogosFile] = useState(null);
 
   const [formData, setFormData] = useState({
     id: null,
@@ -46,9 +47,10 @@ const AdminDashboard = () => {
     basarilar: "",
     achievementsBgUrl: "",
     teamsBgUrl: "",
-    youtubeTakipci: "", // 🆕 EKLENDİ
-    tiktokTakipci: "", // 🆕 EKLENDİ
-    instagramTakipci: "", // 🆕 EKLENDİ
+    teamLogos: "",
+    youtubeTakipci: "",
+    tiktokTakipci: "",
+    instagramTakipci: "",
   });
 
   const [file, setFile] = useState(null);
@@ -65,27 +67,48 @@ const AdminDashboard = () => {
     getSponsorlar().then((r) => setSponsorlar(r.data));
     getCrew().then((r) => setCrewList(r.data));
     axios.get(`${API_URL}/esports`).then((r) => setEsportsList(r.data));
-    axios.get(`${API_URL}/influencers`).then((r) => setInfluencers(r.data)); // 🆕 EKLENDİ
+    axios.get(`${API_URL}/influencers`).then((r) => setInfluencers(r.data));
   }, []);
 
   // 🔹 Cloudinary Görsel Yükleme
   const handleUpload = async (type) => {
     let selectedFile;
+
     if (type === "main") selectedFile = file;
     else if (type === "achievements") selectedFile = achievementsFile;
     else if (type === "teams") selectedFile = teamsFile;
+    else if (type === "logos") selectedFile = logosFile;
 
-    if (!selectedFile) return alert("Lütfen resim seçin!");
+    if (!selectedFile || (Array.isArray(selectedFile) && selectedFile.length === 0)) {
+      alert("Lütfen resim seçin!");
+      return;
+    }
 
     setLoading(true);
     try {
-      const url = await uploadToCloudinary(selectedFile, activeSection);
+      if (type === "logos" && Array.isArray(selectedFile)) {
+        // 🔸 Çoklu logo yükleme (paralel)
+        const uploadPromises = selectedFile.map((file) =>
+          uploadToCloudinary(file, "logos")
+        );
+        const uploadedUrls = await Promise.all(uploadPromises);
+        const jsonString = JSON.stringify(uploadedUrls);
 
-      if (type === "main") setImageUrl(url);
-      else if (type === "achievements") setFormData({ ...formData, achievementsBgUrl: url });
-      else if (type === "teams") setFormData({ ...formData, teamsBgUrl: url });
+        // 🔸 formData'ya yaz
+        setFormData((prev) => ({ ...prev, teamLogos: jsonString }));
 
-      alert("Resim başarıyla yüklendi ✅");
+        alert("Tüm logolar başarıyla yüklendi ✅");
+      } else {
+        // 🔸 Tekil resim yükleme
+        const url = await uploadToCloudinary(selectedFile, type);
+        if (type === "main") setImageUrl(url);
+        else if (type === "achievements")
+          setFormData((prev) => ({ ...prev, achievementsBgUrl: url }));
+        else if (type === "teams")
+          setFormData((prev) => ({ ...prev, teamsBgUrl: url }));
+
+        alert("Resim başarıyla yüklendi ✅");
+      }
     } catch (err) {
       console.error("Cloudinary hata:", err);
       alert("Resim yüklenemedi ❌");
@@ -101,6 +124,35 @@ const AdminDashboard = () => {
     alert("Resim kaldırıldı. Kaydet'e basarak güncellemeyi tamamla ✅");
   };
 
+  // 🔹 Logo yükleme fonksiyonu
+  const handleLogoUpload = async () => {
+    if (!logosFile || logosFile.length === 0) {
+      alert("Lütfen en az bir logo seçin!");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const uploadPromises = logosFile.map((file) =>
+        uploadToCloudinary(file, "logos")
+      );
+
+      const uploadedUrls = await Promise.all(uploadPromises);
+      const jsonString = JSON.stringify(uploadedUrls);
+
+      console.log("✅ Cloudinary URL'ler:", uploadedUrls);
+
+      setFormData((prev) => ({ ...prev, teamLogos: jsonString }));
+
+      alert("Logolar başarıyla yüklendi ✅\n\nArtık Kaydet'e basabilirsin!");
+    } catch (err) {
+      console.error("Logo yükleme hatası:", err);
+      alert("Logo yüklenirken hata oluştu ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // 🔹 Ekleme / Güncelleme
   const handleAddOrUpdate = async () => {
     if (activeSection === "sponsor" && !formData.ad)
@@ -109,13 +161,13 @@ const AdminDashboard = () => {
       return alert("Ad Soyad zorunludur!");
     if (activeSection === "esports" && !formData.adSoyad)
       return alert("Oyuncu Ad Soyad zorunludur!");
-    if (activeSection === "influencer" && !formData.adSoyad) // 🆕 EKLENDİ
+    if (activeSection === "influencer" && !formData.adSoyad)
       return alert("Influencer Ad Soyad zorunludur!");
     if (
       activeSection !== "sponsor" &&
       activeSection !== "crew" && 
       activeSection !== "esports" &&
-      activeSection !== "influencer" && // 🆕 EKLENDİ
+      activeSection !== "influencer" &&
       !formData.baslik
     )
       return alert("Başlık zorunludur!");
@@ -190,9 +242,10 @@ const AdminDashboard = () => {
           tiktok: formData.tiktok,
           achievementsBgUrl: formData.achievementsBgUrl,
           teamsBgUrl: formData.teamsBgUrl,
+          teamLogos: formData.teamLogos,
           resimUrl: finalImageUrl || "",
         };
-      } else if (activeSection === "influencer") { // 🆕 EKLENDİ
+      } else if (activeSection === "influencer") {
         data = {
           adSoyad: formData.adSoyad,
           unvan: formData.unvan,
@@ -221,7 +274,7 @@ const AdminDashboard = () => {
       else if (activeSection === "sponsor") endpoint = "/sponsorlar";
       else if (activeSection === "crew") endpoint = "/crew";
       else if (activeSection === "esports") endpoint = "/esports";
-      else if (activeSection === "influencer") endpoint = "/influencers"; // 🆕 EKLENDİ
+      else if (activeSection === "influencer") endpoint = "/influencers";
 
       // 🔹 4. Güncelle / Ekle
       if (isEditing) {
@@ -238,22 +291,7 @@ const AdminDashboard = () => {
       }
 
       // 🔹 5. Liste yenile
-      if (activeSection === "etkinlik")
-        getEtkinlikler().then((r) => setEtkinlikler(r.data));
-      else if (activeSection === "haber")
-        getHaberler().then((r) => setHaberler(r.data));
-      else if (activeSection === "servis")
-        getServisler().then((r) => setServisler(r.data));
-      else if (activeSection === "altservis")
-        getAltServisler().then((r) => setAltServisler(r.data));
-      else if (activeSection === "sponsor")
-        getSponsorlar().then((r) => setSponsorlar(r.data));
-      else if (activeSection === "crew")
-        getCrew().then((r) => setCrewList(r.data));
-      else if (activeSection === "esports")
-        axios.get(`${API_URL}/esports`).then((r) => setEsportsList(r.data));
-      else if (activeSection === "influencer") // 🆕 EKLENDİ
-        axios.get(`${API_URL}/influencers`).then((r) => setInfluencers(r.data));
+      refreshList(activeSection);
 
       // 🔹 6. Form sıfırla
       setFormData({
@@ -273,13 +311,18 @@ const AdminDashboard = () => {
         takim: "",
         basarilar: "",
         teamsBgUrl: "",
+        achievementsBgUrl: "",
+        teamLogos: "",
         resimUrl: "",
-        youtubeTakipci: "", // 🆕 EKLENDİ
-        tiktokTakipci: "", // 🆕 EKLENDİ
-        instagramTakipci: "", // 🆕 EKLENDİ
+        youtubeTakipci: "",
+        tiktokTakipci: "",
+        instagramTakipci: "",
       });
       setImageUrl("");
       setFile(null);
+      setAchievementsFile(null);
+      setTeamsFile(null);
+      setLogosFile(null);
       setIsEditing(false);
     } catch (err) {
       console.error("Kaydetme hatası:", err);
@@ -305,7 +348,7 @@ const AdminDashboard = () => {
       getCrew().then((r) => setCrewList(r.data));
     else if (section === "esports")
       axios.get(`${API_URL}/esports`).then((r) => setEsportsList(r.data));
-    else if (section === "influencer") // 🆕 EKLENDİ
+    else if (section === "influencer")
       axios.get(`${API_URL}/influencers`).then((r) => setInfluencers(r.data));
   };
 
@@ -327,12 +370,18 @@ const AdminDashboard = () => {
       tiktok: "",
       takim: "",
       basarilar: "",
-      youtubeTakipci: "", // 🆕 EKLENDİ
-      tiktokTakipci: "", // 🆕 EKLENDİ
-      instagramTakipci: "", // 🆕 EKLENDİ
+      youtubeTakipci: "",
+      tiktokTakipci: "",
+      instagramTakipci: "",
+      achievementsBgUrl: "",
+      teamsBgUrl: "",
+      teamLogos: "",
     });
     setImageUrl("");
     setFile(null);
+    setAchievementsFile(null);
+    setTeamsFile(null);
+    setLogosFile(null);
     setIsEditing(false);
   };
 
@@ -343,7 +392,7 @@ const AdminDashboard = () => {
       return;
     }
 
-    if (activeSection === "crew" || activeSection === "esports" || activeSection === "influencer") { // 🆕 EKLENDİ
+    if (activeSection === "crew" || activeSection === "esports" || activeSection === "influencer") {
       setFormData({
         id: Number(item.id),
         adSoyad: item.adSoyad || "",
@@ -359,9 +408,10 @@ const AdminDashboard = () => {
         tiktok: item.tiktok || "",
         achievementsBgUrl: item.achievementsBgUrl || "",
         teamsBgUrl: item.teamsBgUrl || "",
-        youtubeTakipci: item.youtubeTakipci || "", // 🆕 EKLENDİ
-        tiktokTakipci: item.tiktokTakipci || "", // 🆕 EKLENDİ
-        instagramTakipci: item.instagramTakipci || "", // 🆕 EKLENDİ
+        teamLogos: item.teamLogos || "",
+        youtubeTakipci: item.youtubeTakipci || "",
+        tiktokTakipci: item.tiktokTakipci || "",
+        instagramTakipci: item.instagramTakipci || "",
       });
       setImageUrl(item.resimUrl || "");
     } else {
@@ -406,7 +456,7 @@ const AdminDashboard = () => {
       case "esports":
         endpoint = "/esports";
         break;
-      case "influencer": // 🆕 EKLENDİ
+      case "influencer":
         endpoint = "/influencers";
         break;
       default:
@@ -432,7 +482,7 @@ const AdminDashboard = () => {
           "sponsor",
           "crew",
           "esports",
-          "influencer", // 🆕 EKLENDİ
+          "influencer",
         ].map((sec) => (
           <button
             key={sec}
@@ -456,7 +506,7 @@ const AdminDashboard = () => {
               ? "Crew"
               : sec === "esports"
               ? "E-Spor Oyuncuları"
-              : "Influencerlar"} {/* 🆕 EKLENDİ */}
+              : "Influencerlar"}
           </button>
         ))}
       </div>
@@ -470,7 +520,7 @@ const AdminDashboard = () => {
             ? "Crew Listesi"
             : activeSection === "esports"
             ? "Esports Oyuncuları"
-            : activeSection === "influencer" // 🆕 EKLENDİ
+            : activeSection === "influencer"
             ? "Influencer Listesi"
             : `${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} Listesi`}
         </h3>
@@ -490,7 +540,7 @@ const AdminDashboard = () => {
             ? crewList
             : activeSection === "esports"
             ? esportsList
-            : influencers // 🆕 EKLENDİ
+            : influencers
           ).map((item) => (
             <li key={item.id}>
               <b>{item.baslik || item.adSoyad || item.ad}</b>
@@ -518,7 +568,7 @@ const AdminDashboard = () => {
               setFormData({ ...formData, ad: e.target.value })
             }
           />
-        ) : activeSection === "crew" || activeSection === "esports" || activeSection === "influencer" ? ( // 🆕 EKLENDİ
+        ) : activeSection === "crew" || activeSection === "esports" || activeSection === "influencer" ? (
           <>
             <input
               type="text"
@@ -602,25 +652,38 @@ const AdminDashboard = () => {
                       </button>
                     </>
                   )}
+
+                  <h4 style={{ marginTop: "20px" }}>Takım Logoları</h4>
+                  {formData.teamLogos && (
+                    <div style={{ display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
+                      {JSON.parse(formData.teamLogos).map((logo, i) => (
+                        <img
+                          key={i}
+                          src={logo}
+                          alt={`team-logo-${i}`}
+                          width="60"
+                          height="60"
+                          style={{ borderRadius: "8px", objectFit: "cover" }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  
+                  <div style={{ marginTop: "10px" }}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={(e) => setLogosFile(Array.from(e.target.files))}
+                    />
+                    <button
+                      onClick={handleLogoUpload}
+                      disabled={loading}
+                    >
+                      {loading ? "Yükleniyor..." : "Logoları Yükle"}
+                    </button>
+                  </div>
                 </div>
-
-                <input
-                  type="text"
-                  placeholder="Achievements Arka Plan URL"
-                  value={formData.achievementsBgUrl}
-                  onChange={(e) =>
-                    setFormData({ ...formData, achievementsBgUrl: e.target.value })
-                  }
-                />
-
-                <input
-                  type="text"
-                  placeholder="Teams Arka Plan URL"
-                  value={formData.teamsBgUrl}
-                  onChange={(e) =>
-                    setFormData({ ...formData, teamsBgUrl: e.target.value })
-                  }
-                />
 
                 <input
                   type="text"
@@ -630,6 +693,7 @@ const AdminDashboard = () => {
                     setFormData({ ...formData, takim: e.target.value })
                   }
                 />
+                
                 <textarea
                   placeholder="Başarılar (örnek: Turnuva 1. - 2023)"
                   value={formData.basarilar}
@@ -641,7 +705,7 @@ const AdminDashboard = () => {
               </>
             )}
             
-            {activeSection === "influencer" && ( // 🆕 EKLENDİ
+            {activeSection === "influencer" && (
               <>
                 <input
                   type="text"
@@ -832,7 +896,7 @@ const AdminDashboard = () => {
                 accept="image/*"
                 onChange={(e) => setFile(e.target.files[0])}
               />
-              <button onClick={handleUpload} disabled={loading}>
+              <button onClick={() => handleUpload("main")} disabled={loading}>
                 {loading ? "Yükleniyor..." : "Resmi Yükle"}
               </button>
             </>

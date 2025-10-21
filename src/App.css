@@ -4241,15 +4241,7 @@ main {
   transition: transform 0.3s ease;
 }
 /* === DETAY SAYFASI === */
-.esports-detail-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  min-height: 100vh;
-  background-color: #000;
-  color: #fff;
-  padding: 60px 80px;
-}
+
 
 /* 🔹 Sol taraftaki uzun kart */
 .esports-detail-left {
@@ -4260,56 +4252,14 @@ main {
   justify-content: center;
 }
 
-.esports-detail-card {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 20px;
-}
 
-.esports-detail-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(85%);
-}
 
-.esports-detail-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(to top, rgba(255, 0, 0, 0.9), transparent);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 30px;
-}
 
-.esports-detail-info {
-  text-align: center;
-  margin-top: 10px;
-}
 
-.esports-name {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-top: 8px;
-}
 
-.esports-team {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  color: #eee;
-}
 
-.esports-role {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  color: #ddd;
-  margin-top: 4px;
-}
+
+
 
 /* 🔹 Sağdaki başarılar kısmı */
 .esports-detail-right {
@@ -4348,326 +4298,30 @@ main {
   padding: 60px 80px;
 }
 
-/* 🔹 Sol: Oyuncu kartı */
-.esports-detail-left {
-  flex: 1;
-  min-width: 360px;
-  max-width: 480px;
-  display: flex;
-  justify-content: center;
-}
-
-.esports-detail-card {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 18px;
-}
-
-.esports-detail-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(85%);
-}
-
-.esports-detail-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 45%;
-  background: linear-gradient(to top, rgba(255, 0, 0, 0.8), transparent);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 40px;
-}
-
-.esports-detail-info {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.esports-name {
-  font-size: 2.6rem;
-  font-weight: 800;
-  margin-top: 8px;
-}
-
-.esports-team {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  color: #eee;
-}
-
-.esports-role {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  color: #ddd;
-  margin-top: 4px;
-}
 
 /* 🔹 Sağ: Arka planlı bölümler */
-.esports-detail-right {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
 
-.esports-achievements-section,
-.esports-teams-section {
-  background-size: cover;
-  background-position: center;
-  min-height: 340px;
-  border-radius: 14px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: stretch;
-}
 
-.overlay-red {
-  background: rgba(180, 0, 0, 0.75);
-  width: 100%;
-  height: 100%;
-  padding: 50px 60px;
-}
-
-.overlay-dark {
-  background: rgba(0, 0, 0, 0.7);
-  width: 100%;
-  height: 100%;
-  padding: 50px 60px;
-}
-
-.esports-achievements-section h2,
-.esports-teams-section h2 {
-  font-size: 1.6rem;
-  margin-bottom: 25px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.esports-achievements-section ul {
-  list-style: none;
-  padding: 0;
-  line-height: 1.8;
-  columns: 2;
-}
-
-.esports-achievements-section li::before {
-  content: "• ";
-  color: #fff;
-}
-
-.team-info {
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.team-desc {
-  color: #ddd;
-  line-height: 1.7;
-}
   /* === ESPORTS ANA SAYFA KARTLARI === */
-.esports-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 45px;
-  justify-items: center;
-  padding: 80px 0;
-}
+
 
 /* 🔹 Kart kutusu */
-.esports-card {
-  position: relative;
-  width: 400px;       /* Oran: 400x632 */
-  height: 632px;
-  border-radius: 18px;
-  overflow: hidden;
-  background-color: #111;
-  transition: transform 0.4s ease;
-}
-
-.esports-card:hover {
-  transform: scale(1.02);
-}
+  
 
 /* 🔹 Oyuncu resmi */
-.esports-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: filter 0.4s ease, transform 0.6s ease;
-}
 
-.esports-card:hover img {
-  filter: brightness(70%);
-  transform: scale(1.03);
-}
-
-/* 🔹 Alt overlay (kırmızı degrade) */
-.esports-card-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 45%;
-  background: linear-gradient(to top, rgba(255, 0, 0, 0.85), transparent);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  padding-bottom: 35px;
-}
-
-.esports-card:hover .esports-card-overlay,
-.esports-card.hovered .esports-card-overlay {
-  opacity: 1;
-}
-
-/* 🔹 Read More butonu */
-.read-more-btn {
-  background: #fff;
-  color: #c80000;
-  border: none;
-  border-radius: 25px;
-  padding: 10px 24px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.read-more-btn:hover {
-  background: #c80000;
-  color: #fff;
-}
 
 /* 🔹 Alt yazılar */
-.esports-card-info {
-  text-align: center;
-  font-size: 0.9rem;
-  line-height: 1.3;
-}
 
-.esports-role {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #eaeaea;
-  margin-bottom: 5px;
-}
 
-.esports-name {
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 1px;
-}
 
-/* === DETAY SAYFASINDAKİ SABİT HALİ === */
-.esports-card.hovered {
-  transform: none;
-  pointer-events: none; /* Tıklanamaz olur */
-}
-.esports-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  transition: transform 0.4s ease;
-}
 
-.esports-card:hover {
-  transform: scale(1.02);
-}
 
-.esports-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
 
-.esports-card:hover .esports-card-img,
-.esports-card.hovered .esports-card-img {
-  transform: scale(1.05);
-  filter: brightness(70%);
-}
 
-.esports-card-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 45%;
-  background: linear-gradient(to top, rgba(255, 0, 0, 0.8), transparent);
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  text-align: center;
-  transition: all 0.3s ease;
-  opacity: 0;
-}
-
-.esports-card:hover .esports-card-overlay,
-.esports-card.hovered .esports-card-overlay {
-  opacity: 1;
-}
-
-.read-more-btn {
-  background: white;
-  color: #d00000;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
-}
-
-.read-more-btn.active {
-  opacity: 1;
-}
-
-.esports-card-info {
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.esports-name {
-  font-size: 1.8rem;
-  font-weight: 800;
-  margin-top: 5px;
-}
 /* === E-SPOR DETAY ANA KAPSAYICI === */
-.esports-detail {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  padding: 50px 80px;
-  background-color: #000;
-  color: #fff;
-}
 
-/* === SOL KART === */
-.esports-card {
-  position: relative;
-  width: 420px;
-  height: 720px;
-  border-radius: 0;
-  overflow: hidden;
-  background-color: #111;
-}
+
 
 .esports-card img {
   width: 100%;
@@ -4711,12 +4365,6 @@ main {
   margin-bottom: 4px;
 }
 
-.esports-name {
-  font-size: 1.8rem;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
 
 /* === SAĞ TARAF (Achievements + Teams) === */
 .esports-detail-right {
@@ -4772,14 +4420,7 @@ main {
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-.esports-teams h2 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  color: #ff0000;
-  letter-spacing: 2px;
-}
+
 
 .esports-teams p {
   font-size: 0.9rem;
@@ -4787,48 +4428,15 @@ main {
   color: #ccc;
 }
 /* === Detay Sayfa === */
-.esports-detail-container {
-  display: flex;
-  gap: 40px;
-  background-color: #000;
-  color: #fff;
-  min-height: 100vh;
-  padding: 40px 60px;
-}
 
-/* 🔹 Sol Kart */
-.esports-detail-left {
-  position: relative;
-  width: 523px;
-  height: 891px;
-}
 
-.esports-detail-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
 
-.esports-detail-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(90%);
-}
 
-.esports-detail-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(to top, rgba(255, 0, 0, 0.9), transparent);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding-bottom: 40px;
-}
+
+
+
+
+
 
 .esports-read-btn {
   background-color: #fff;
@@ -4881,12 +4489,7 @@ main {
 }
 
 /* 🔹 Sağ Taraf */
-.esports-detail-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
+
 
 /* === Achievements === */
 .esports-achievements {
@@ -4923,19 +4526,7 @@ main {
   color: #ff4444;
   margin-bottom: 15px;
 }
-.esports-achievements {
-  border-radius: 10px;
-  padding: 50px 60px;
-  color: #fff;
-  min-height: 380px;
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
-  background-blend-mode: overlay;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+
 
 .esports-achievements h2 {
   font-weight: 800;
@@ -4971,33 +4562,18 @@ main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px;
+  gap: 400px;
   padding-top: 100px;
   padding-bottom: 60px;
   background-color: #000;
   min-height: 100vh;
 }
 
-/* 🔹 Sol Taraftaki Kart Alanı */
-.esports-detail-left {
-  flex: 0 0 523px;
-}
 
-.esports-detail-card {
-  position: relative;
-  width: 523px;
-  height: 891px;
-  overflow: hidden;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-}
 
-.esports-detail-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
+
+
+
 
 .esports-detail-card:hover img {
   transform: scale(1.02);
@@ -5037,12 +4613,7 @@ main {
 }
 
 /* 🔹 Sağ Kısım */
-.esports-detail-right {
-  width: 800px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+
 
 /* 🔹 Achievements Alanı — Soft Kırmızı Geçişli */
 .esports-achievements {
@@ -5097,23 +4668,14 @@ main {
     align-items: center;
   }
 
-  .esports-detail-right {
-    width: 90%;
-  }
+ 
 }
-.esports-detail-card {
-  position: relative;
-  width: 523px;
-  height: 720px; /* 🔹 Daha kısa — sağdaki kutularla hizalı */
-  overflow: hidden;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-}
+
 
 .esports-detail-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  
   transition: transform 0.3s ease;
 }
 
@@ -5131,17 +4693,12 @@ main {
   min-height: 100vh;
 }
 
-/* 🔹 Sol kart */
-.esports-detail-left {
-  flex: 0 0 520px;
-  display: flex;
-  align-items: flex-start;
-}
 
-.esports-detail-card {
+
+.esports-detail-card {/* 🔹 Sol kart KALICI */
   position: relative;
   width: 523px;
-  height: 680px; /* 🔹 Kısaltıldı — sağ kutularla hizalı */
+  height: 700px; /* 🔹 Kısaltıldı — sağ kutularla hizalı */
   overflow: hidden;
   border-radius: 0; /* 🔹 Köşeler keskin */
   transition: transform 0.3s ease;
@@ -5273,15 +4830,7 @@ main {
   letter-spacing: 1px;
   margin-top: 5px;
 }
-.esports-card {
-  position: relative;
-  width: 523px;
-  height: 575 px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  border-radius: 0; /* Köşeler net */
-}
+
 
 .esports-card img {
   width: 100%;
@@ -5367,10 +4916,7 @@ main {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-.esports-card-content .player-name {
-  font-size: 4rem !important;
-  font-weight: 800;
-}
+
 /* 🎯 E-Sports Detail Sayfası */
 .esports-detail-container {
   display: flex;
@@ -5442,12 +4988,8 @@ main {
   opacity: 0.9;
 }
 
-.esports-teams p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  opacity: 0.85;
-}
-/* 🔹 E-spor kartının genel görünümü */
+
+/* 🔹 E-spor kartının genel görünümü  KALICI*/
 .esports-card {
   position: relative;
   width: 523px;
@@ -5470,7 +5012,7 @@ main {
   transform: scale(1.05);
 }
 
-/* 🔹 Alt kırmızı gradient (hover’da aktif) */
+/* 🔹 Alt kırmızı gradient (hover’da aktif)KALICI */
 .esports-card::after {
   content: "";
   position: absolute;
@@ -5493,19 +5035,7 @@ main {
   opacity: 1;
 }
 
-/* 🔹 İçerik alanı (başta gizli) */
-.esports-card-content {
-  position: absolute;
-  bottom: 50px;
-  left: 0;
-  width: 100%;
-  color: white;
-  text-align: center;
-  z-index: 2;
-  opacity: 0; /* 🧠 Başta gizli */
-  transform: translateY(40px);
-  transition: all 0.4s ease;
-}
+
 
 /* 🔹 Hover olunca görünür olacak */
 .esports-card:hover .esports-card-content {
@@ -5535,24 +5065,18 @@ main {
 
 /* 🔹 Alt yazılar */
 .esports-card-content .team-role {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 6px;
   opacity: 0.9;
 }
 
-.esports-card-content .player-name {
-  font-size: 3.8rem;
-  font-weight: 900;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
+
 /* 🎯 Oyuncu ismi (kart ve detay sayfası) */
 .player-name {
-  font-size: 4rem !important; /* büyük başlık */
-  font-weight: 900 !important;
+  font-size: 3rem !important; /* büyük başlık KALCII*/
+  font-weight: 2900 !important;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #fff !important;
@@ -7496,8 +7020,511 @@ button {
   .influencer-card.expanded {
   background: linear-gradient(to bottom, #d4b253, #c9a84a, #b38b2e);
 }
-html, body {
-  background: #000;   /* ✅ tüm sayfa zeminini siyah yap */
-  margin: 0;
-  padding: 0;
+
+
+
+/* 🔥 Sadece DETAY sayfasındaki sol kart için geçerli */
+.esports-detail-left .esports-detail-card {
+  
+  width: 440px !important;       /* 🔹 Biraz incelttik (eski 523px) */
+  height: 780px !important;      /* 🔹 Biraz uzattık (eski 700px) */
+  margin: 0 auto !important;     /* 🔹 Ortaya hizala */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* 🔹 Kart içindeki görsel tam otursun */
+.esports-detail-left .esports-detail-card img {
+  width: 100% !important;
+  height: 100% !important;
+ 
+}
+
+/* 🔹 Kart üzerindeki yazı container’ını tam ortala */
+.esports-detail-left .esports-card-content,
+.esports-detail-left .esports-detail-overlay {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 90% !important; /* Yazı alanı biraz daralsın */
+}
+
+/* 🔹 Yazılar ortada ve dengeli dursun */
+.esports-detail-left .esports-card-content .player-name,
+.esports-detail-left .esports-card-content .team-role {
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+/* 🔥 Detay sayfası – sol kart ayarı */
+.esports-detail-left .esports-detail-card {
+  width: 440px !important;
+  height: 780px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* 📍 Yazı container’ını aşağıya sabitle */
+.esports-detail-left .esports-card-content,
+.esports-detail-left .esports-detail-overlay {
+  
+  bottom: 0 !important;              /* 👈 Alt kısma sabitler */
+  left: 50% !important;
+  transform: translateX(-50%) !important; /* 🔥 Yatay ortalama */
+  text-align: center !important;
+  width: 100% !important;
+  padding: 70px 20px !important;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 60%,
+    transparent 100%
+  ) !important; /* 🔥 Alt yazı alanına hafif arka plan efekti */
+}
+
+/* ✍️ Yazılar düzenli ve ortalı dursun */
+.esports-detail-left .esports-card-content .player-name,
+.esports-detail-left .esports-card-content .team-role {
+  text-align: center !important;
+  margin-bottom: 8px !important;
+}
+/* 🔥 Soldaki kart ayarı */
+
+
+/* 🔥 Alttan gelen kırmızı efekt */
+/* 🔥 Soldaki kart ayarı */
+.esports-detail-left .esports-detail-card {
+  width: 440px !important;
+  height: 780px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding-top: 10px !important; /* 🔹 Yukarıdan çok hafif aşağı indirir */
+  margin-top: 20px !important;
+}
+
+/* 🔥 Ana sayfadaki kırmızı efekt ile %100 aynı */
+.esports-detail-left .esports-detail-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%; /* 📏 Ana sayfadaki ile aynı oran */
+  background: linear-gradient(
+    to top,
+    rgba(220, 0, 0, 0.8) 0%,   /* 🔥 Aynı başlangıç opaklığı */
+    rgba(220, 0, 0, 0.6) 30%,  /* 🔥 Aynı geçiş yoğunluğu */
+    rgba(220, 0, 0, 0.2) 70%,  /* 🔥 Aynı yukarı geçiş oranı */
+    transparent 100%
+  );
+  opacity: 0.9; /* 📍 Aynı yoğunluk hissi */
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 🧠 Yazı konumu sabit kalsın */
+
+
+
+/* 🧠 Yazı olduğu yerde kalsın */
+.esports-detail-left .esports-card-content {
+  position: absolute;
+  z-index: 2;
+}
+/* 🧠 Sol kart yazılarını biraz aşağı çek */
+.esports-detail-left .esports-card-content {
+  position: absolute !important;
+  bottom: 40px !important; /* 🔽 Eskisi ~20-30px ise biraz daha aşağı çeker */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  text-align: center !important;
+  width: 90% !important;
+  z-index: 2 !important;
+}
+.esports-achievements::after {
+  content: "";
+  position: absolute;
+  top: 0;              /* 📍 Sol üstten başlasın */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+                      /* 🔥 Yön: sol üst ➝ sağ alt */
+    to bottom right,
+  rgba(220, 0, 0, 0.97) 0%,    /* 🔥 Sol üst: çok yoğun */
+    rgba(220, 0, 0, 0.88) 15%,   /* 🔥 Solda yukarıdan aşağıya hâlâ güçlü */
+    rgba(220, 0, 0, 0.7) 30%,    /* ✨ Orta noktaya yaklaşırken biraz azalır */
+    rgba(220, 0, 0, 0.45) 50%,   /* 📉 Ortada kırmızılık azalır */
+    rgba(220, 0, 0, 0.25) 70%,   /* 🌫️ Ortadan sonra çok hafif */
+    rgba(220, 0, 0, 0.1) 85%,    /* 💨 Neredeyse şeffaf */
+    rgba(220, 0, 0, 0.03) 100%   /* 🔚 Sağ alt: belli belirsiz kırmızı */
+  );
+  opacity: 0.9;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+/* ✍️ Yazılar üstte kalsın */
+.esports-achievements {
+  position: relative;
+}
+
+.esports-achievements * {
+  position: relative;
+  z-index: 2;
+}
+/* 📍 Kart konumlandırma için önemli */
+.esports-detail-card {
+  position: relative;
+}
+
+/* 🔙 Küçük yuvarlak geri butonu — tam ortanın sağ kenarında */
+.geri-btn {
+  position: absolute;
+  top: 50%; /* 📍 Dikey ortada */
+  right: 0; /* 📍 Sağ kenara yasla */
+  transform: translate(50%, -50%); /* 📍 Hafif dışarı taşı */
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  color: #c80000;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.geri-btn:hover {
+  background: #c80000;
+  color: #fff;
+  transform: translate(50%, -50%) scale(1.1);
+}
+.esports-detail-card {
+  position: relative !important;
+  width: 100% !important;      /* 📍 Tüm genişliği kapsasın */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.esports-teams p {
+  font-size: 1.0rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+/* 🔹 İçerik alanı (başta gizli) KALICI*/
+  .esports-card-content {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    z-index: 2;
+    opacity: 0; /* 🧠 Başta gizli */
+    transform: translateY(40px);
+    transition: all 0.4s ease;
+  }
+  .esports-card-content .player-name {
+  font-size: 3rem !important;
+  font-weight: 900;
+}.esports-achievements {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.12) 0%,
+    rgba(255, 0, 0, 0.08) 30%,
+    rgba(255, 0, 0, 0.05) 60%,
+    rgba(255, 0, 0, 0.02) 100%
+  );
+  color: #fff;
+  padding: 40px 50px;
+  border-radius: 0;
+  height: 380px !important; /* 🔹 SABİT BOYUT - UZAMAYACAK */
+  overflow: hidden; /* 🔹 TAŞAN İÇERİĞİ GİZLE */
+}
+
+/* BAŞLIK - SOL ÜSTE YASLI, BEYAZ */
+.esports-achievements h2 {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  margin: 0 0 25px 0 !important;
+  padding: 0 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* BAŞARI LİSTESİ - 2 SÜTUN, SOLA YASLI */
+.esports-achievements ul {
+  columns: 2 !important;
+  column-gap: 60px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left !important;
+  max-height: 280px !important; /* 🔹 LİSTE BOYUTU SINIRLI */
+  overflow-y: auto; /* 🔹 FAZLA İÇERİK KAYDIRILABİLİR */
+}
+
+/* BEYAZ MADDE İŞARETLERİ */
+.esports-achievements li {
+  font-size: 0.75rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 12px !important;
+  color: #ffffff !important; /* 🔹 BEYAZ RENK */
+  break-inside: avoid;
+  position: relative;
+  padding-left: 0 !important;
+  text-align: left !important;
+}
+
+/* BEYAZ MADDE İŞARETİ */
+.esports-achievements li::before {
+  content: "• ";
+  color: #ffffff !important; /* 🔹 BEYAZ RENK */
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+/* SÜTUN DOLUNCA OTOMATİK YANTA GEÇSİN */
+.esports-achievements ul {
+  column-fill: auto;
+}
+
+/* MOBİL UYUM */
+@media (max-width: 768px) {
+  .esports-achievements {
+    padding: 30px 25px;
+    height: 400px !important; /* 🔹 MOBİLDE BİRAZ DAHA YÜKSEK */
+  }
+  
+  .esports-achievements ul {
+    columns: 1 !important; /* Mobilde tek sütun */
+    max-height: 300px !important;
+  }
+  
+  .esports-achievements h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .esports-achievements li {
+    font-size: 0.8rem !important;
+  }
+}/* TEAMS BÖLÜMÜ DE SABİT BOYUTLU */
+.esports-teams {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  color: #fff;
+  padding: 40px 50px;
+  border-radius: 0;
+  height: 280px !important; /* 🔹 SABİT BOYUT */
+  overflow: hidden;
+}
+
+.esports-teams h2 {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  margin: 0 0 20px 0 !important;
+  padding: 0 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.esports-teams p {
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  color: #cccccc !important;
+  text-align: left !important;
+  margin: 0 !important;
+  max-height: 180px !important;
+  overflow-y: auto;}
+  /* 🔥 ACHIEVEMENTS BÖLÜMÜ - ÇOK FAZLA İÇERİK İÇİN */
+.esports-achievements {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.12) 0%,
+    rgba(255, 0, 0, 0.08) 30%,
+    rgba(255, 0, 0, 0.05) 60%,
+    rgba(255, 0, 0, 0.02) 100%
+  );
+  color: #fff;
+  padding: 40px 50px;
+  border-radius: 0;
+  height: 380px !important; /* 🔹 SABİT BOYUT */
+  overflow: hidden; /* 🔹 TAŞAN İÇERİĞİ GİZLE */
+}
+
+/* BAŞLIK - SOL ÜSTE YASLI, BEYAZ */
+.esports-achievements h2 {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  margin: 0 0 20px 0 !important; /* 🔹 DAHA AZ MARGIN */
+  padding: 0 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* BAŞARI LİSTESİ - 2 SÜTUN, KAYDIRILABİLİR */
+.esports-achievements ul {
+  columns: 2 !important;
+  column-gap: 50px !important; /* 🔹 DAHA AZ BOŞLUK */
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left !important;
+  height: 300px !important; /* 🔹 DAHA FAZLA ALAN */
+  overflow-y: auto !important; /* 🔹 KAYDIRMA ÇUBUĞU */
+  padding-right: 10px !important; /* 🔹 KAYDIRMA ÇUBUĞU İÇİN BOŞLUK */
+}
+
+/* KAYDIRMA ÇUBUĞU STİLİ */
+.esports-achievements ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.esports-achievements ul::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.esports-achievements ul::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.esports-achievements ul::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
+
+/* BEYAZ MADDE İŞARETİ - DAHA KÜÇÜK */
+.esports-achievements li::before {
+  content: "• ";
+  color: #ffffff !important;
+  font-weight: bold;
+  font-size: 1rem !important; /* 🔹 DAHA KÜÇÜK NOKTA */
+  margin-right: 6px !important; /* 🔹 DAHA AZ BOŞLUK */
+}
+
+/* SÜTUN DOLUNCA OTOMATİK YANTA GEÇSİN */
+.esports-achievements ul {
+  column-fill: auto;
+}
+
+/* MOBİL UYUM */
+@media (max-width: 768px) {
+  .esports-achievements {
+    padding: 30px 25px;
+    height: 400px !important;
+  }
+  
+  .esports-achievements ul {
+    columns: 1 !important;
+    height: 320px !important;
+  }
+  
+  .esports-achievements h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .esports-achievements li {
+    font-size: 0.5rem !important;
+    margin-bottom: 10px !important;
+  }
+}
+
+/* TEAMS BÖLÜMÜ DE AYNI STİLDE OLSUN */
+.esports-teams {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  color: #fff;
+  padding: 40px 50px;
+  border-radius: 0;
+  height: 280px !important;
+  overflow: hidden;
+}
+
+.esports-teams h2 {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-align: left !important;
+  margin: 0 0 20px 0 !important;
+  padding: 0 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.esports-teams p {
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  color: #cccccc !important;
+  text-align: left !important;
+  margin: 0 !important;
+  height: 180px !important;
+  overflow-y: auto;
+  text-align: right !important;
+}/* BEYAZ MADDE İŞARETLERİ - DAHA KÜÇÜK */
+.esports-achievements li {
+  font-size: 0.5rem !important; /* 🔹 DAHA KÜÇÜK YAZI */
+  font-weight: 600 !important;
+  line-height: 0.6 !important; /* 🔹 DAHA SIKI SATIR ARALIĞI */
+  margin-bottom: 5px !important; /* 🔹 DAHA AZ BOŞLUK */
+  color: #ffffff !important;
+  break-inside: avoid;
+  position: relative;
+  padding-left: 0 !important;
+  text-align: left !important;
+  
+}
+  
+.team-logos {
+  display: flex;
+  gap: 15px;
+  margin: 0 !important;
+  flex-wrap: wrap;
+  order: 3; /* 🔹 Logolar üçüncü sırada (en altta) */
+  justify-content: center !important;
+  margin-top: 0px;
+  padding-bottom: 50px;
+}
+
+.team-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px;
+  transition: transform 0.3s ease;
+}
+
+.team-logo:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
 }
