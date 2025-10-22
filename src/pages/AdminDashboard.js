@@ -49,8 +49,11 @@ const AdminDashboard = () => {
     teamsBgUrl: "",
     teamLogos: "",
     youtubeTakipci: "",
-    tiktokTakipci: "",
+    twitterTakipci: "",
     instagramTakipci: "",
+    youtubeUrl: "", // EKSİK OLAN
+    instagramUrl: "", // EKSİK OLAN
+    twitterUrl: "", // EKSİK OLAN
   });
 
   const [file, setFile] = useState(null);
@@ -246,15 +249,19 @@ const AdminDashboard = () => {
           resimUrl: finalImageUrl || "",
         };
       } else if (activeSection === "influencer") {
-        data = {
-          adSoyad: formData.adSoyad,
-          unvan: formData.unvan,
-          aciklama: formData.aciklama,
-          resimUrl: finalImageUrl || "",
-          youtubeTakipci: formData.youtubeTakipci,
-          tiktokTakipci: formData.tiktokTakipci,
-          instagramTakipci: formData.instagramTakipci,
-        };
+      data = {
+    adSoyad: formData.adSoyad,
+    unvan: formData.unvan,
+    aciklama: formData.aciklama,
+    resimUrl: finalImageUrl || "",
+    youtubeTakipci: formData.youtubeTakipci,
+    twitterTakipci: formData.twitterTakipci,
+    instagramTakipci: formData.instagramTakipci,
+    // 👇 isimleri backend’e uygun hale getir
+    youtube: formData.youtubeUrl,
+    instagram: formData.instagramUrl,
+    twitter: formData.twitterUrl,
+  };
       } else {
         data = {
           baslik: formData.baslik,
@@ -315,8 +322,11 @@ const AdminDashboard = () => {
         teamLogos: "",
         resimUrl: "",
         youtubeTakipci: "",
-        tiktokTakipci: "",
+        twitterTakipci: "",
         instagramTakipci: "",
+        youtubeUrl: "", // EKSİK OLAN
+        instagramUrl: "", // EKSİK OLAN
+        twitterUrl: "", // EKSİK OLAN
       });
       setImageUrl("");
       setFile(null);
@@ -371,11 +381,14 @@ const AdminDashboard = () => {
       takim: "",
       basarilar: "",
       youtubeTakipci: "",
-      tiktokTakipci: "",
+      twitterTakipci: "",
       instagramTakipci: "",
       achievementsBgUrl: "",
       teamsBgUrl: "",
       teamLogos: "",
+      youtubeUrl: "", // EKSİK OLAN
+      instagramUrl: "", // EKSİK OLAN
+      twitterUrl: "", // EKSİK OLAN
     });
     setImageUrl("");
     setFile(null);
@@ -393,28 +406,30 @@ const AdminDashboard = () => {
     }
 
     if (activeSection === "crew" || activeSection === "esports" || activeSection === "influencer") {
-      setFormData({
-        id: Number(item.id),
-        adSoyad: item.adSoyad || "",
-        unvan: item.unvan || "",
-        takim: item.takim || "",
-        basarilar: item.basarilar || "",
-        aciklama: item.aciklama || "",
-        detay: item.detay || "",
-        diller: item.diller || "",
-        linkedin: item.linkedin || "",
-        instagram: item.instagram || "",
-        youtube: item.youtube || "",
-        tiktok: item.tiktok || "",
-        achievementsBgUrl: item.achievementsBgUrl || "",
-        teamsBgUrl: item.teamsBgUrl || "",
-        teamLogos: item.teamLogos || "",
-        youtubeTakipci: item.youtubeTakipci || "",
-        tiktokTakipci: item.tiktokTakipci || "",
-        instagramTakipci: item.instagramTakipci || "",
-      });
-      setImageUrl(item.resimUrl || "");
-    } else {
+    setFormData({
+    id: Number(item.id),
+    adSoyad: item.adSoyad || "",
+    unvan: item.unvan || "",
+    takim: item.takim || "",
+    basarilar: item.basarilar || "",
+    aciklama: item.aciklama || "",
+    detay: item.detay || "",
+    diller: item.diller || "",
+    // 🔹 URL alanlarını backend'e uygun hale getirdik
+   youtubeUrl: item.youtube || "",
+instagramUrl: item.instagram || "",
+twitterUrl: item.twitter || "",
+
+    
+    achievementsBgUrl: item.achievementsBgUrl || "",
+    teamsBgUrl: item.teamsBgUrl || "",
+    teamLogos: item.teamLogos || "",
+    youtubeTakipci: item.youtubeTakipci || "",
+    twitterTakipci: item.twitterTakipci || "",
+    instagramTakipci: item.instagramTakipci || "",
+  });
+  setImageUrl(item.resimUrl || "");
+} else {
       setFormData({
         id: Number(item.id),
         baslik: item.baslik || "",
@@ -717,10 +732,10 @@ const AdminDashboard = () => {
                 />
                 <input
                   type="text"
-                  placeholder="TikTok Takipçi"
-                  value={formData.tiktokTakipci}
+                  placeholder="Twitter Takipçi"
+                  value={formData.twitterTakipci}
                   onChange={(e) =>
-                    setFormData({ ...formData, tiktokTakipci: e.target.value })
+                    setFormData({ ...formData, twitterTakipci: e.target.value })
                   }
                 />
                 <input
@@ -729,6 +744,31 @@ const AdminDashboard = () => {
                   value={formData.instagramTakipci}
                   onChange={(e) =>
                     setFormData({ ...formData, instagramTakipci: e.target.value })
+                  }
+                />
+                {/* EKSİK OLAN URL ALANLARI */}
+                <input
+                  type="text"
+                  placeholder="YouTube URL"
+                  value={formData.youtubeUrl}
+                  onChange={(e) =>
+                    setFormData({ ...formData, youtubeUrl: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Instagram URL"
+                  value={formData.instagramUrl}
+                  onChange={(e) =>
+                    setFormData({ ...formData, instagramUrl: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="Twitter URL"
+                  value={formData.twitterUrl}
+                  onChange={(e) =>
+                    setFormData({ ...formData, twitterUrl: e.target.value })
                   }
                 />
               </>
@@ -759,14 +799,7 @@ const AdminDashboard = () => {
                 }
               />
             )}
-            <input
-              type="text"
-              placeholder="LinkedIn URL"
-              value={formData.linkedin}
-              onChange={(e) =>
-                setFormData({ ...formData, linkedin: e.target.value })
-              }
-            />
+           
             <input
               type="text"
               placeholder="Instagram URL"

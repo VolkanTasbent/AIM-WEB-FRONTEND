@@ -7528,3 +7528,79 @@ button {
   transform: scale(1.1);
   background: rgba(255, 255, 255, 0.2);
 }
+/* Influencer Takipçi Hizalama */
+.takipci-duzenli {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.takipci-sembol {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.takipci-sayi {
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: 'Courier New', monospace; /* Eşit genişlikli font */
+  min-width: 140px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}/* Influencer Takipçi Linklerindeki Alt Çizgiyi Kaldır */
+.takipci-duzenli {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  text-decoration: none !important; /* 🔥 Alt çizgiyi kaldır */
+}
+
+.takipci-duzenli a {
+  text-decoration: none !important; /* 🔥 Linklerdeki alt çizgiyi kaldır */
+}
+
+.takipci-sembol {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none !important;
+}
+
+.takipci-sayi {
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: 'Courier New', monospace;
+  min-width: 140px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-decoration: none !important; /* 🔥 Sayılardaki alt çizgiyi kaldır */
+}
+
+/* Tüm sosyal medya linklerindeki alt çizgileri kaldır */
+.flex.items-center.justify-center.gap-4.text-white {
+  text-decoration: none !important;
+}
+
+.flex.items-center.justify-center.gap-4.text-white a {
+  text-decoration: none !important;
+}
+
+/* Influencer sayfasındaki tüm linklerde alt çizgi kaldırma */
+.influencer-card a {
+  text-decoration: none !important;
+}
+
+.influencer-card .flex.items-center.gap-4.text-white {
+  text-decoration: none !important;
+}

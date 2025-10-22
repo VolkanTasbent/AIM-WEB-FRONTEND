@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Youtube, Music2, Instagram } from 'lucide-react';
+import { FaYoutube, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
@@ -93,39 +93,74 @@ const InfluencerPage = () => {
 
               {/* 📍 Read More sonrası detay alanı */}
               {expandedId === influencer.id && (
-               <div
-  className="rounded-lg p-8 -mt-2 relative z-30"
-  style={{
-    background: "linear-gradient(to bottom, #d4b253,)",
-  }}
->
+                <div
+                  className="rounded-lg p-8 -mt-2 relative z-30"
+                  style={{
+                    background: "linear-gradient(to bottom, #d4b253,)",
+                  }}
+                >
                   <div className="text-center mb-6">
                     <p className="text-white/90 text-base leading-relaxed">
                       {influencer.aciklama}
                     </p>
                   </div>
 
+                   {/* 🎯 HİZALANMIŞ SOSYAL MEDYA SATIRLARI */}
                   <div className="space-y-4 mb-6">
-                    <div className="flex items-center gap-4 text-white">
-                      <Youtube className="w-8 h-8" />
-                      <span className="text-2xl font-bold">
-                        {influencer.youtubeTakipci || "297B Abone"}
+                    {/* 🔴 YouTube */}
+                    <a
+                      href={influencer.youtube || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center justify-center gap-4 text-white transition-colors duration-200 relative z-40 ${
+                        influencer.youtube ? "hover:text-red-500" : "opacity-50 pointer-events-none"
+                      }`}
+                    >
+                      <FaYoutube className="w-8 h-8 flex-shrink-0" />
+                      <span
+                        className="text-2xl font-bold inline-block text-center"
+                        style={{ minWidth: "140px" }}
+                      >
+                        {influencer.youtubeTakipci || "—"} Abone
                       </span>
-                    </div>
-                    <div className="flex items-center gap-4 text-white">
-                      <Music2 className="w-8 h-8" />
-                      <span className="text-2xl font-bold">
-                        {influencer.tiktokTakipci || "297B Takipçi"}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-4 text-white">
-                      <Instagram className="w-8 h-8" />
-                      <span className="text-2xl font-bold">
-                        {influencer.instagramTakipci || "297B Takipçi"}
-                      </span>
-                    </div>
-                  </div>
+                    </a>
 
+                    {/* 🔵 Twitter */}
+                    <a
+                      href={influencer.twitter || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center justify-center gap-4 text-white transition-colors duration-200 relative z-40 ${
+                        influencer.twitter ? "hover:text-sky-400" : "opacity-50 pointer-events-none"
+                      }`}
+                    >
+                      <FaTwitter className="w-8 h-8 flex-shrink-0" />
+                      <span
+                        className="text-2xl font-bold inline-block text-center"
+                        style={{ minWidth: "140px" }}
+                      >
+                        {influencer.twitterTakipci || "—"} Takipçi
+                      </span>
+                    </a>
+
+                    {/* 🟣 Instagram */}
+                    <a
+                      href={influencer.instagram || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center justify-center gap-4 text-white transition-colors duration-200 relative z-40 ${
+                        influencer.instagram ? "hover:text-pink-400" : "opacity-50 pointer-events-none"
+                      }`}
+                    >
+                      <FaInstagram className="w-8 h-8 flex-shrink-0" />
+                      <span
+                        className="text-2xl font-bold inline-block text-center"
+                        style={{ minWidth: "140px" }}
+                      >
+                        {influencer.instagramTakipci || "—"} Takipçi
+                      </span>
+                    </a>
+                  </div>
                   {/* ✅ Kapat butonu */}
                   <button
                     onClick={() => toggleExpand(influencer.id)}
