@@ -22,24 +22,30 @@ export const uploadToCloudinary = async (file, type = "genel") => {
 
     const originalUrl = json.secure_url;
 
-    // 🔹 Boyutlandırma değerleri (yakınlaşma yok, yüksek kalite)
+    // 🔹 Portfolio ve Çekimler için ORİJİNAL resmi kullan (hiç dönüştürme yok - maksimum netlik)
+    if (type === "genel" || type === "portfolio" || type === "cekim") {
+      console.log("🟢 Cloudinary yükleme başarılı (ORİJİNAL - YÜKSEK ÇÖZÜNÜRLÜK):");
+      console.log("   URL:", originalUrl);
+      return originalUrl; // ORİJİNAL RESMI DÖNDÜR
+    }
+
+    // 🔹 Diğer tipler için boyutlandırma
     const sizeMap = {
       etkinlik: "w_1920,h_1080,c_fit",
       haber: "w_1200,h_700,c_fit",
       servis: "w_600,h_400,c_fit",
       altservis: "w_400,h_400,c_fit",
       sponsor: "w_300,h_150,c_fit",
-      genel: "w_800,h_500,c_fit",
+      logos: "w_200,h_200,c_fit",
     };
 
-    const transform = sizeMap[type] || sizeMap.genel;
+    const transform = sizeMap[type] || "w_1600,h_1200,c_fit";
 
-    // 🔹 URL güvenli dönüştürme + kalite
     let transformedUrl = originalUrl;
     if (originalUrl.includes("/upload/")) {
       transformedUrl = originalUrl.replace(
         "/upload/",
-        `/upload/${transform},q_auto:best,f_auto/`
+        `/upload/${transform},q_100,f_auto/`
       );
     }
 

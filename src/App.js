@@ -21,6 +21,8 @@ import EsportsPage from "./pages/EsportsPage";
 
 import InfluencerPage from "./pages/InfluencerPage.js";
 
+import MediaPage from "./pages/MediaPage";
+
 
 
 
@@ -59,6 +61,8 @@ function App() {
   <Route path="/esports/:id" element={<EsportsDetailPage />} />
 
 <Route path="/services/influencers" element={<InfluencerPage />} />
+
+<Route path="/services/media" element={<MediaPage />} />
 
          </Routes>
         </main>
