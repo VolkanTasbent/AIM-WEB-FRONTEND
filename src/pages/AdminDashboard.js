@@ -9,11 +9,14 @@ import {
   uploadToCloudinary,
 } from "../services/ApiService";
 import axios from "axios";
-import "../App.css";
+import { useNavigate } from "react-router-dom";
+import "../AdminDashboard.css";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+  
   const [etkinlikler, setEtkinlikler] = useState([]);
   const [haberler, setHaberler] = useState([]);
   const [servisler, setServisler] = useState([]);
@@ -54,10 +57,9 @@ const AdminDashboard = () => {
     youtubeTakipci: "",
     twitterTakipci: "",
     instagramTakipci: "",
-    youtubeUrl: "", // EKSİK OLAN
-    instagramUrl: "", // EKSİK OLAN
-    twitterUrl: "", // EKSİK OLAN
-    // 🔹 Yeni medya alanları
+    youtubeUrl: "",
+    instagramUrl: "",
+    twitterUrl: "",
     videoBaslik: "",
     videoAciklama: "",
     videoImageUrl: "",
@@ -75,6 +77,26 @@ const AdminDashboard = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  
+  // 🔹 Yeni Admin Oluşturma
+  const [newAdminUsername, setNewAdminUsername] = useState("");
+  const [newAdminPassword, setNewAdminPassword] = useState("");
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  
+  // 🔹 Hamburger Menu
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  
+  // 🔹 Form Başlığı
+  const [formTitle, setFormTitle] = useState("");
+
+  // 🔒 GÜVENLİK: Admin yetkisi kontrolü
+  useEffect(() => {
+    const auth = localStorage.getItem("adminAuth");
+    if (!auth || auth !== "true") {
+      navigate("/admin-login");
+      return;
+    }
+  }, [navigate]);
 
   // 🔹 Verileri yükle
   useEffect(() => {
@@ -688,6 +710,7 @@ const AdminDashboard = () => {
     setLogosFile(null);
     setLogoFile(null);
     setIsEditing(false);
+    setFormTitle("");
   };
 
   // 🔹 Düzenleme
@@ -721,6 +744,9 @@ twitterUrl: item.twitter || "",
     instagramTakipci: item.instagramTakipci || "",
   });
   setImageUrl(item.resimUrl || "");
+  
+  // 🔹 Form başlığını ayarla
+  setFormTitle(item.adSoyad || item.unvan || "");
 } else {
       setFormData({
         id: Number(item.id),
@@ -731,6 +757,9 @@ twitterUrl: item.twitter || "",
         ad: item.ad || "",
       });
       setImageUrl(item.resimUrl || item.logoUrl || item.ikonUrl || "");
+      
+      // 🔹 Form başlığını ayarla
+      setFormTitle(item.baslik || item.ad || "");
     }
 
     setIsEditing(true);
@@ -791,6 +820,7 @@ twitterUrl: item.twitter || "",
         videoUrl: item.videoUrl || "",
       });
       setFile(null); // Dosya alanını temizle
+      setFormTitle(item.title || "");
     } else if (type === "shoot") {
       setFormData({
         id: Number(item.id),
@@ -799,6 +829,7 @@ twitterUrl: item.twitter || "",
         shootImageUrl: item.shootImageUrl || item.imageUrl || "",
       });
       setAchievementsFile(null);
+      setFormTitle(item.title || "");
     } else if (type === "portfolio") {
       // 🔹 Portfolio verilerini temizle ve set et
       const imageUrl = item.imageUrl || item.image_url; // Backend uyumluluğu
@@ -846,6 +877,7 @@ twitterUrl: item.twitter || "",
       });
       setLogosFile(null);
       setLogoFile(null);
+      setFormTitle(item.team || "");
     }
 
     setIsEditing(true);
@@ -873,475 +905,674 @@ twitterUrl: item.twitter || "",
     }
   };
 
+  // 🔹 Yeni Admin Kullanıcı Oluşturma
+  const handleRegister = async () => {
+    if (!newAdminUsername || !newAdminPassword) {
+      alert("Lütfen kullanıcı adı ve şifre girin!");
+      return;
+    }
+
+    if (newAdminPassword.length < 1) {
+      alert("Lütfen şifre girin!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(`${API_URL}/kullanicilar/register`, {
+        kullaniciAdi: newAdminUsername,
+        sifre: newAdminPassword
+      });
+
+      if (response.data.includes("başarıyla")) {
+        alert("Yeni admin kullanıcı başarıyla oluşturuldu ✅");
+        setNewAdminUsername("");
+        setNewAdminPassword("");
+        setShowRegisterForm(false);
+      } else {
+        alert("Hata: " + response.data);
+      }
+    } catch (err) {
+      console.error("Register hatası:", err);
+      alert("Kullanıcı oluşturulurken hata oluştu ❌");
+    }
+  };
+
+  // Section names mapping
+  const sectionNames = {
+    etkinlik: "Etkinlikler",
+    haber: "Haberler",
+    servis: "Servisler",
+    altservis: "Alt Servisler",
+    sponsor: "Sponsorlar",
+    crew: "Crew",
+    esports: "E-Spor Oyuncuları",
+    influencer: "Influencerlar",
+    video: "Videolar",
+    shoot: "Çekimler",
+    portfolio: "Portfolyo"
+  };
+
+  const mainSections = ['etkinlik', 'haber', 'servis', 'altservis', 'sponsor', 'crew', 'esports', 'influencer'];
+  const mediaSections = ['video', 'shoot', 'portfolio'];
+
   return (
     <div className="admin-dashboard">
-      <h2>Admin Dashboard</h2>
-
-      {/* 🔹 Sekmeler */}
-      <div className="tab-buttons">
-        {[
-          "etkinlik",
-          "haber",
-          "servis",
-          "altservis",
-          "sponsor",
-          "crew",
-          "esports",
-          "influencer",
-          "medya" // 🔹 yeni sekme
-        ].map((sec) => (
-          <button
-            key={sec}
-            onClick={() => {
-              setActiveSection(sec);
-              resetForm();
+      {/* 🔹 Hamburger Menu Button */}
+      <button 
+        className="admin-hamburger"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <div className="admin-hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      
+      {/* 🔹 Sidebar Navigation */}
+      <div className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
+        <div className="admin-sidebar-header">
+          <h2>Admin Panel</h2>
+          {localStorage.getItem("adminUsername") && (
+            <span style={{fontSize: '14px', color: '#4CAF50', display: 'block', marginTop: '5px'}}>
+              👤 {localStorage.getItem("adminUsername")}
+            </span>
+          )}
+        </div>
+        
+        <nav className="admin-nav-menu">
+          {mainSections.map((sec) => (
+            <a
+              key={sec}
+              onClick={() => {
+                setActiveSection(sec);
+                resetForm();
+              }}
+              className={`admin-nav-item ${activeSection === sec ? "active" : ""}`}
+              href="#"
+            >
+              {sectionNames[sec]}
+            </a>
+          ))}
+          
+          {/* Medya Yönetimi Ana Başlığı */}
+          <div style={{padding: '10px 30px 5px 30px', color: '#888', fontSize: '13px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px'}}>
+            📁 Medya Yönetimi
+          </div>
+          
+          {/* Medya Alt Kategorileri */}
+          <div className="admin-nav-submenu">
+            {mediaSections.map((sec) => (
+              <a
+                key={sec}
+                onClick={() => {
+                  setActiveSection(sec);
+                  resetForm();
+                }}
+                className={`admin-nav-subitem ${activeSection === sec ? "active" : ""}`}
+                href="#"
+              >
+                {sec === 'video' ? '📹' : sec === 'shoot' ? '📸' : '🖼️'} {sectionNames[sec]}
+              </a>
+            ))}
+          </div>
+        </nav>
+        
+        {/* Butonlar */}
+        <div style={{display: 'flex', flexDirection: 'column', gap: '15px', padding: '30px', borderTop: '2px solid rgba(255,255,255,0.1)'}}>
+          <button 
+            onClick={() => setShowRegisterForm(!showRegisterForm)}
+            style={{
+              padding: '15px 20px',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontWeight: '600',
+              fontSize: '14px',
+              transition: 'all 0.3s ease',
+              whiteSpace: 'nowrap',
+              width: '100%'
             }}
-            className={activeSection === sec ? "active" : ""}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 4px 12px rgba(102,126,234,0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+            }}
           >
-            {sec === "etkinlik"
-              ? "Etkinlikler"
-              : sec === "haber"
-              ? "Haberler"
-              : sec === "servis"
-              ? "Servisler"
-              : sec === "altservis"
-              ? "Alt Servisler"
-              : sec === "sponsor"
-              ? "Sponsorlar"
-              : sec === "crew"
-              ? "Crew"
-              : sec === "esports"
-              ? "E-Spor Oyuncuları"
-              : sec === "influencer"
-              ? "Influencerlar"
-              : sec === "medya"
-              ? "Medya Yönetimi"
-              : ""}
+            {showRegisterForm ? '✖️ İptal' : '➕ Yeni Admin'}
           </button>
-        ))}
+          
+          <button 
+            onClick={() => {
+              localStorage.removeItem("adminAuth");
+              localStorage.removeItem("adminUsername");
+              navigate("/admin-login");
+            }}
+            style={{
+              padding: '15px 20px',
+              background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontWeight: '600',
+              fontSize: '14px',
+              transition: 'all 0.3s ease',
+              whiteSpace: 'nowrap',
+              width: '100%'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 4px 12px rgba(255,107,107,0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+            }}
+          >
+            🚪 Çıkış
+          </button>
+        </div>
       </div>
 
-      {/* 🔹 Liste */}
-      <section>
-        <h3>
-          {activeSection === "sponsor"
-            ? "Sponsor Listesi"
-            : activeSection === "crew"
-            ? "Crew Listesi"
-            : activeSection === "esports"
-            ? "Esports Oyuncuları"
-            : activeSection === "influencer"
-            ? "Influencer Listesi"
-            : activeSection === "medya"
-            ? "Medya Yönetimi"
-            : `${activeSection.charAt(0).toUpperCase() + activeSection.slice(1)} Listesi`}
-        </h3>
-
-        <ul>
-          {(activeSection === "etkinlik"
-            ? etkinlikler
-            : activeSection === "haber"
-            ? haberler
-            : activeSection === "servis"
-            ? servisler
-            : activeSection === "altservis"
-            ? altServisler
-            : activeSection === "sponsor"
-            ? sponsorlar
-            : activeSection === "crew"
-            ? crewList
-            : activeSection === "esports"
-            ? esportsList
-            : activeSection === "influencer"
-            ? influencers
-            : []) // Medya için boş
-          .map((item) => (
-            <li key={item.id}>
-              <b>{item.baslik || item.adSoyad || item.ad || item.title}</b>
-              {activeSection !== "medya" && (
-                <>
-                  <button onClick={() => handleEdit(item)}>✏️ Düzenle</button>
-                  <button onClick={() => handleDelete(item.id)}>🗑 Sil</button>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-        
-        {/* Medya Listesi */}
-        {activeSection === "medya" && (
-          <>
-            <h4>Videolar</h4>
-            <ul>
-              {videos.map((item) => (
-                <li key={item.id}>
-                  <b>{item.title}</b>
-                  <button onClick={() => handleDeleteMedia("video", item.id)}>🗑 Sil</button>
-                </li>
-              ))}
-            </ul>
-            
-            <h4>Çekimler</h4>
-            <ul>
-              {shoots.map((item) => (
-                <li key={item.id}>
-                  <b>{item.title}</b>
-                  <button onClick={() => handleDeleteMedia("shoot", item.id)}>🗑 Sil</button>
-                </li>
-              ))}
-            </ul>
-            
-            <h4>Portfolyo</h4>
-            <ul>
-              {portfolios.map((item) => (
-                <li key={item.id}>
-                  <b>{item.team}</b>
-                  <button onClick={() => handleEditMedia("portfolio", item)}>✏️ Düzenle</button>
-                  <button onClick={() => handleDeleteMedia("portfolio", item.id)}>🗑 Sil</button>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-        
-      </section>
-
-      {/* 🔹 Form */}
-      <div className="admin-form">
-        <h4>
-          {isEditing
-            ? `${activeSection} Güncelle`
-            : activeSection === "medya" 
-              ? "Medya İçerik Ekle"
-              : `Yeni ${activeSection} Ekle`}
-        </h4>
-
-        {/* 🔹 MEDYA YÖNETİMİ - YENİ EKLENEN KISIM */}
-        {activeSection === "medya" && (
-          <div className="media-section">
-            {/* Mevcut Videolar Listesi */}
-            <h3 style={{color: '#333', fontSize: '1.3rem', marginBottom: '10px'}}>📹 Mevcut Videolar</h3>
-            {videos.length > 0 ? (
-              <ul style={{background: '#f5f5f5', padding: '15px', borderRadius: '5px', marginBottom: '20px', listStyle: 'none'}}>
-                {videos.map((item) => (
-                  <li key={item.id} style={{marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '10px', padding: '10px', background: 'white', borderRadius: '5px'}}>
-                    <b style={{flex: 1, color: '#333', fontSize: '1rem'}}>{item.title}</b>
-                    <button 
-                      onClick={() => handleEditMedia("video", item)} 
-                      style={{padding: '8px 15px', background: '#5c2a86', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold'}}
-                    >
-                      ✏️ Düzenle
-                    </button>
-                    <button 
-                      onClick={() => handleDeleteMedia("video", item.id)} 
-                      style={{padding: '8px 15px', background: '#ff4444', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold'}}
-                    >
-                      🗑 Sil
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p style={{color: '#666', marginBottom: '20px', fontSize: '0.95rem'}}>Henüz video eklenmemiş.</p>
-            )}
-
-            {/* Mevcut Çekimler Listesi */}
-            <h3 style={{color: '#333', fontSize: '1.3rem', marginBottom: '10px'}}>📸 Mevcut Çekimler</h3>
-            {shoots.length > 0 ? (
-              <ul style={{background: '#f5f5f5', padding: '15px', borderRadius: '5px', marginBottom: '20px', listStyle: 'none'}}>
-                {shoots.map((item) => (
-                  <li key={item.id} style={{marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '10px', padding: '10px', background: 'white', borderRadius: '5px'}}>
-                    <b style={{flex: 1, color: '#333', fontSize: '1rem'}}>{item.title}</b>
-                    <button 
-                      onClick={() => handleEditMedia("shoot", item)} 
-                      style={{padding: '8px 15px', background: '#5c2a86', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold'}}
-                    >
-                      ✏️ Düzenle
-                    </button>
-                    <button 
-                      onClick={() => handleDeleteMedia("shoot", item.id)} 
-                      style={{padding: '8px 15px', background: '#ff4444', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold'}}
-                    >
-                      🗑 Sil
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p style={{color: '#666', marginBottom: '20px', fontSize: '0.95rem'}}>Henüz çekim eklenmemiş.</p>
-            )}
-
-            <hr style={{margin: '30px 0'}} />
-            <h3>🎬 Yeni Video Ekle</h3>
-
-            {/* --- Video Ekleme --- */}
+      {/* Register Form Modal */}
+      {showRegisterForm && (
+        <div style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          right: '0',
+          bottom: '0',
+          background: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            background: 'white',
+            padding: '40px',
+            borderRadius: '20px',
+            maxWidth: '500px',
+            width: '90%',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
+          }}>
+            <h3 style={{marginTop: '0', marginBottom: '20px', fontSize: '24px'}}>Yeni Admin Oluştur</h3>
             <input
               type="text"
-              placeholder="Video Başlık"
-              value={formData.videoBaslik || ""}
-              onChange={(e) =>
-                setFormData({ ...formData, videoBaslik: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Video Açıklama"
-              value={formData.videoAciklama || ""}
-              onChange={(e) =>
-                setFormData({ ...formData, videoAciklama: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Video URL (YouTube linki - örn: https://www.youtube.com/watch?v=ABC123)"
-              value={formData.videoUrl || ""}
-              onChange={(e) => {
-                const url = e.target.value;
-                setFormData({ ...formData, videoUrl: url });
-                
-                // YouTube URL'den otomatik YÜKSEK KALİTE thumbnail çek
-                const videoIdMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-                if (videoIdMatch) {
-                  const videoId = videoIdMatch[1];
-                  // maxresdefault = En yüksek kalite (1920x1080)
-                  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-                  setFormData(prev => ({ 
-                    ...prev, 
-                    videoUrl: url,
-                    videoImageUrl: thumbnailUrl 
-                  }));
-                  console.log("🎬 YouTube Thumbnail otomatik alındı (YÜKSEK KALİTE):", thumbnailUrl);
-                }
+              placeholder="Kullanıcı Adı"
+              value={newAdminUsername}
+              onChange={(e) => setNewAdminUsername(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '15px',
+                border: '2px solid #e9ecef',
+                borderRadius: '10px',
+                marginBottom: '15px',
+                fontSize: '16px'
               }}
             />
-            {formData.videoImageUrl && (
-              <div style={{marginTop: '10px', marginBottom: '10px', padding: '10px', background: '#f0f0f0', borderRadius: '5px'}}>
-                <p><strong>✅ Thumbnail Önizleme:</strong></p>
-                <img src={formData.videoImageUrl} alt="Preview" style={{width: '300px', borderRadius: '5px', marginTop: '5px'}} />
-              </div>
-            )}
-            <p style={{fontSize: '0.85rem', color: '#666', margin: '10px 0'}}>
-              💡 YouTube linkini yapıştırdığınızda thumbnail otomatik alınır. Manuel değiştirmek isterseniz:
-            </p>
             <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-            <button onClick={() => handleMediaUpload("video")} disabled={loading}>
-              {loading ? "Yükleniyor..." : "Manuel Thumbnail Yükle (opsiyonel)"}
-            </button>
-            <button onClick={addVideo} disabled={loading} style={{marginTop: '10px'}}>
-              {loading ? "Kaydediliyor..." : isEditing ? "Videoyu Güncelle" : "Videoyu Kaydet"}
-            </button>
-
-            <hr />
-
-            {/* --- Çekim Ekleme --- */}
-            <h4>📸 Çekim Ekle</h4>
-            <input
-              type="text"
-              placeholder="Çekim Başlık"
-              value={formData.shootBaslik || ""}
-              onChange={(e) =>
-                setFormData({ ...formData, shootBaslik: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Çekim Açıklama"
-              value={formData.shootAciklama || ""}
-              onChange={(e) =>
-                setFormData({ ...formData, shootAciklama: e.target.value })
-              }
-            />
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setAchievementsFile(e.target.files[0])}
-            />
-            <button onClick={() => handleMediaUpload("shoot")} disabled={loading}>
-              {loading ? "Yükleniyor..." : "Çekim Fotoğrafı Yükle"}
-            </button>
-            {formData.shootImageUrl && (
-              <div style={{marginTop: '10px'}}>
-                <img src={formData.shootImageUrl} alt="Preview" width="100" />
-              </div>
-            )}
-            <button onClick={addShoot} disabled={loading} style={{marginTop: '10px'}}>
-              {loading ? "Kaydediliyor..." : isEditing ? "Çekimi Güncelle" : "Çekimi Kaydet"}
-            </button>
-
-            <hr />
-
-            {/* --- Portföy Yükleme --- */}
-            <h4>🖼 Portföy Görselleri</h4>
-            <input
-              type="text"
-              placeholder="Takım Adı"
-              value={formData.portfolioTakim || ""}
-              onChange={(e) =>
-                setFormData({ ...formData, portfolioTakim: e.target.value })
-              }
-            />
-                          <input
-              type="file"
-              accept="image/*"
-              multiple
-              key={formData.portfolioUrls?.length || 0}
-              onChange={(e) => {
-                const files = Array.from(e.target.files || []);
-                console.log("📁 Seçilen dosya sayısı:", files.length);
-                
-                // Maksimum 12 dosya kontrolü
-                if (files.length > 12) {
-                  alert("Maksimum 12 görsel seçebilirsiniz!");
-                  e.target.value = ''; // Input'u temizle
-                  return;
-                }
-                
-                // Önceki dosyaları temizle
-                setLogosFile(null);
-                setFormData(prev => ({ ...prev, portfolioUrls: [] }));
-                
-                // Yeni dosyaları set et
-                setLogosFile(files);
-                console.log("✅ LogosFile set edildi:", files.length);
+              type="password"
+              placeholder="Şifre"
+              value={newAdminPassword}
+              onChange={(e) => setNewAdminPassword(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '15px',
+                border: '2px solid #e9ecef',
+                borderRadius: '10px',
+                marginBottom: '15px',
+                fontSize: '16px'
               }}
             />
-            <button onClick={handlePortfolioUpload} disabled={loading}>
-              {loading ? "Yükleniyor..." : "12 Görseli Yükle"}
-            </button>
-            {formData.portfolioUrls && formData.portfolioUrls.length > 0 && (
-              <div style={{marginTop: '10px', padding: '10px', background: '#f0f0f0', borderRadius: '5px'}}>
-                <p><strong>✅ {formData.portfolioUrls.length} adet görsel yüklendi</strong></p>
-                {/* Görsel önizlemeleri */}
-                <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginTop: '10px'}}>
-                  {formData.portfolioUrls.slice(0, 12).map((url, idx) => (
-                    <img 
-                      key={idx} 
-                      src={url} 
-                      alt={`Portfolio ${idx + 1}`} 
-                      style={{width: '100%', height: '80px', objectFit: 'cover', borderRadius: '4px'}}
-                    />
-                  ))}
-                </div>
-                <button 
-                  onClick={() => {
-                    console.log("🗑️ Temizleniyor - Mevcut URL sayısı:", formData.portfolioUrls.length);
-                    setFormData(prev => ({ ...prev, portfolioUrls: [] }));
-                    setLogosFile(null);
-                  }}
-                  style={{padding: '5px 10px', background: '#ff4444', color: 'white', border: 'none', borderRadius: '3px', cursor: 'pointer', marginTop: '10px'}}
-                >
-                  Temizle ve Yeniden Başla
-                </button>
-              </div>
-            )}
-
-            <hr style={{margin: '20px 0'}} />
-            <h4>Portfolio Logo</h4>
-            {formData.portfolioLogo && (
-              <div style={{marginTop: '10px', marginBottom: '10px', padding: '10px', background: '#f0f0f0', borderRadius: '5px'}}>
-                <p><strong>Mevcut Logo:</strong></p>
-                <img src={formData.portfolioLogo} alt="Logo" width="100" />
-                <br />
-                <button 
-                  onClick={async () => {
-                    if (!window.confirm("Logoyu silmek istediğinize emin misiniz?")) return;
-                    
-                    console.log("🗑️ Logo siliniyor");
-                    setFormData(prev => ({ ...prev, portfolioLogo: "" }));
-                    setLogoFile(null);
-                    
-                    // Eğer düzenleme modundaysa backend'i de güncelle
-                    if (isEditing && formData.id) {
-                      try {
-                        await axios.put(`${API_URL}/portfolio/${formData.id}`, {
-                          team: formData.portfolioTakim,
-                          imageUrl: formData.portfolioUrls.join(","),
-                          logo: "" // Boş logo gönder
-                        });
-                        alert("Logo silindi ✅");
-                        
-                        // Listeyi yenile
-                        const res = await axios.get(`${API_URL}/portfolio`);
-                        setPortfolios(res.data);
-                      } catch (err) {
-                        console.error("Logo silme hatası:", err);
-                        alert("Logo silinirken hata oluştu ❌");
-                      }
-                    }
-                  }}
-                  style={{marginTop: '10px', padding: '5px 10px', background: '#ff4444', color: 'white', border: 'none', borderRadius: '3px', cursor: 'pointer'}}
-                >
-                  Logoyu Sil
-                </button>
-              </div>
-            )}
-            <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '5px'}}>
-              {logoFile ? `✅ Seçilen: ${logoFile.name}` : "Yeni logo seçin (isteğe bağlı)"}
-            </p>
-            <div style={{display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px'}}>
-              <input
-                type="file"
-                accept="image/*"
-                key={formData.portfolioLogo || 'logo-input'} // Force re-render
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  console.log("📁 Logo dosyası seçildi:", file);
-                  if (file) {
-                    setLogoFile(file);
-                  }
-                }}
-              />
-              <button 
-                onClick={handlePortfolioLogoUpload} 
-                disabled={loading || !logoFile}
+            <div style={{display: 'flex', gap: '15px'}}>
+              <button
+                onClick={handleRegister}
+                disabled={!newAdminUsername || !newAdminPassword}
                 style={{
-                  padding: '8px 15px',
-                  background: logoFile ? '#5c2a86' : '#ccc',
+                  flex: 1,
+                  padding: '15px',
+                  background: newAdminUsername && newAdminPassword ? 'linear-gradient(135deg, #56ab2f 0%, #a8e063 100%)' : '#666',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '5px',
-                  cursor: logoFile ? 'pointer' : 'not-allowed',
-                  opacity: logoFile ? 1 : 0.6
+                  borderRadius: '10px',
+                  cursor: newAdminUsername && newAdminPassword ? 'pointer' : 'not-allowed',
+                  fontWeight: '600',
+                  fontSize: '16px'
                 }}
               >
-                {loading ? "Yükleniyor..." : "Logoyu Yükle"}
+                Oluştur
+              </button>
+              <button
+                onClick={() => setShowRegisterForm(false)}
+                style={{
+                  flex: 1,
+                  padding: '15px',
+                  background: '#6c757d',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '10px',
+                  cursor: 'pointer',
+                  fontWeight: '600',
+                  fontSize: '16px'
+                }}
+              >
+                İptal
               </button>
             </div>
-            <button onClick={addPortfolio} disabled={loading} style={{marginTop: '10px'}}>
-              {loading ? "Kaydediliyor..." : isEditing ? "Portföyü Güncelle" : "Portföyü Kaydet"}
-            </button>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* 🔹 DİĞER FORMLAR (MEVCUT KOD - DEĞİŞMEDİ) */}
-        {activeSection !== "medya" && (
+      {/* 🔹 Main Content */}
+      <div className="admin-content">
+        <div className="admin-content-header">
+          <h3>{sectionNames[activeSection]}</h3>
+          <p className="text-muted">
+            {activeSection === "video" || activeSection === "shoot" || activeSection === "portfolio"
+              ? `${sectionNames[activeSection]} içeriklerinizi yönetin`
+              : `${sectionNames[activeSection]} içeriklerinizi buradan yönetebilirsiniz`}
+          </p>
+        </div>
+
+        {/* 🔹 Liste */}
+        <div className="admin-section">
+          <h4>
+            {activeSection === "sponsor"
+              ? "Sponsor Listesi"
+              : activeSection === "crew"
+              ? "Crew Listesi"
+              : activeSection === "esports"
+              ? "Esports Oyuncuları"
+              : activeSection === "influencer"
+              ? "Influencer Listesi"
+              : activeSection === "video"
+              ? "📹 Video Listesi"
+              : activeSection === "shoot"
+              ? "📸 Çekim Listesi"
+              : activeSection === "portfolio"
+              ? "🖼️ Portfolyo Listesi"
+              : `${sectionNames[activeSection]} Listesi`}
+          </h4>
+
+          {activeSection === "video" || activeSection === "shoot" || activeSection === "portfolio" ? (
+            <ul className="admin-list">
+              {(activeSection === "video"
+                ? videos
+                : activeSection === "shoot"
+                ? shoots
+                : activeSection === "portfolio"
+                ? portfolios
+                : [])
+              .map((item) => (
+                <li key={item.id} className="admin-list-item">
+                  <div className="admin-list-item-info">
+                    <b>{item.title || item.team}</b>
+                  </div>
+                  <div className="admin-list-item-actions">
+                    <button className="edit-btn" onClick={() => handleEditMedia(
+                      activeSection === "video" ? "video" : activeSection === "shoot" ? "shoot" : "portfolio",
+                      item
+                    )}>✏️ Düzenle</button>
+                    <button className="delete-btn" onClick={() => handleDeleteMedia(
+                      activeSection === "video" ? "video" : activeSection === "shoot" ? "shoot" : "portfolio",
+                      item.id
+                    )}>🗑 Sil</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="admin-list">
+              {(activeSection === "etkinlik"
+                ? etkinlikler
+                : activeSection === "haber"
+                ? haberler
+                : activeSection === "servis"
+                ? servisler
+                : activeSection === "altservis"
+                ? altServisler
+                : activeSection === "sponsor"
+                ? sponsorlar
+                : activeSection === "crew"
+                ? crewList
+                : activeSection === "esports"
+                ? esportsList
+                : activeSection === "influencer"
+                ? influencers
+                : [])
+              .map((item) => (
+                <li key={item.id} className="admin-list-item">
+                  <div className="admin-list-item-info">
+                    <b>{item.baslik || item.adSoyad || item.ad || item.title}</b>
+                  </div>
+                  <div className="admin-list-item-actions">
+                    <button className="edit-btn" onClick={() => handleEdit(item)}>✏️ Düzenle</button>
+                    <button className="delete-btn" onClick={() => handleDelete(item.id)}>🗑 Sil</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* 🔹 Form */}
+        <div className="admin-section">
+          <h4>
+            {isEditing
+              ? formTitle
+                ? `✏️ Düzenleniyor: ${formTitle}`
+                : `${sectionNames[activeSection]} Güncelle`
+              : `Yeni ${sectionNames[activeSection]} Ekle`}
+          </h4>
+          <div className="admin-form">
+            {/* 🔹 MEDYA YÖNETİMİ */}
+            {activeSection === "video" && (
+              <div className="media-section">
+                  {/* Video Ekleme */}
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Video Başlık</label>
+                  <input
+                    type="text"
+                    value={formData.videoBaslik || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, videoBaslik: e.target.value })
+                    }
+                  />
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Video Açıklama</label>
+                  <input
+                    type="text"
+                    value={formData.videoAciklama || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, videoAciklama: e.target.value })
+                    }
+                  />
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Video URL (YouTube linki)</label>
+                  <input
+                    type="text"
+                    value={formData.videoUrl || ""}
+                    onChange={(e) => {
+                      const url = e.target.value;
+                      setFormData({ ...formData, videoUrl: url });
+                      
+                      // YouTube URL'den otomatik YÜKSEK KALİTE thumbnail çek
+                      const videoIdMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+                      if (videoIdMatch) {
+                        const videoId = videoIdMatch[1];
+                        // maxresdefault = En yüksek kalite (1920x1080)
+                        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                        setFormData(prev => ({ 
+                          ...prev, 
+                          videoUrl: url,
+                          videoImageUrl: thumbnailUrl 
+                        }));
+                        console.log("🎬 YouTube Thumbnail otomatik alındı (YÜKSEK KALİTE):", thumbnailUrl);
+                      }
+                    }}
+                  />
+                  {formData.videoImageUrl && (
+                    <div style={{marginTop: '10px', marginBottom: '10px', padding: '10px', background: '#f0f0f0', borderRadius: '5px'}}>
+                      <p><strong>✅ Thumbnail Önizleme:</strong></p>
+                      <img src={formData.videoImageUrl} alt="Preview" style={{width: '300px', borderRadius: '5px', marginTop: '5px'}} />
+                    </div>
+                  )}
+                  <p style={{fontSize: '0.85rem', color: '#666', margin: '10px 0'}}>
+                    💡 YouTube linkini yapıştırdığınızda thumbnail otomatik alınır. Manuel değiştirmek isterseniz:
+                  </p>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+                  <button onClick={() => handleMediaUpload("video")} disabled={loading}>
+                    {loading ? "Yükleniyor..." : "Manuel Thumbnail Yükle (opsiyonel)"}
+                  </button>
+                  <button onClick={addVideo} disabled={loading} style={{marginTop: '10px'}}>
+                    {loading ? "Kaydediliyor..." : isEditing ? "Videoyu Güncelle" : "Videoyu Kaydet"}
+                  </button>
+              </div>
+            )}
+            
+            {activeSection === "shoot" && (
+              <div className="media-section">
+                  {/* Çekim Ekleme */}
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Çekim Başlık</label>
+                  <input
+                    type="text"
+                    value={formData.shootBaslik || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, shootBaslik: e.target.value })
+                    }
+                  />
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Çekim Açıklama</label>
+                  <input
+                    type="text"
+                    value={formData.shootAciklama || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, shootAciklama: e.target.value })
+                    }
+                  />
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Çekim Fotoğrafı</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setAchievementsFile(e.target.files[0])}
+                  />
+                  <button onClick={() => handleMediaUpload("shoot")} disabled={loading}>
+                    {loading ? "Yükleniyor..." : "Çekim Fotoğrafı Yükle"}
+                  </button>
+                  {formData.shootImageUrl && (
+                    <div style={{marginTop: '10px'}}>
+                      <img src={formData.shootImageUrl} alt="Preview" width="100" />
+                    </div>
+                  )}
+                  <button onClick={addShoot} disabled={loading} style={{marginTop: '10px'}}>
+                    {loading ? "Kaydediliyor..." : isEditing ? "Çekimi Güncelle" : "Çekimi Kaydet"}
+                  </button>
+              </div>
+            )}
+            
+            {activeSection === "portfolio" && (
+              <div className="media-section">
+                  {/* Portföy Yükleme */}
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Takım Adı</label>
+                  <input
+                    type="text"
+                    value={formData.portfolioTakim || ""}
+                    onChange={(e) =>
+                      setFormData({ ...formData, portfolioTakim: e.target.value })
+                    }
+                  />
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Portföy Görselleri (Maksimum 12)</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    key={formData.portfolioUrls?.length || 0}
+                    onChange={(e) => {
+                      const files = Array.from(e.target.files || []);
+                      console.log("📁 Seçilen dosya sayısı:", files.length);
+                      
+                      // Maksimum 12 dosya kontrolü
+                      if (files.length > 12) {
+                        alert("Maksimum 12 görsel seçebilirsiniz!");
+                        e.target.value = '';
+                        return;
+                      }
+                      
+                      // Önceki dosyaları temizle
+                      setLogosFile(null);
+                      setFormData(prev => ({ ...prev, portfolioUrls: [] }));
+                      
+                      // Yeni dosyaları set et
+                      setLogosFile(files);
+                      console.log("✅ LogosFile set edildi:", files.length);
+                    }}
+                  />
+                  <button onClick={handlePortfolioUpload} disabled={loading}>
+                    {loading ? "Yükleniyor..." : "12 Görseli Yükle"}
+                  </button>
+                  {formData.portfolioUrls && formData.portfolioUrls.length > 0 && (
+                    <div style={{marginTop: '10px', padding: '10px', background: '#f0f0f0', borderRadius: '5px'}}>
+                      <p><strong>✅ {formData.portfolioUrls.length} adet görsel yüklendi</strong></p>
+                      {/* Görsel önizlemeleri */}
+                      <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginTop: '10px'}}>
+                        {formData.portfolioUrls.slice(0, 12).map((url, idx) => (
+                          <img 
+                            key={idx} 
+                            src={url} 
+                            alt={`Portfolio ${idx + 1}`} 
+                            style={{width: '100%', height: '80px', objectFit: 'cover', borderRadius: '4px'}}
+                          />
+                        ))}
+                      </div>
+                      {formData.portfolioUrls.length === 12 && (
+                        <button 
+                          onClick={() => {
+                            setLogosFile(null);
+                            setFormData(prev => ({ ...prev, portfolioUrls: [] }));
+                          }}
+                          style={{marginTop: '10px', padding: '5px 10px', background: '#ff4444', color: 'white', border: 'none', borderRadius: '3px', cursor: 'pointer'}}
+                        >
+                          Temizle ve Yeniden Başla
+                        </button>
+                      )}
+                    </div>
+                  )}
+                  
+                  {/* Logo Yükleme */}
+                  {formData.portfolioLogo && (
+                    <div style={{marginTop: '20px', padding: '10px', background: '#e8f5e9', borderRadius: '5px'}}>
+                      <p><strong>Mevcut Logo:</strong></p>
+                      <img src={formData.portfolioLogo} alt="Logo" width="100" />
+                      <br />
+                      <button 
+                        onClick={async () => {
+                          if (!window.confirm("Logoyu silmek istediğinize emin misiniz?")) return;
+                          
+                          console.log("🗑️ Logo siliniyor");
+                          setFormData(prev => ({ ...prev, portfolioLogo: "" }));
+                          setLogoFile(null);
+                          
+                          // Eğer düzenleme modundaysa backend'i de güncelle
+                          if (isEditing && formData.id) {
+                            try {
+                              await axios.put(`${API_URL}/portfolio/${formData.id}`, {
+                                team: formData.portfolioTakim,
+                                imageUrl: formData.portfolioUrls.join(","),
+                                logo: ""
+                              });
+                              alert("Logo silindi ✅");
+                              
+                              // Listeyi yenile
+                              const res = await axios.get(`${API_URL}/portfolio`);
+                              setPortfolios(res.data);
+                            } catch (err) {
+                              console.error("Logo silme hatası:", err);
+                              alert("Logo silinirken hata oluştu ❌");
+                            }
+                          }
+                        }}
+                        style={{marginTop: '10px', padding: '5px 10px', background: '#ff4444', color: 'white', border: 'none', borderRadius: '3px', cursor: 'pointer'}}
+                      >
+                        Logoyu Sil
+                      </button>
+                    </div>
+                  )}
+                  <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Takım Logosu (isteğe bağlı)</label>
+                  <p style={{fontSize: '0.9rem', color: '#666', marginBottom: '5px'}}>
+                    {logoFile ? `✅ Seçilen: ${logoFile.name}` : "Yeni logo seçin (isteğe bağlı)"}
+                  </p>
+                  <div style={{display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px'}}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      key={formData.portfolioLogo || 'logo-input'}
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        console.log("📁 Logo dosyası seçildi:", file);
+                        if (file) {
+                          setLogoFile(file);
+                        }
+                      }}
+                    />
+                    <button
+                      onClick={async () => {
+                        if (!logoFile) {
+                          alert("Lütfen logo seçin");
+                          return;
+                        }
+                        
+                        try {
+                          console.log("🔹 Logo yükleniyor...");
+                          setLoading(true);
+                          
+                          const uploadedUrl = await handlePortfolioLogoUpload(logoFile);
+                          
+                          setFormData(prev => ({ ...prev, portfolioLogo: uploadedUrl }));
+                          setLogoFile(null);
+                          
+                          console.log("✅ Logo yüklendi:", uploadedUrl);
+                          alert("Logo yüklendi ✅");
+                        } catch (err) {
+                          console.error("Logo yükleme hatası:", err);
+                          alert("Logo yüklenirken hata oluştu ❌");
+                        } finally {
+                          setLoading(false);
+                        }
+                      }}
+                      disabled={!logoFile || loading}
+                      style={{
+                        padding: '8px 15px',
+                        background: logoFile ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#ccc',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: logoFile ? 'pointer' : 'not-allowed',
+                        opacity: logoFile ? 1 : 0.6
+                      }}
+                    >
+                      {loading ? "Yükleniyor..." : "Logoyu Yükle"}
+                    </button>
+                  </div>
+                  <button onClick={addPortfolio} disabled={loading} style={{marginTop: '10px'}}>
+                    {loading ? "Kaydediliyor..." : isEditing ? "Portföyü Güncelle" : "Portföyü Kaydet"}
+                  </button>
+              </div>
+            )}
+
+            {/* 🔹 DİĞER FORMLAR */}
+            {activeSection !== "video" && activeSection !== "shoot" && activeSection !== "portfolio" && (
           <>
             {activeSection === "sponsor" ? (
-              <input
-                type="text"
-                placeholder="Sponsor Adı"
-                value={formData.ad}
-                onChange={(e) =>
-                  setFormData({ ...formData, ad: e.target.value })
-                }
-              />
-            ) : activeSection === "crew" || activeSection === "esports" || activeSection === "influencer" ? (
               <>
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Sponsor Adı</label>
                 <input
                   type="text"
-                  placeholder="Ad Soyad"
+                  value={formData.ad}
+                  onChange={(e) =>
+                    setFormData({ ...formData, ad: e.target.value })
+                  }
+                />
+              </>
+            ) : activeSection === "crew" || activeSection === "esports" || activeSection === "influencer" ? (
+              <>
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Ad Soyad</label>
+                <input
+                  type="text"
                   value={formData.adSoyad}
                   onChange={(e) =>
                     setFormData({ ...formData, adSoyad: e.target.value })
                   }
                 />
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Ünvan</label>
                 <input
                   type="text"
-                  placeholder="Ünvan"
                   value={formData.unvan}
                   onChange={(e) =>
                     setFormData({ ...formData, unvan: e.target.value })
@@ -1446,17 +1677,17 @@ twitterUrl: item.twitter || "",
                       </div>
                     </div>
 
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Takım</label>
                     <input
                       type="text"
-                      placeholder="Takım"
                       value={formData.takim}
                       onChange={(e) =>
                         setFormData({ ...formData, takim: e.target.value })
                       }
                     />
                     
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Başarılar (örnek: Turnuva 1. - 2023)</label>
                     <textarea
-                      placeholder="Başarılar (örnek: Turnuva 1. - 2023)"
                       value={formData.basarilar}
                       onChange={(e) =>
                         setFormData({ ...formData, basarilar: e.target.value })
@@ -1468,50 +1699,50 @@ twitterUrl: item.twitter || "",
                 
                 {activeSection === "influencer" && (
                   <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>YouTube Takipçi</label>
                     <input
                       type="text"
-                      placeholder="YouTube Takipçi"
                       value={formData.youtubeTakipci}
                       onChange={(e) =>
                         setFormData({ ...formData, youtubeTakipci: e.target.value })
                       }
                     />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Twitter Takipçi</label>
                     <input
                       type="text"
-                      placeholder="Twitter Takipçi"
                       value={formData.twitterTakipci}
                       onChange={(e) =>
                         setFormData({ ...formData, twitterTakipci: e.target.value })
                       }
                     />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Instagram Takipçi</label>
                     <input
                       type="text"
-                      placeholder="Instagram Takipçi"
                       value={formData.instagramTakipci}
                       onChange={(e) =>
                         setFormData({ ...formData, instagramTakipci: e.target.value })
                       }
                     />
                     {/* EKSİK OLAN URL ALANLARI */}
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>YouTube URL</label>
                     <input
                       type="text"
-                      placeholder="YouTube URL"
                       value={formData.youtubeUrl}
                       onChange={(e) =>
                         setFormData({ ...formData, youtubeUrl: e.target.value })
                       }
                     />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Instagram URL</label>
                     <input
                       type="text"
-                      placeholder="Instagram URL"
                       value={formData.instagramUrl}
                       onChange={(e) =>
                         setFormData({ ...formData, instagramUrl: e.target.value })
                       }
                     />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Twitter URL</label>
                     <input
                       type="text"
-                      placeholder="Twitter URL"
                       value={formData.twitterUrl}
                       onChange={(e) =>
                         setFormData({ ...formData, twitterUrl: e.target.value })
@@ -1520,15 +1751,15 @@ twitterUrl: item.twitter || "",
                   </>
                 )}
                 
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Kısa Açıklama</label>
                 <textarea
-                  placeholder="Kısa Açıklama"
                   value={formData.aciklama}
                   onChange={(e) =>
                     setFormData({ ...formData, aciklama: e.target.value })
                   }
                 />
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Detaylı Açıklama</label>
                 <textarea
-                  placeholder="Detaylı Açıklama"
                   value={formData.detay}
                   onChange={(e) =>
                     setFormData({ ...formData, detay: e.target.value })
@@ -1536,35 +1767,37 @@ twitterUrl: item.twitter || "",
                   rows={5}
                 />
                 {activeSection === "crew" && (
-                  <input
-                    type="text"
-                    placeholder="Diller (örnek: 🇹🇷 🇬🇧 🇩🇪)"
-                    value={formData.diller}
-                    onChange={(e) =>
-                      setFormData({ ...formData, diller: e.target.value })
-                    }
-                  />
+                  <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Diller (örnek: 🇹🇷 🇬🇧 🇩🇪)</label>
+                    <input
+                      type="text"
+                      value={formData.diller}
+                      onChange={(e) =>
+                        setFormData({ ...formData, diller: e.target.value })
+                      }
+                    />
+                  </>
                 )}
                
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Instagram URL</label>
                 <input
                   type="text"
-                  placeholder="Instagram URL"
                   value={formData.instagram}
                   onChange={(e) =>
                     setFormData({ ...formData, instagram: e.target.value })
                   }
                 />
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>YouTube URL</label>
                 <input
                   type="text"
-                  placeholder="YouTube URL"
                   value={formData.youtube}
                   onChange={(e) =>
                     setFormData({ ...formData, youtube: e.target.value })
                   }
                 />
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>TikTok URL</label>
                 <input
                   type="text"
-                  placeholder="TikTok URL"
                   value={formData.tiktok}
                   onChange={(e) =>
                     setFormData({ ...formData, tiktok: e.target.value })
@@ -1573,9 +1806,9 @@ twitterUrl: item.twitter || "",
               </>
             ) : (
               <>
+                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Başlık</label>
                 <input
                   type="text"
-                  placeholder="Başlık"
                   value={formData.baslik}
                   onChange={(e) =>
                     setFormData({ ...formData, baslik: e.target.value })
@@ -1584,15 +1817,15 @@ twitterUrl: item.twitter || "",
 
                 {activeSection === "servis" && (
                   <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Özet</label>
                     <textarea
-                      placeholder="Özet"
                       value={formData.ozet}
                       onChange={(e) =>
                         setFormData({ ...formData, ozet: e.target.value })
                       }
                     />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Servis Detay (detay sayfasında gözükecek)</label>
                     <textarea
-                      placeholder="Servis Detay (detay sayfasında gözükecek)"
                       value={formData.detay}
                       onChange={(e) =>
                         setFormData({ ...formData, detay: e.target.value })
@@ -1604,16 +1837,16 @@ twitterUrl: item.twitter || "",
 
                 {activeSection === "etkinlik" && (
                   <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Kısa Açıklama (ana sayfada gözükecek)</label>
                     <textarea
-                      placeholder="Kısa Açıklama (ana sayfada gözükecek)"
                       value={formData.aciklama}
                       onChange={(e) =>
                         setFormData({ ...formData, aciklama: e.target.value })
                       }
                       rows={3}
                     />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Detaylı Açıklama (detay sayfasında gözükecek)</label>
                     <textarea
-                      placeholder="Detaylı Açıklama (detay sayfasında gözükecek)"
                       value={formData.detay}
                       onChange={(e) =>
                         setFormData({ ...formData, detay: e.target.value })
@@ -1625,16 +1858,16 @@ twitterUrl: item.twitter || "",
 
                 {activeSection === "haber" && (
                   <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Kısa Açıklama (ana sayfada gözükecek)</label>
                     <textarea
-                      placeholder="Kısa Açıklama (ana sayfada gözükecek)"
                       value={formData.aciklama}
                       onChange={(e) =>
                         setFormData({ ...formData, aciklama: e.target.value })
                       }
                       rows={3}
                     />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Detaylı Açıklama (Read More sayfasında gözükecek)</label>
                     <textarea
-                      placeholder="Detaylı Açıklama (Read More sayfasında gözükecek)"
                       value={formData.detay}
                       onChange={(e) =>
                         setFormData({ ...formData, detay: e.target.value })
@@ -1645,13 +1878,15 @@ twitterUrl: item.twitter || "",
                 )}
 
                 {activeSection === "altservis" && (
-                  <textarea
-                    placeholder="Açıklama"
-                    value={formData.aciklama}
-                    onChange={(e) =>
-                      setFormData({ ...formData, aciklama: e.target.value })
-                    }
-                  />
+                  <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Açıklama</label>
+                    <textarea
+                      value={formData.aciklama}
+                      onChange={(e) =>
+                        setFormData({ ...formData, aciklama: e.target.value })
+                      }
+                    />
+                  </>
                 )}
               </>
             )}
@@ -1682,11 +1917,13 @@ twitterUrl: item.twitter || "",
               )}
             </div>
 
-            <button onClick={handleAddOrUpdate}>
+            <button onClick={handleAddOrUpdate} className="primary-btn">
               {isEditing ? "Güncelle" : "Kaydet"}
             </button>
           </>
         )}
+          </div>
+        </div>
       </div>
     </div>
   );

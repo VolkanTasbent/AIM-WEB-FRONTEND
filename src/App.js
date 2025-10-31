@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
@@ -23,26 +23,25 @@ import InfluencerPage from "./pages/InfluencerPage.js";
 
 import MediaPage from "./pages/MediaPage";
 
+const AppContent = () => {
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith('/admin');
 
-
-
-function App() {
   return (
-    <Router>
-      <div className="app-container">
-        {/* 🔹 Üst Menü */}
-        <Navbar />
+    <div className="app-container">
+      {/* 🔹 Üst Menü - Admin sayfalarında gizle */}
+      {!isAdminPage && <Navbar />}
 
-        <main>
-          <Routes>
-            {/* 🌍 Kullanıcı anasayfası */}
-            <Route path="/" element={<Home />} />
+      <main>
+        <Routes>
+          {/* 🌍 Kullanıcı anasayfası */}
+          <Route path="/" element={<Home />} />
 
-            {/* 🔒 Admin Panel Girişi */}
-            <Route path="/admin-login" element={<AdminLogin />} />
+          {/* 🔒 Admin Panel Girişi */}
+          <Route path="/admin-login" element={<AdminLogin />} />
 
-            {/* 🧠 Admin Dashboard */}
-            <Route path="/admin" element={<AdminDashboard />} />
+          {/* 🧠 Admin Dashboard */}
+          <Route path="/admin" element={<AdminDashboard />} />
 
             {/* 🎉 Etkinlik, Haber, Servis detay sayfaları */}
             <Route path="/etkinlik/:id" element={<EtkinlikDetay />} />
@@ -67,9 +66,16 @@ function App() {
          </Routes>
         </main>
 
-        {/* 🔹 Alt Bilgi (Footer) */}
-        <Footer />
+        {/* 🔹 Alt Bilgi (Footer) - Admin sayfalarında gizle */}
+        {!isAdminPage && <Footer />}
       </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
