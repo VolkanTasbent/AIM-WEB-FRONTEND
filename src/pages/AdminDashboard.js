@@ -730,6 +730,10 @@ const AdminDashboard = () => {
     aciklama: item.aciklama || "",
     detay: item.detay || "",
     diller: item.diller || "",
+    linkedin: item.linkedin || "",
+    instagram: item.instagram || "",
+    youtube: item.youtube || "",
+    tiktok: item.tiktok || "",
     // 🔹 URL alanlarını backend'e uygun hale getirdik
    youtubeUrl: item.youtube || "",
 instagramUrl: item.instagram || "",
@@ -1751,21 +1755,64 @@ twitterUrl: item.twitter || "",
                   </>
                 )}
                 
-                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Kısa Açıklama</label>
-                <textarea
-                  value={formData.aciklama}
-                  onChange={(e) =>
-                    setFormData({ ...formData, aciklama: e.target.value })
-                  }
-                />
-                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Detaylı Açıklama</label>
-                <textarea
-                  value={formData.detay}
-                  onChange={(e) =>
-                    setFormData({ ...formData, detay: e.target.value })
-                  }
-                  rows={5}
-                />
+                {activeSection === "crew" ? (
+                  <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Detaylı Açıklama</label>
+                    <textarea
+                      value={formData.detay}
+                      onChange={(e) =>
+                        setFormData({ ...formData, detay: e.target.value })
+                      }
+                      rows={5}
+                    />
+                  </>
+                ) : activeSection === "esports" ? (
+                  <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Kısa Açıklama (Read More'a basınca gelen About)</label>
+                    <textarea
+                      value={formData.aciklama}
+                      onChange={(e) =>
+                        setFormData({ ...formData, aciklama: e.target.value })
+                      }
+                    />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Detaylı Açıklama (Teams'deki uzun açıklama)</label>
+                    <textarea
+                      value={formData.detay}
+                      onChange={(e) =>
+                        setFormData({ ...formData, detay: e.target.value })
+                      }
+                      rows={5}
+                    />
+                  </>
+                ) : activeSection === "influencer" ? (
+                  <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Kısa Açıklama</label>
+                    <textarea
+                      value={formData.aciklama}
+                      onChange={(e) =>
+                        setFormData({ ...formData, aciklama: e.target.value })
+                      }
+                    />
+                  </>
+                ) : (
+                  <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Kısa Açıklama</label>
+                    <textarea
+                      value={formData.aciklama}
+                      onChange={(e) =>
+                        setFormData({ ...formData, aciklama: e.target.value })
+                      }
+                    />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Detaylı Açıklama</label>
+                    <textarea
+                      value={formData.detay}
+                      onChange={(e) =>
+                        setFormData({ ...formData, detay: e.target.value })
+                      }
+                      rows={5}
+                    />
+                  </>
+                )}
                 {activeSection === "crew" && (
                   <>
                     <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Diller (örnek: 🇹🇷 🇬🇧 🇩🇪)</label>
@@ -1778,31 +1825,43 @@ twitterUrl: item.twitter || "",
                     />
                   </>
                 )}
-               
-                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Instagram URL</label>
-                <input
-                  type="text"
-                  value={formData.instagram}
-                  onChange={(e) =>
-                    setFormData({ ...formData, instagram: e.target.value })
-                  }
-                />
-                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>YouTube URL</label>
-                <input
-                  type="text"
-                  value={formData.youtube}
-                  onChange={(e) =>
-                    setFormData({ ...formData, youtube: e.target.value })
-                  }
-                />
-                <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>TikTok URL</label>
-                <input
-                  type="text"
-                  value={formData.tiktok}
-                  onChange={(e) =>
-                    setFormData({ ...formData, tiktok: e.target.value })
-                  }
-                />
+                
+                {activeSection === "crew" && (
+                  <>
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>LinkedIn URL</label>
+                    <input
+                      type="text"
+                      value={formData.linkedin}
+                      onChange={(e) =>
+                        setFormData({ ...formData, linkedin: e.target.value })
+                      }
+                    />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>Instagram URL</label>
+                    <input
+                      type="text"
+                      value={formData.instagram}
+                      onChange={(e) =>
+                        setFormData({ ...formData, instagram: e.target.value })
+                      }
+                    />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>YouTube URL</label>
+                    <input
+                      type="text"
+                      value={formData.youtube}
+                      onChange={(e) =>
+                        setFormData({ ...formData, youtube: e.target.value })
+                      }
+                    />
+                    <label style={{display: 'block', marginTop: '15px', marginBottom: '5px', fontWeight: '600', color: '#333'}}>TikTok URL</label>
+                    <input
+                      type="text"
+                      value={formData.tiktok}
+                      onChange={(e) =>
+                        setFormData({ ...formData, tiktok: e.target.value })
+                      }
+                    />
+                  </>
+                )}
               </>
             ) : (
               <>
