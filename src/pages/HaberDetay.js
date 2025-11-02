@@ -74,15 +74,9 @@ useEffect(() => {
           className="geri-btn"
           style={{
             marginTop: "30px",
-            background: "#e50914",
-            border: "none",
-            padding: "10px 25px",
-            color: "white",
-            borderRadius: "6px",
-            cursor: "pointer",
           }}
         >
-          ← Geri Dön
+          ←
         </button>
       </div>
     </div>

@@ -1404,6 +1404,15 @@ main {
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
 }
 
+.haber-detay-resim {
+  width: 100%;
+  max-width: 800px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
 .haber-detay-baslik {
   font-size: 2rem;
   font-weight: bold;
@@ -1419,6 +1428,33 @@ main {
   font-size: 1.1rem;
   color: #ddd;
   text-align: justify;
+}
+
+.haber-detay-icerik h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ff3b3b;
+  border-bottom: 2px solid #ff3b3b;
+  display: inline-block;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.haber-detay-container .geri-btn {
+  background: transparent;
+  border: 1px solid #e11b22;
+  color: #e11b22;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.haber-detay-container .geri-btn:hover {
+  background: #e11b22;
+  color: white;
 }
 
 .haber-loading, .haber-error {
