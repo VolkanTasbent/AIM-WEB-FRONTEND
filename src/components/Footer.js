@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaInstagram, FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa"; // 🔹 FA5'ten geliyor
 import "../App.css";
-import aimLogo from "../assets/aim-logo.png"; // kendi logonu buraya koy
+import aimLogo from "../AIM-P-RGB.png"; // kendi logonu buraya koy
 
 const Footer = () => {
   return (
