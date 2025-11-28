@@ -51,14 +51,13 @@ const Home = () => {
     (s) => s.baslik !== "UI/UX" && s.baslik !== "UIUX"
   );
 
-  const vitrinSirasi = ["Influencer", "Esports", "Media"];
-  const vitrinServisler = vitrinSirasi
-    .map((hedef) =>
-      temizServisler.find(
-        (srv) => srv.baslik?.toLowerCase() === hedef.toLowerCase()
-      )
-    )
-    .filter(Boolean);
+  const getServiceType = (title = "") => {
+    const normalized = title.toLowerCase();
+    if (normalized.includes("influ")) return "influencer";
+    if (normalized.includes("esport") || normalized.includes("esp")) return "esports";
+    if (normalized.includes("media") || normalized.includes("medya")) return "media";
+    return "";
+  };
 
   // 🔹 Hikaye slider otomatik geçiş
   useEffect(() => {
@@ -237,13 +236,11 @@ const Home = () => {
           <button className="services-btn prev" onClick={() => kaydir(-1)}>‹</button>
 
           <div className="services-wrapper" ref={sliderRef}>
-            {vitrinServisler.map((srv) => {
-              const dataType = srv.baslik?.toLowerCase() || "";
-              return (
+            {temizServisler.map((srv) => (
               <div
                 key={srv.id}
                 className="service-card"
-                data-type={dataType}
+                data-type={getServiceType(srv.baslik)}
               >
                 <img
                   src={srv.resimUrl || yedekResim}
@@ -258,8 +255,7 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-            );
-            })}
+            ))}
           </div>
 
           <button className="services-btn next" onClick={() => kaydir(1)}>›</button>
