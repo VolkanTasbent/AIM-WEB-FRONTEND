@@ -10,13 +10,15 @@ const ServisDetay = () => {
   const [servis, setServis] = useState(null);
   const navigate = useNavigate();
 
+  // Yedek resim path'i
+  const yedekResim = process.env.PUBLIC_URL + "/assets/AIM-bg.png";
+
   useEffect(() => {
     axios
       .get(`${API_URL}/servisler/${id}`)
       .then((res) => setServis(res.data))
       .catch((err) => console.error("Servis yüklenemedi:", err));
 
-    // Sayfa açıldığında en üste git
     window.scrollTo(0, 0);
   }, [id]);
 
@@ -28,7 +30,7 @@ const ServisDetay = () => {
     );
   }
 
-  // 🔹 Eğer servis adı Esports ise otomatik yönlendirme yap
+  // Yönlendirmeler
   if (servis.baslik && servis.baslik.toLowerCase() === "esports") {
     navigate("/esports");
     return null;
@@ -49,10 +51,10 @@ const ServisDetay = () => {
       {/* 🔹 Üstte Resim + Başlık */}
       <div className="servis-detay-header">
         <img
-          src={servis.resimUrl || "/assets/AIM-bg.png"}
+          src={servis.resimUrl || yedekResim}
           alt={servis.baslik}
           className="servis-detay-image"
-          onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+          onError={(e) => (e.target.src = yedekResim)}
         />
         <div className="servis-detay-overlay">
           <h1>{servis.baslik}</h1>

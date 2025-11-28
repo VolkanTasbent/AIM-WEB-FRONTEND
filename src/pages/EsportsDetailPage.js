@@ -12,6 +12,9 @@ const EsportsDetailPage = () => {
   const [player, setPlayer] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
 
+  // Yedek resim path'i
+  const yedekResim = process.env.PUBLIC_URL + "/assets/default-player.jpg";
+
   useEffect(() => {
     axios
       .get(`${API_URL}/esports/${id}`)
@@ -33,9 +36,10 @@ const EsportsDetailPage = () => {
           </button>
 
           <img
-            src={player.resimUrl || "/assets/default-player.jpg"}
+            src={player.resimUrl || yedekResim}
             alt={player.adSoyad}
             className="esports-detail-image"
+            onError={(e) => (e.target.src = yedekResim)}
           />
 
           <div className="esports-detail-overlay">
@@ -81,7 +85,7 @@ const EsportsDetailPage = () => {
               rgba(255, 0, 0, 0.25) 30%,
               rgba(255, 0, 0, 0.1) 60%,
               rgba(255, 0, 0, 0.05) 100%
-            ), url(${player.achievementsBgUrl || player.resimUrl})`,
+            ), url(${player.achievementsBgUrl || player.resimUrl || yedekResim})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -103,28 +107,26 @@ const EsportsDetailPage = () => {
               rgba(0, 0, 0, 0.4) 50%,
               rgba(0, 0, 0, 0.2) 80%,
               rgba(0, 0, 0, 0.1) 100%
-            ), url(${player.teamsBgUrl || player.resimUrl})`,
+            ), url(${player.teamsBgUrl || player.resimUrl || yedekResim})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          <h2>TEAMS
-            
-          </h2>
+          <h2>TEAMS</h2>
           {player.teamLogos && (
-  <div className="team-logos">
-    {(() => {
-      try {
-        return JSON.parse(player.teamLogos).map((logo, i) => (
-          <img key={i} src={logo} alt={`team-logo-${i}`} className="team-logo" />
-        ));
-      } catch (e) {
-        console.error("Logo JSON parse hatası:", e);
-        return <p>Logo yüklenemedi</p>;
-      }
-    })()}
-  </div>
-)}
+            <div className="team-logos">
+              {(() => {
+                try {
+                  return JSON.parse(player.teamLogos).map((logo, i) => (
+                    <img key={i} src={logo} alt={`team-logo-${i}`} className="team-logo" />
+                  ));
+                } catch (e) {
+                  console.error("Logo JSON parse hatası:", e);
+                  return <p>Logo yüklenemedi</p>;
+                }
+              })()}
+            </div>
+          )}
 
           <p>{player.detay}</p>
         </div>

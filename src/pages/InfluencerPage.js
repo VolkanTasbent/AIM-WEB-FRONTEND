@@ -8,6 +8,9 @@ const InfluencerPage = () => {
   const [expandedId, setExpandedId] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Yedek resim path'i
+  const yedekResim = process.env.PUBLIC_URL + "/assets/default-influencer.jpg";
+
   useEffect(() => {
     fetch(`${API_URL}/influencers`)
       .then((res) => res.json())
@@ -50,9 +53,10 @@ const InfluencerPage = () => {
               <div className="relative overflow-hidden rounded-lg">
                 {/* 📸 Fotoğraf */}
                 <img
-                  src={influencer.resimUrl || "/assets/default-influencer.jpg"}
+                  src={influencer.resimUrl || yedekResim}
                   alt={influencer.adSoyad}
                   className="w-full h-[500px] object-cover relative z-0"
+                  onError={(e) => (e.target.src = yedekResim)}
                 />
 
                 {/* 🟡 Sarı efekt */}
@@ -106,7 +110,7 @@ const InfluencerPage = () => {
                     </p>
                   </div>
 
-                   {/* 🎯 HİZALANMIŞ SOSYAL MEDYA SATIRLARI */}
+                  {/* 🎯 HİZALANMIŞ SOSYAL MEDYA SATIRLARI */}
                   <div className="space-y-4 mb-6">
                     {/* 🔴 YouTube */}
                     <a

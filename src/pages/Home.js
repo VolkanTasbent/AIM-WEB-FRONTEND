@@ -22,7 +22,6 @@ const Home = () => {
   const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
   const [aktifHaber, setAktifHaber] = useState(0);
   const [kartGenisligi, setKartGenisligi] = useState(0);
-  const [aktifSayfa, setAktifSayfa] = useState(0);
 
   const sliderRef = useRef(null);
   const haberSliderRef = useRef(null);
@@ -80,11 +79,11 @@ const Home = () => {
     const calculateCardWidth = () => {
       const width = window.innerWidth;
       if (width <= 768) {
-        return 100; // mobil: 1 kart
+        return 100;
       } else if (width <= 1024) {
-        return 50; // tablet: 2 kart
+        return 50;
       } else {
-        return 33.333; // desktop: 3 kart
+        return 33.333;
       }
     };
 
@@ -92,7 +91,6 @@ const Home = () => {
 
     const handleResize = () => {
       setKartGenisligi(calculateCardWidth());
-      // Ekran boyutu değiştiğinde slider'ı sıfırla
       setAktifHaber(0);
     };
 
@@ -111,7 +109,7 @@ const Home = () => {
     }
   };
 
-  // 🔹 Haber slider fonksiyonları - KESİN ÇÖZÜM
+  // 🔹 Haber slider fonksiyonları
   const nextHaberSlide = () => {
     const maxSlide = Math.max(0, haberler.length - getVisibleCardsCount());
     if (aktifHaber < maxSlide) {
@@ -138,8 +136,8 @@ const Home = () => {
     return Math.max(0, haberler.length - getVisibleCardsCount());
   };
 
-  // 🔹 Yedek resim (Cloudinary gelmezse)
-  const yedekResim = "/assets/AIM-bg.png";
+  // 🔹 Yedek resim path'ini düzelt
+  const yedekResim = process.env.PUBLIC_URL + "/assets/AIM-bg.png";
 
   return (
     <div id="home" className="home-page">
@@ -153,10 +151,10 @@ const Home = () => {
               className={`etkinlik-card ${index === aktifEtkinlik ? 'aktif' : ''}`}
             >
               <img
-                src={etk.resimUrl || "/assets/AIM-bg.png"}
+                src={etk.resimUrl || yedekResim}
                 alt={etk.baslik}
                 className="etkinlik-full-image"
-                onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+                onError={(e) => (e.target.src = yedekResim)}
               />
               <div className="etkinlik-overlay">
                 <h1>{etk.baslik}</h1>
@@ -290,12 +288,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 📰 HABERLER - DÜZELTİLMİŞ */}
+      {/* 📰 HABERLER */}
       <section className="haberler-section">
         <h2>Latest News</h2>
 
         <div className="haberler-slider-container">
-          {/* Sol ok */}
           <button
             className="slider-btn prev"
             onClick={prevHaberSlide}
@@ -304,9 +301,7 @@ const Home = () => {
             ‹
           </button>
 
-          {/* Slider Wrapper */}
           <div className="haberler-slider-wrapper">
-            {/* Slider - GRID YÖNTEMİ */}
             <div
               className="haberler-slider"
               ref={haberSliderRef}
@@ -317,10 +312,10 @@ const Home = () => {
               {haberler.map((hab, index) => (
                 <div key={hab.id} className="haber-card">
                   <img
-                    src={hab.resimUrl || "/assets/AIM-bg.png"}
+                    src={hab.resimUrl || yedekResim}
                     alt={hab.baslik}
                     className="haber-image"
-                    onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+                    onError={(e) => (e.target.src = yedekResim)}
                   />
                   <div className="kirmizi-cizgi"></div> 
                   <h3>{hab.baslik}</h3>
@@ -339,7 +334,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Sağ ok */}
           <button
             className="slider-btn next"
             onClick={nextHaberSlide}

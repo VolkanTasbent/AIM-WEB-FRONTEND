@@ -11,11 +11,14 @@ const HaberDetay = () => {
   const [haber, setHaber] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Yedek resim path'i
+  const yedekResim = process.env.PUBLIC_URL + "/assets/AIM-bg.png";
+
   useEffect(() => {
     axios
       .get(`${API_URL}/haberler/${id}`)
       .then((r) => {
-        console.log("Haber Detay Verisi:", r.data); // 👀 DEBUG
+        console.log("Haber Detay Verisi:", r.data);
         setHaber(r.data);
       })
       .catch((err) => console.error("Haber yüklenemedi:", err))
@@ -23,10 +26,9 @@ const HaberDetay = () => {
   }, [id]);
 
   useEffect(() => {
-    // Sayfa her render olduğunda en üste kaydırır
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // yumuşak kayma
+      behavior: "smooth",
     });
   }, []);
 
@@ -43,10 +45,10 @@ const HaberDetay = () => {
   return (
     <div className="haber-detay-container">
       <img
-        src={haber.resimUrl || "/assets/AIM-bg.png"}
+        src={haber.resimUrl || yedekResim}
         alt={haber.baslik}
         className="haber-detay-resim"
-        onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
+        onError={(e) => (e.target.src = yedekResim)}
       />
 
       <div className="haber-detay-icerik">
