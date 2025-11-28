@@ -11,7 +11,8 @@ import {
 import Popup from "../components/Popup";
 import Footer from "../components/Footer";
 import "../App.css";
-import servicesIcon from "/Users/volkantasbent/Desktop/aimagency-frontend/src/assets/services.png";
+ import servicesIcon from "../assets/services.png";
+
 
 const Home = () => {
   const [etkinlikler, setEtkinlikler] = useState([]);
