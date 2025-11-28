@@ -10,16 +10,15 @@ const EtkinlikDetay = () => {
   const [etkinlik, setEtkinlik] = useState(null);
   const navigate = useNavigate();
 
-useEffect(() => {
-  axios
-    .get(`${API_URL}/etkinlikler/${id}`)
-    .then((res) => {
-      console.log("ETKİNLİK VERİ:", res.data); // 🟢 Burası kritik
-      setEtkinlik(res.data);
-    })
-    .catch((err) => console.error("Etkinlik yüklenemedi:", err));
-}, [id]);
-
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/etkinlikler/${id}`)
+      .then((res) => {
+        console.log("ETKİNLİK VERİ:", res.data); // 🟢 Burası kritik
+        setEtkinlik(res.data);
+      })
+      .catch((err) => console.error("Etkinlik yüklenemedi:", err));
+  }, [id]);
 
   if (!etkinlik) {
     return (

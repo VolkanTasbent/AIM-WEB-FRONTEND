@@ -13,7 +13,6 @@ const HaberDetay = () => {
 
   useEffect(() => {
     axios
-    
       .get(`${API_URL}/haberler/${id}`)
       .then((r) => {
         console.log("Haber Detay Verisi:", r.data); // 👀 DEBUG
@@ -22,13 +21,15 @@ const HaberDetay = () => {
       .catch((err) => console.error("Haber yüklenemedi:", err))
       .finally(() => setLoading(false));
   }, [id]);
-useEffect(() => {
-  // Sayfa her render olduğunda en üste kaydırır
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth", // yumuşak kayma
-  });
-}, []);
+
+  useEffect(() => {
+    // Sayfa her render olduğunda en üste kaydırır
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // yumuşak kayma
+    });
+  }, []);
+
   if (loading)
     return <p style={{ color: "white", textAlign: "center" }}>Yükleniyor...</p>;
 

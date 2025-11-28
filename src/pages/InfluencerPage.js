@@ -36,8 +36,8 @@ const InfluencerPage = () => {
   return (
     <div className="min-h-screen bg-black text-white py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-4">Influencerlarımız</h1>
-        <p className="text-center text-gray-400 mb-16 text-lg">
+        <h1 className="text-5xl font-bold text-center mb-4" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700'}}>Influencerlarımız</h1>
+        <p className="text-center text-gray-400 mb-16 text-lg" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '400'}}>
           Sosyal medya dünyasında markamızı temsil eden yüzlerle tanışın.
         </p>
 
@@ -60,10 +60,10 @@ const InfluencerPage = () => {
 
                 {/* 📍 İsim + unvan */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-center z-20">
-                  <p className="text-white text-sm font-medium mb-2">
+                  <p className="text-white text-sm font-medium mb-2" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '400'}}>
                     {influencer.unvan}
                   </p>
-                  <h2 className="text-white text-6xl font-bold tracking-wider">
+                  <h2 className="text-white text-6xl font-bold tracking-wider" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700'}}>
                     {influencer.adSoyad}
                   </h2>
 
@@ -72,8 +72,8 @@ const InfluencerPage = () => {
                     <button
                       onClick={() => toggleExpand(influencer.id)}
                       style={{
-                        background: "#ffffff",
-                        color: "#c9a84a",
+                        background: "#d3bf76",
+                        color: "white",
                         border: "none",
                         padding: "12px 35px",
                         borderRadius: "25px",
@@ -82,6 +82,7 @@ const InfluencerPage = () => {
                         marginTop: "20px",
                         cursor: "pointer",
                         display: "inline-block",
+                        fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif'
                       }}
                       className="read-more-btn"
                     >
@@ -100,7 +101,7 @@ const InfluencerPage = () => {
                   }}
                 >
                   <div className="text-center mb-6">
-                    <p className="text-white/90 text-base leading-relaxed">
+                    <p className="text-white/90 text-base leading-relaxed" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '400'}}>
                       {influencer.aciklama}
                     </p>
                   </div>
@@ -119,7 +120,7 @@ const InfluencerPage = () => {
                       <FaYoutube className="w-8 h-8 flex-shrink-0" />
                       <span
                         className="text-2xl font-bold inline-block text-center"
-                        style={{ minWidth: "140px" }}
+                        style={{ minWidth: "140px", fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700' }}
                       >
                         {influencer.youtubeTakipci || "—"} Abone
                       </span>
@@ -137,7 +138,7 @@ const InfluencerPage = () => {
                       <FaTwitter className="w-8 h-8 flex-shrink-0" />
                       <span
                         className="text-2xl font-bold inline-block text-center"
-                        style={{ minWidth: "140px" }}
+                        style={{ minWidth: "140px", fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700' }}
                       >
                         {influencer.twitterTakipci || "—"} Takipçi
                       </span>
@@ -155,7 +156,7 @@ const InfluencerPage = () => {
                       <FaInstagram className="w-8 h-8 flex-shrink-0" />
                       <span
                         className="text-2xl font-bold inline-block text-center"
-                        style={{ minWidth: "140px" }}
+                        style={{ minWidth: "140px", fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700' }}
                       >
                         {influencer.instagramTakipci || "—"} Takipçi
                       </span>
@@ -166,8 +167,8 @@ const InfluencerPage = () => {
                     onClick={() => toggleExpand(influencer.id)}
                     style={{
                       width: "100%",
-                      background: "#ffffff",
-                      color: "#c9a84a",
+                      background: "#d3bf76",
+                      color: "white",
                       border: "none",
                       padding: "14px",
                       borderRadius: "25px",
@@ -176,6 +177,7 @@ const InfluencerPage = () => {
                       cursor: "pointer",
                       zIndex: 50,
                       position: "relative",
+                      fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif'
                     }}
                   >
                     Kapat

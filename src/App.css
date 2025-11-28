@@ -7640,3 +7640,149 @@ button {
 .influencer-card .flex.items-center.gap-4.text-white {
   text-decoration: none !important;
 }
+/* Font Imports - Neue Haas Grotesk Display Pro */
+@import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
+
+/* Genel renk değişkenleri */
+:root {
+  --ana-renk: #d3bf76;
+  --esports-renk: #fc0404;
+  --media-renk: #8a00ff;
+  --beyaz: #ffffff;
+  --siyah: #000000;
+}
+
+/* BAŞLIKLAR - Neue Haas Grotesk Display Pro Bold */
+h1, h2, h3, h4, h5, h6,
+.ourcrew-title,
+.media-header h1,
+.section h2,
+.hero-section h1,
+.services-section h2,
+.haberler-section h2,
+.alt-servisler-section h2,
+.navbar a,
+.service-card-content h3,
+.haber-card h3,
+.alt-servis-card h3,
+.etkinlik-overlay h1,
+.servis-detay-overlay h1,
+.etkinlik-detay-content h1,
+.haber-detay-icerik h1 {
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* ALT YAZILAR - Neue Haas Grotesk Display Pro Roman */
+p,
+.media-header p,
+.section p,
+.service-card-content p,
+.haber-card p,
+.alt-servis-card p,
+.etkinlik-overlay p,
+.servis-detay-content p,
+.etkinlik-detay-content p,
+.haber-detay-icerik p {
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* READ MORE BUTONLARI - #d3bf76 rengi */
+button, 
+.read-more-btn, 
+.servis-detay-btn,
+.etkinlik-overlay button,
+.service-card-content button,
+.haber-card button,
+.geri-don-btn,
+.esports-read-btn {
+  background-color: #d3bf76 !important;
+  color: white !important;
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif !important;
+  font-weight: 700 !important;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover, 
+.read-more-btn:hover, 
+.servis-detay-btn:hover {
+  background-color: #c0a85f !important;
+  transform: translateY(-2px);
+}
+
+/* NAVBAR - Sadece renk değişimi, aşağı kaydırma yok */
+.navbar a {
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #d3bf76 !important;
+  /* Aşağı kaydırma efekti KALDIRILDI */
+}
+
+/* SERVICES BAŞLIK İKONLU */
+.services-section h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.services-section h2 i {
+  color: #d3bf76;
+  font-size: 1.5em;
+}
+
+/* OUR COMPREHENSIVE RANGE OF SERVICES renkleri */
+.alt-servis-card h3 {
+  color: #d3bf76 !important;
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+  font-weight: 700;
+}
+
+/* DETAY SAYFALARI ARKA PLAN */
+.etkinlik-detay-container,
+.haber-detay-container,
+.servis-detay-container {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url('/assets/AIM-bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.etkinlik-detay-content,
+.haber-detay-icerik,
+.servis-detay-content {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1200px;
+  border: 1px solid #333;
+}
+
+/* Media sayfası başlık ortalama */
+.media-container .section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+/* Diğer mevcut stiller aynı kalacak */
+/* ... mevcut CSS içeriği ... */

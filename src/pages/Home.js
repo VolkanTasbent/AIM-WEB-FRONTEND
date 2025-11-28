@@ -24,7 +24,6 @@ const Home = () => {
   const [kartGenisligi, setKartGenisligi] = useState(0);
   const [aktifSayfa, setAktifSayfa] = useState(0);
 
-
   const sliderRef = useRef(null);
   const haberSliderRef = useRef(null);
   const hikayeSliderRef = useRef(null);
@@ -39,7 +38,14 @@ const Home = () => {
   useEffect(() => {
     getEtkinlikler().then((r) => setEtkinlikler(r.data));
     getSponsorlar().then((r) => setSponsorlar(r.data));
-    getServisler().then((r) => setServisler(r.data));
+    getServisler().then((r) => {
+      // UI/UX servisini filtrele - sadece Influencers, Esports, Media göster
+      const filteredServisler = r.data.filter(servis => 
+        servis.baslik && 
+        ['influencers', 'esports', 'media'].includes(servis.baslik.toLowerCase())
+      );
+      setServisler(filteredServisler);
+    });
     getHaberler().then((r) => setHaberler(r.data));
     getAyarlar().then((r) => setAyarlar(r.data));
     getAltServisler().then((r) => setAltServisler(r.data));
@@ -95,16 +101,15 @@ const Home = () => {
   }, []);
 
   // 🔹 Services kaydırma
-const kaydir = (yon) => {
-  if (sliderRef.current) {
-    const containerWidth = sliderRef.current.offsetWidth;
-    sliderRef.current.scrollBy({
-      left: yon * containerWidth,
-      behavior: "smooth",
-    });
-  }
-};
-
+  const kaydir = (yon) => {
+    if (sliderRef.current) {
+      const containerWidth = sliderRef.current.offsetWidth;
+      sliderRef.current.scrollBy({
+        left: yon * containerWidth,
+        behavior: "smooth",
+      });
+    }
+  };
 
   // 🔹 Haber slider fonksiyonları - KESİN ÇÖZÜM
   const nextHaberSlide = () => {
@@ -229,7 +234,9 @@ const kaydir = (yon) => {
 
       {/* 💼 SERVICES */}
       <section id="services" className="services-section">
-        <h2>Services</h2>
+        <h2>
+          <i className="fas fa-cogs"></i> Services
+        </h2>
         <div className="services-slider">
           <button className="services-btn prev" onClick={() => kaydir(-1)}>
             ‹
@@ -237,18 +244,18 @@ const kaydir = (yon) => {
 
           <div className="services-wrapper" ref={sliderRef}>
             {servisler.map((srv) => (
-            <div key={srv.id} className="service-card">
-  <img
-    src={srv.resimUrl || yedekResim}
-    alt="servis"
-    onError={(e) => (e.target.src = yedekResim)}
-  />
-  <div className="service-card-content">
-    <h3>{srv.baslik}</h3>
-    <p>{srv.ozet}</p>
-    <button onClick={() => navigate(`/servis/${srv.id}`)}>Read More</button>
-  </div>
-</div>
+              <div key={srv.id} className="service-card">
+                <img
+                  src={srv.resimUrl || yedekResim}
+                  alt="servis"
+                  onError={(e) => (e.target.src = yedekResim)}
+                />
+                <div className="service-card-content">
+                  <h3>{srv.baslik}</h3>
+                  <p>{srv.ozet}</p>
+                  <button onClick={() => navigate(`/servis/${srv.id}`)}>Read More</button>
+                </div>
+              </div>
             ))}
           </div>
 
@@ -278,8 +285,6 @@ const kaydir = (yon) => {
               {/* 🔹 Başlık ve Açıklama */}
               <h3>{as.baslik}</h3>
               <p>{as.aciklama}</p>
-
-              {/* 🔹 Popup butonu */}
             </div>
           ))}
         </div>
@@ -313,7 +318,6 @@ const kaydir = (yon) => {
                 <div key={hab.id} className="haber-card">
                   <img
                     src={hab.resimUrl || "/assets/AIM-bg.png"}
-                    
                     alt={hab.baslik}
                     className="haber-image"
                     onError={(e) => (e.target.src = "/assets/AIM-bg.png")}

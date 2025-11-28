@@ -35,13 +35,15 @@ const ServisDetay = () => {
   }
   
   if (servis.baslik && servis.baslik.toLowerCase() === "influencers") {
-  navigate("/services/influencers");
-  return null;
-}
-if (servis.baslik && servis.baslik.toLowerCase() === "media") {
-  navigate("/services/media");
-  return null;
-}
+    navigate("/services/influencers");
+    return null;
+  }
+  
+  if (servis.baslik && servis.baslik.toLowerCase() === "media") {
+    navigate("/services/media");
+    return null;
+  }
+
   return (
     <div className="servis-detay-container">
       {/* 🔹 Üstte Resim + Başlık */}
