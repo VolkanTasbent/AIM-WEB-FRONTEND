@@ -32,7 +32,8 @@ useEffect(() => {
   return (
     <div className="etkinlik-detay-container">
       {/* 🔹 Üstte Resim */}
-      <div className="etkinlik-detay-header">
+      <div className="etkinlik-detay-header detay-header-gradient">
+
         <img
           src={etkinlik.resimUrl || "/assets/AIM-bg.png"}
           alt={etkinlik.baslik}

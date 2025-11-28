@@ -27,10 +27,14 @@
 
 /* 🎞 Vlogs and Films */
 .section h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2.4rem;
+  margin: 50px 0 25px 0;
   color: #fff;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
 }
+
 .section p {
   color: #aaa;
   margin-bottom: 20px;
@@ -361,4 +365,28 @@
 }
 .close-btn:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+.video-carousel-container {
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+.shoot-carousel-container {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+.portfolio-grid-4x3 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+  width: 100%;
+}
+.portfolio-grid-4x3 img {
+  border-radius: 10px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.portfolio-grid-4x3 img:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
 }
