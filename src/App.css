@@ -1,54 +1,96 @@
+@import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
+
 :root {
   --primary: #d3bf76;
+  --font-heading: "Neue Haas Grotesk Display Pro", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Neue Haas Grotesk Display Pro", "Helvetica Neue", Arial, sans-serif;
 }
+
 body {
   margin: 0;
   padding: 0;
   background: url("./assets/AIM-bg.png") no-repeat center center fixed;
   background-size: cover;
-  color: white;
-  font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 400;
   overflow-x: hidden;
+  letter-spacing: 0.2px;
 }
 
-/* 🔹 Navbar */
+h1,
+h2,
+h3,
+h4,
+h5,
+.title,
+.section-title,
+.nav-item {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+p,
+span,
+small,
+label,
+input,
+textarea,
+.description,
+.text,
+.subtitle {
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .navbar {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
   position: fixed;
   top: 0;
-  right: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background: linear-gradient(90deg, #000, #111, #200);
-  padding: 15px 60px;
-  z-index: 100;
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.35));
+  backdrop-filter: blur(14px);
+  z-index: 999;
+}
+
+.nav-logo img {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
+}
+
+.nav-logo img:hover {
+  opacity: 0.8;
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
+  gap: 35px;
+  align-items: center;
 }
 
 .nav-item {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  font-size: 1.05rem;
-  transition: color 0.3s ease;
+  color: var(--primary);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  transition: color 0.25s ease;
 }
 
-.nav-item:hover {
-  color: #ffcc00;
-}
-
-/* Aktif sayfa */
+.nav-item:hover,
 .nav-item.active {
-  color: #000;
-  background-color: #fff;
-  border-radius: 25px;
-  padding: 8px 20px;
+  color: #fff !important;
 }
 
 /* 🔹 Footer */
@@ -78,6 +120,7 @@ main {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* 🔹 Etkinlik kısmı */
@@ -571,7 +614,10 @@ main {
 .alt-servisler-section h2 {
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
 }
 
 .alt-servisler-section p.section-desc {
@@ -612,15 +658,17 @@ main {
 
 .alt-servis-card h3 {
   font-size: 20px;
-  font-weight: 600;
-  color: #ff3c3c;
+  font-weight: 700;
+  color: var(--primary);
   margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .alt-servis-card p {
-  color: #e0e0e0;
+  color: #dcdcdc;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   text-align: center;
 }
 
@@ -7761,27 +7809,30 @@ button,
   background: var(--primary) !important;
   color: #fff !important;
   border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+  border-radius: 10px;
+  padding: 10px 22px;
   font-weight: 700;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 button:hover,
-.read-more:hover {
+.read-more:hover,
+.esports-read-btn:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
-.service-card[data-type="Influencer"] h3 {
+.service-card[data-type="influencer"] h3 {
   color: #d3bf76 !important;
 }
 
-.service-card[data-type="Esports"] h3 {
+.service-card[data-type="esports"] h3 {
   color: #fc0404 !important;
 }
 
-.service-card[data-type="Media"] h3 {
+.service-card[data-type="media"] h3 {
   color: #8a00ff !important;
 }
 .services-title {
@@ -7831,6 +7882,30 @@ button:hover,
   position: relative;
   z-index: 2;
 }
+
+.home-hero-logo {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  z-index: 3;
+}
+
+.home-hero-logo img {
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 768px) {
+  .home-hero-logo {
+    top: 20px;
+    left: 20px;
+  }
+
+  .home-hero-logo img {
+    width: 110px;
+  }
+}
 .service-card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -7863,12 +7938,17 @@ button:hover,
 .etkinlik-detay-container,
 .haber-detay-container,
 .esports-detail-container,
+.influencer-detail-container,
+.crew-detail-container,
 .influencer-card .expanded,
 .crew-card.expanded .crew-details {
-  background: rgba(0,0,0,0.75) !important;
-  backdrop-filter: blur(6px);
-  padding-top: 120px;
+  background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.8)),
+    url("./assets/AIM-bg.png") center/cover fixed !important;
+  backdrop-filter: blur(8px);
+  padding-top: 110px;
   min-height: 100vh;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
 }
 .custom-footer {
   background: #000; /* siyah premium footer */
@@ -7957,10 +8037,6 @@ p, span, small,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
-button {
-  border-radius: 10px !important;
-}
-
 .service-card,
 .haber-card,
 .crew-card {
@@ -7971,19 +8047,7 @@ button {
 img {
   border-radius: 10px;
 }
-/* 🔥 Tüm detay sayfalar için premium dark overlay */
-.detay-sayfa,
-.servis-detay-container,
-.etkinlik-detay-container,
-.haber-detay-container,
-.esports-detail-container,
-.influencer-detail-container,
-.crew-detail-container {
-  background: rgba(0, 0, 0, 0.75) !important;
-  backdrop-filter: blur(8px);
-  min-height: 100vh;
-  padding-top: 100px;
-}
+/* 🔥 Tekrarlanan overlay stilleri üstte birleşik olarak güncellendi */
 .detay-header-gradient {
   position: relative;
 }
@@ -8078,20 +8142,7 @@ section {
     padding: 40px 0;
   }
 }
-button {
-  background: #d3bf76 !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 10px !important;
-  padding: 10px 20px !important;
-  font-weight: 700 !important;
-  cursor: pointer;
-  transition: opacity .2s ease;
-}
-
-button:hover {
-  opacity: 0.85;
-}
+/* (duplicate global button styles consolidated above) */
 .card,
 .haber-card,
 .service-card,

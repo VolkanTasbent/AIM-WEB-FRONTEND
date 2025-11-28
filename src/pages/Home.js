@@ -11,6 +11,8 @@ import {
 import Popup from "../components/Popup";
 import Footer from "../components/Footer";
 import "../App.css";
+import servicesIcon from "../assets/services-icon.svg";
+import aimMark from "../assets/aim-logo.png";
 
 const Home = () => {
   const [etkinlikler, setEtkinlikler] = useState([]);
@@ -48,6 +50,15 @@ const Home = () => {
   const temizServisler = servisler.filter(
     (s) => s.baslik !== "UI/UX" && s.baslik !== "UIUX"
   );
+
+  const vitrinSirasi = ["Influencer", "Esports", "Media"];
+  const vitrinServisler = vitrinSirasi
+    .map((hedef) =>
+      temizServisler.find(
+        (srv) => srv.baslik?.toLowerCase() === hedef.toLowerCase()
+      )
+    )
+    .filter(Boolean);
 
   // 🔹 Hikaye slider otomatik geçiş
   useEffect(() => {
@@ -131,6 +142,9 @@ const Home = () => {
 
       {/* 🏁 ETKİNLİKLER - HİKAYE TARZI SLIDER */}
       <section id="hero" className="hero-section hikaye-style">
+        <div className="home-hero-logo">
+          <img src={aimMark} alt="AIM Logo" />
+        </div>
         <div className="etkinlik-horizontal-scroll" ref={hikayeSliderRef}>
           {etkinlikler.map((etk, index) => (
             <div
@@ -215,21 +229,21 @@ const Home = () => {
 
       {/* 💼 SERVICES */}
       <section id="services" className="services-section">
-       <h2 className="services-title">
-  <img src="/assets/services-icon.svg" alt="icon" className="services-icon" />
-  Services
-</h2>
-
-
+        <h2 className="services-title">
+          <img src={servicesIcon} alt="Services icon" className="services-icon" />
+          Services
+        </h2>
         <div className="services-slider">
           <button className="services-btn prev" onClick={() => kaydir(-1)}>‹</button>
 
           <div className="services-wrapper" ref={sliderRef}>
-            {temizServisler.map((srv) => (
+            {vitrinServisler.map((srv) => {
+              const dataType = srv.baslik?.toLowerCase() || "";
+              return (
               <div
                 key={srv.id}
                 className="service-card"
-                data-type={srv.baslik}
+                data-type={dataType}
               >
                 <img
                   src={srv.resimUrl || yedekResim}
@@ -244,7 +258,8 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
 
           <button className="services-btn next" onClick={() => kaydir(1)}>›</button>
