@@ -12,7 +12,6 @@ import Popup from "../components/Popup";
 import Footer from "../components/Footer";
 import "../App.css";
 import servicesIcon from "../assets/services-icon.svg";
-import aimMark from "../assets/aim-logo.png";
 
 const Home = () => {
   const [etkinlikler, setEtkinlikler] = useState([]);
@@ -141,9 +140,6 @@ const Home = () => {
 
       {/* 🏁 ETKİNLİKLER - HİKAYE TARZI SLIDER */}
       <section id="hero" className="hero-section hikaye-style">
-        <div className="home-hero-logo">
-          <img src={aimMark} alt="AIM Logo" />
-        </div>
         <div className="etkinlik-horizontal-scroll" ref={hikayeSliderRef}>
           {etkinlikler.map((etk, index) => (
             <div

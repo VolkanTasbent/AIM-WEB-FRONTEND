@@ -1743,7 +1743,8 @@ main {
 .ourcrew-section {
   min-height: 100vh;
   background: radial-gradient(circle at top left, #000000, #300000);
-  padding: 150px 0 80px;
+  padding: 160px 40px 80px;
+  box-sizing: border-box;
   text-align: center;
   color: #fff;
   display: flex;
@@ -1756,7 +1757,12 @@ main {
   font-weight: 700;
   margin: 0 auto 60px;
   text-align: center;
-  width: 100%;
+  display: inline-block;
+  padding: 0 40px 10px;
+  border-bottom: 2px solid var(--primary);
+  letter-spacing: 4px;
+  position: relative;
+  z-index: 2;
 }
 
 /* 🔹 Grid */
@@ -7888,29 +7894,6 @@ button:hover,
   z-index: 2;
 }
 
-.home-hero-logo {
-  position: absolute;
-  top: 30px;
-  left: 40px;
-  z-index: 3;
-}
-
-.home-hero-logo img {
-  width: 140px;
-  height: auto;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
-}
-
-@media (max-width: 768px) {
-  .home-hero-logo {
-    top: 20px;
-    left: 20px;
-  }
-
-  .home-hero-logo img {
-    width: 110px;
-  }
-}
 .service-card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
