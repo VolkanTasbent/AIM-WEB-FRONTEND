@@ -12,10 +12,6 @@ export default function MediaPage() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0); 
   const [currentShootIndex, setCurrentShootIndex] = useState(0);
 
-  // Yedek resim path'i
-  const yedekResim = process.env.PUBLIC_URL + "/assets/AIM-bg.png";
-  const placeholderResim = process.env.PUBLIC_URL + "/placeholder.jpg";
-
   useEffect(() => {
     axios
       .get(`${API_BASE}/videos`)
@@ -68,11 +64,9 @@ export default function MediaPage() {
                 src={
                   videos[currentVideoIndex].videoImageUrl ||
                   videos[currentVideoIndex].imageUrl ||
-                  videos[currentVideoIndex].thumbnailUrl ||
-                  yedekResim
+                  videos[currentVideoIndex].thumbnailUrl
                 }
                 alt={videos[currentVideoIndex].title}
-                onError={(e) => (e.target.src = yedekResim)}
               />
 
               {videos[currentVideoIndex].videoUrl && (
@@ -152,11 +146,9 @@ export default function MediaPage() {
               <img
                 src={
                   shoots[currentShootIndex].shootImageUrl ||
-                  shoots[currentShootIndex].imageUrl ||
-                  yedekResim
+                  shoots[currentShootIndex].imageUrl
                 }
                 alt={shoots[currentShootIndex].title}
-                onError={(e) => (e.target.src = yedekResim)}
               />
               <div className="shoot-overlay">
                 <h3>{shoots[currentShootIndex].title}</h3>
@@ -240,7 +232,6 @@ export default function MediaPage() {
                             src={p.logo}
                             alt={`${p.team} Logo`}
                             className="team-logo-img"
-                            onError={(e) => (e.target.style.display = "none")}
                           />
                         ) : (
                           <h3 className="team-name">{p.team}</h3>
@@ -261,7 +252,7 @@ export default function MediaPage() {
                                 console.error(
                                   `❌ Görsel yüklenemedi: ${img.trim()}`
                                 );
-                                e.target.src = placeholderResim;
+                                e.target.src = "/placeholder.jpg";
                               }}
                             />
                           </div>
@@ -286,9 +277,6 @@ export default function MediaPage() {
               src={selectedImage}
               alt="Expanded"
               className="modal-img"
-              onError={(e) => {
-                e.target.src = placeholderResim;
-              }}
             />
           </div>
         )}

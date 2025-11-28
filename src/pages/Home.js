@@ -22,6 +22,8 @@ const Home = () => {
   const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
   const [aktifHaber, setAktifHaber] = useState(0);
   const [kartGenisligi, setKartGenisligi] = useState(0);
+  const [aktifSayfa, setAktifSayfa] = useState(0);
+
 
   const sliderRef = useRef(null);
   const haberSliderRef = useRef(null);
@@ -37,14 +39,7 @@ const Home = () => {
   useEffect(() => {
     getEtkinlikler().then((r) => setEtkinlikler(r.data));
     getSponsorlar().then((r) => setSponsorlar(r.data));
-    getServisler().then((r) => {
-      // UI/UX servisini filtrele - sadece Influencers, Esports, Media göster
-      const filteredServisler = r.data.filter(servis => 
-        servis.baslik && 
-        ['influencers', 'esports', 'media'].includes(servis.baslik.toLowerCase())
-      );
-      setServisler(filteredServisler);
-    });
+    getServisler().then((r) => setServisler(r.data));
     getHaberler().then((r) => setHaberler(r.data));
     getAyarlar().then((r) => setAyarlar(r.data));
     getAltServisler().then((r) => setAltServisler(r.data));
@@ -79,11 +74,11 @@ const Home = () => {
     const calculateCardWidth = () => {
       const width = window.innerWidth;
       if (width <= 768) {
-        return 100;
+        return 100; // mobil: 1 kart
       } else if (width <= 1024) {
-        return 50;
+        return 50; // tablet: 2 kart
       } else {
-        return 33.333;
+        return 33.333; // desktop: 3 kart
       }
     };
 
@@ -91,6 +86,7 @@ const Home = () => {
 
     const handleResize = () => {
       setKartGenisligi(calculateCardWidth());
+      // Ekran boyutu değiştiğinde slider'ı sıfırla
       setAktifHaber(0);
     };
 
@@ -99,17 +95,18 @@ const Home = () => {
   }, []);
 
   // 🔹 Services kaydırma
-  const kaydir = (yon) => {
-    if (sliderRef.current) {
-      const containerWidth = sliderRef.current.offsetWidth;
-      sliderRef.current.scrollBy({
-        left: yon * containerWidth,
-        behavior: "smooth",
-      });
-    }
-  };
+const kaydir = (yon) => {
+  if (sliderRef.current) {
+    const containerWidth = sliderRef.current.offsetWidth;
+    sliderRef.current.scrollBy({
+      left: yon * containerWidth,
+      behavior: "smooth",
+    });
+  }
+};
 
-  // 🔹 Haber slider fonksiyonları
+
+  // 🔹 Haber slider fonksiyonları - KESİN ÇÖZÜM
   const nextHaberSlide = () => {
     const maxSlide = Math.max(0, haberler.length - getVisibleCardsCount());
     if (aktifHaber < maxSlide) {
@@ -136,8 +133,8 @@ const Home = () => {
     return Math.max(0, haberler.length - getVisibleCardsCount());
   };
 
-  // 🔹 Yedek resim path'ini düzelt
-  const yedekResim = process.env.PUBLIC_URL + "/assets/AIM-bg.png";
+  // 🔹 Yedek resim (Cloudinary gelmezse)
+  const yedekResim = "/assets/AIM-bg.png";
 
   return (
     <div id="home" className="home-page">
@@ -151,10 +148,10 @@ const Home = () => {
               className={`etkinlik-card ${index === aktifEtkinlik ? 'aktif' : ''}`}
             >
               <img
-                src={etk.resimUrl || yedekResim}
+                src={etk.resimUrl || "/assets/AIM-bg.png"}
                 alt={etk.baslik}
                 className="etkinlik-full-image"
-                onError={(e) => (e.target.src = yedekResim)}
+                onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
               />
               <div className="etkinlik-overlay">
                 <h1>{etk.baslik}</h1>
@@ -232,9 +229,7 @@ const Home = () => {
 
       {/* 💼 SERVICES */}
       <section id="services" className="services-section">
-        <h2>
-          <i className="fas fa-cogs"></i> Services
-        </h2>
+        <h2>Services</h2>
         <div className="services-slider">
           <button className="services-btn prev" onClick={() => kaydir(-1)}>
             ‹
@@ -242,18 +237,18 @@ const Home = () => {
 
           <div className="services-wrapper" ref={sliderRef}>
             {servisler.map((srv) => (
-              <div key={srv.id} className="service-card">
-                <img
-                  src={srv.resimUrl || yedekResim}
-                  alt="servis"
-                  onError={(e) => (e.target.src = yedekResim)}
-                />
-                <div className="service-card-content">
-                  <h3>{srv.baslik}</h3>
-                  <p>{srv.ozet}</p>
-                  <button onClick={() => navigate(`/servis/${srv.id}`)}>Read More</button>
-                </div>
-              </div>
+            <div key={srv.id} className="service-card">
+  <img
+    src={srv.resimUrl || yedekResim}
+    alt="servis"
+    onError={(e) => (e.target.src = yedekResim)}
+  />
+  <div className="service-card-content">
+    <h3>{srv.baslik}</h3>
+    <p>{srv.ozet}</p>
+    <button onClick={() => navigate(`/servis/${srv.id}`)}>Read More</button>
+  </div>
+</div>
             ))}
           </div>
 
@@ -283,16 +278,19 @@ const Home = () => {
               {/* 🔹 Başlık ve Açıklama */}
               <h3>{as.baslik}</h3>
               <p>{as.aciklama}</p>
+
+              {/* 🔹 Popup butonu */}
             </div>
           ))}
         </div>
       </section>
 
-      {/* 📰 HABERLER */}
+      {/* 📰 HABERLER - DÜZELTİLMİŞ */}
       <section className="haberler-section">
         <h2>Latest News</h2>
 
         <div className="haberler-slider-container">
+          {/* Sol ok */}
           <button
             className="slider-btn prev"
             onClick={prevHaberSlide}
@@ -301,7 +299,9 @@ const Home = () => {
             ‹
           </button>
 
+          {/* Slider Wrapper */}
           <div className="haberler-slider-wrapper">
+            {/* Slider - GRID YÖNTEMİ */}
             <div
               className="haberler-slider"
               ref={haberSliderRef}
@@ -312,10 +312,11 @@ const Home = () => {
               {haberler.map((hab, index) => (
                 <div key={hab.id} className="haber-card">
                   <img
-                    src={hab.resimUrl || yedekResim}
+                    src={hab.resimUrl || "/assets/AIM-bg.png"}
+                    
                     alt={hab.baslik}
                     className="haber-image"
-                    onError={(e) => (e.target.src = yedekResim)}
+                    onError={(e) => (e.target.src = "/assets/AIM-bg.png")}
                   />
                   <div className="kirmizi-cizgi"></div> 
                   <h3>{hab.baslik}</h3>
@@ -334,6 +335,7 @@ const Home = () => {
             </div>
           </div>
 
+          {/* Sağ ok */}
           <button
             className="slider-btn next"
             onClick={nextHaberSlide}

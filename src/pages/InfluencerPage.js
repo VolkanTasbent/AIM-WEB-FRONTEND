@@ -8,9 +8,6 @@ const InfluencerPage = () => {
   const [expandedId, setExpandedId] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Yedek resim path'i
-  const yedekResim = process.env.PUBLIC_URL + "/assets/default-influencer.jpg";
-
   useEffect(() => {
     fetch(`${API_URL}/influencers`)
       .then((res) => res.json())
@@ -39,8 +36,8 @@ const InfluencerPage = () => {
   return (
     <div className="min-h-screen bg-black text-white py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-4" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700'}}>Influencerlarımız</h1>
-        <p className="text-center text-gray-400 mb-16 text-lg" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '400'}}>
+        <h1 className="text-5xl font-bold text-center mb-4">Influencerlarımız</h1>
+        <p className="text-center text-gray-400 mb-16 text-lg">
           Sosyal medya dünyasında markamızı temsil eden yüzlerle tanışın.
         </p>
 
@@ -53,10 +50,9 @@ const InfluencerPage = () => {
               <div className="relative overflow-hidden rounded-lg">
                 {/* 📸 Fotoğraf */}
                 <img
-                  src={influencer.resimUrl || yedekResim}
+                  src={influencer.resimUrl || "/assets/default-influencer.jpg"}
                   alt={influencer.adSoyad}
                   className="w-full h-[500px] object-cover relative z-0"
-                  onError={(e) => (e.target.src = yedekResim)}
                 />
 
                 {/* 🟡 Sarı efekt */}
@@ -64,10 +60,10 @@ const InfluencerPage = () => {
 
                 {/* 📍 İsim + unvan */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-center z-20">
-                  <p className="text-white text-sm font-medium mb-2" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '400'}}>
+                  <p className="text-white text-sm font-medium mb-2">
                     {influencer.unvan}
                   </p>
-                  <h2 className="text-white text-6xl font-bold tracking-wider" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700'}}>
+                  <h2 className="text-white text-6xl font-bold tracking-wider">
                     {influencer.adSoyad}
                   </h2>
 
@@ -76,8 +72,8 @@ const InfluencerPage = () => {
                     <button
                       onClick={() => toggleExpand(influencer.id)}
                       style={{
-                        background: "#d3bf76",
-                        color: "white",
+                        background: "#ffffff",
+                        color: "#c9a84a",
                         border: "none",
                         padding: "12px 35px",
                         borderRadius: "25px",
@@ -86,7 +82,6 @@ const InfluencerPage = () => {
                         marginTop: "20px",
                         cursor: "pointer",
                         display: "inline-block",
-                        fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif'
                       }}
                       className="read-more-btn"
                     >
@@ -105,12 +100,12 @@ const InfluencerPage = () => {
                   }}
                 >
                   <div className="text-center mb-6">
-                    <p className="text-white/90 text-base leading-relaxed" style={{fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '400'}}>
+                    <p className="text-white/90 text-base leading-relaxed">
                       {influencer.aciklama}
                     </p>
                   </div>
 
-                  {/* 🎯 HİZALANMIŞ SOSYAL MEDYA SATIRLARI */}
+                   {/* 🎯 HİZALANMIŞ SOSYAL MEDYA SATIRLARI */}
                   <div className="space-y-4 mb-6">
                     {/* 🔴 YouTube */}
                     <a
@@ -124,7 +119,7 @@ const InfluencerPage = () => {
                       <FaYoutube className="w-8 h-8 flex-shrink-0" />
                       <span
                         className="text-2xl font-bold inline-block text-center"
-                        style={{ minWidth: "140px", fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700' }}
+                        style={{ minWidth: "140px" }}
                       >
                         {influencer.youtubeTakipci || "—"} Abone
                       </span>
@@ -142,7 +137,7 @@ const InfluencerPage = () => {
                       <FaTwitter className="w-8 h-8 flex-shrink-0" />
                       <span
                         className="text-2xl font-bold inline-block text-center"
-                        style={{ minWidth: "140px", fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700' }}
+                        style={{ minWidth: "140px" }}
                       >
                         {influencer.twitterTakipci || "—"} Takipçi
                       </span>
@@ -160,7 +155,7 @@ const InfluencerPage = () => {
                       <FaInstagram className="w-8 h-8 flex-shrink-0" />
                       <span
                         className="text-2xl font-bold inline-block text-center"
-                        style={{ minWidth: "140px", fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif', fontWeight: '700' }}
+                        style={{ minWidth: "140px" }}
                       >
                         {influencer.instagramTakipci || "—"} Takipçi
                       </span>
@@ -171,8 +166,8 @@ const InfluencerPage = () => {
                     onClick={() => toggleExpand(influencer.id)}
                     style={{
                       width: "100%",
-                      background: "#d3bf76",
-                      color: "white",
+                      background: "#ffffff",
+                      color: "#c9a84a",
                       border: "none",
                       padding: "14px",
                       borderRadius: "25px",
@@ -181,7 +176,6 @@ const InfluencerPage = () => {
                       cursor: "pointer",
                       zIndex: 50,
                       position: "relative",
-                      fontFamily: 'Neue Haas Grotesk Display Pro, sans-serif'
                     }}
                   >
                     Kapat

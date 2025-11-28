@@ -9,9 +9,6 @@ const EsportsPage = () => {
   const [players, setPlayers] = useState([]);
   const navigate = useNavigate();
 
-  // Yedek resim path'i
-  const yedekResim = process.env.PUBLIC_URL + "/assets/default-player.jpg";
-
   useEffect(() => {
     axios
       .get(`${API_URL}/esports`)
@@ -34,9 +31,8 @@ const EsportsPage = () => {
             onClick={() => navigate(`/esports/${player.id}`)}
           >
             <img
-              src={player.resimUrl || yedekResim}
+              src={player.resimUrl || "/assets/default-player.jpg"}
               alt={player.adSoyad}
-              onError={(e) => (e.target.src = yedekResim)}
             />
             <div className="esports-card-content">
               <button className="read-more">Read More</button>
