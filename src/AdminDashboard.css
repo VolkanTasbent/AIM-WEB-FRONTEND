@@ -552,11 +552,43 @@ button[disabled] {
    RESPONSIVE
    ======================================== */
 
+/* 🔹 TABLET (768px - 1024px) */
+@media (max-width: 1024px) {
+  .admin-content {
+    padding: 40px 50px;
+  }
+  
+  .admin-section {
+    padding: 40px;
+  }
+  
+  .admin-content-header h3 {
+    font-size: 30px;
+  }
+  
+  .admin-section h4 {
+    font-size: 24px;
+  }
+  
+  .admin-list-item {
+    padding: 20px 25px;
+  }
+  
+  .admin-list-item-info b {
+    font-size: 16px;
+  }
+}
+
+/* 🔹 MOBİL (480px - 768px) */
 @media (max-width: 768px) {
   .admin-hamburger {
     display: flex;
     align-items: center;
     justify-content: center;
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
   }
   
   .admin-sidebar {
@@ -573,24 +605,271 @@ button[disabled] {
     transform: translateX(-100%);
   }
   
+  .admin-sidebar-header {
+    padding: 0 20px 20px 20px;
+  }
+  
+  .admin-sidebar-header h2 {
+    font-size: 24px;
+  }
+  
+  .admin-nav-item {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .admin-nav-subitem {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  
   .admin-content {
     margin-left: 0;
-    padding: 20px;
+    padding: 70px 20px 30px;
+  }
+  
+  .admin-content-header {
+    margin-bottom: 25px;
+  }
+  
+  .admin-content-header h3 {
+    font-size: 24px;
+  }
+  
+  .admin-content-header p {
+    font-size: 16px;
+  }
+  
+  .admin-section {
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+  }
+  
+  .admin-section h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+  
+  .admin-form {
+    gap: 20px;
+  }
+  
+  .admin-form input,
+  .admin-form textarea,
+  .admin-form select {
+    padding: 14px 16px;
+    font-size: 15px;
   }
   
   .admin-form-buttons {
     flex-direction: column;
+    gap: 12px;
+  }
+  
+  .admin-form-buttons button {
+    padding: 14px 24px;
+    font-size: 15px;
+    width: 100%;
   }
   
   .admin-list-item {
     flex-direction: column;
     align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .admin-list-item-info {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .admin-list-item-info b {
+    font-size: 16px;
   }
   
   .admin-list-item-actions {
     width: 100%;
     justify-content: flex-end;
     margin-top: 15px;
+    gap: 8px;
+  }
+  
+  .admin-list-item-actions button {
+    padding: 10px 16px;
+    font-size: 13px;
+    flex: 1;
+  }
+  
+  .image-upload-box {
+    padding: 15px;
+  }
+  
+  .image-preview img {
+    max-width: 100%;
+  }
+  
+  .media-subsection {
+    padding: 20px;
+  }
+  
+  .media-subsection h3 {
+    font-size: 18px;
+  }
+  
+  .portfolio-preview-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 8px;
+  }
+  
+  .portfolio-preview-grid img {
+    height: 60px;
+  }
+}
+
+/* 🔹 KÜÇÜK MOBİL (320px - 480px) */
+@media (max-width: 480px) {
+  .admin-hamburger {
+    top: 12px;
+    left: 12px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .admin-hamburger-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .admin-sidebar {
+    width: 260px;
+  }
+  
+  .admin-sidebar-header {
+    padding: 0 15px 15px 15px;
+    margin-bottom: 20px;
+  }
+  
+  .admin-sidebar-header h2 {
+    font-size: 20px;
+  }
+  
+  .admin-sidebar-header p {
+    font-size: 12px;
+  }
+  
+  .admin-nav-item {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  
+  .admin-nav-submenu {
+    padding-left: 15px;
+    margin-left: 15px;
+  }
+  
+  .admin-nav-subitem {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .admin-content {
+    padding: 65px 15px 25px;
+  }
+  
+  .admin-content-header h3 {
+    font-size: 20px;
+  }
+  
+  .admin-content-header p {
+    font-size: 14px;
+  }
+  
+  .admin-section {
+    padding: 25px 15px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+  }
+  
+  .admin-section h4 {
+    font-size: 18px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+  }
+  
+  .admin-form {
+    gap: 18px;
+  }
+  
+  .admin-form-group label {
+    font-size: 13px;
+  }
+  
+  .admin-form input,
+  .admin-form textarea,
+  .admin-form select {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  .admin-form textarea {
+    min-height: 80px;
+  }
+  
+  .admin-form-buttons {
+    gap: 10px;
+  }
+  
+  .admin-form-buttons button {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .admin-list-item {
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .admin-list-item-info b {
+    font-size: 15px;
+  }
+  
+  .admin-list-item-actions button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .image-upload-box {
+    padding: 12px;
+  }
+  
+  .image-preview {
+    margin-top: 12px;
+  }
+  
+  .image-preview button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  
+  .media-subsection {
+    padding: 15px;
+  }
+  
+  .media-subsection h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .portfolio-preview-grid {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 6px;
+  }
+  
+  .portfolio-preview-grid img {
+    height: 50px;
   }
 }
 

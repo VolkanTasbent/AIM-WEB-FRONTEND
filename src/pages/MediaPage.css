@@ -421,3 +421,372 @@
   transform: scale(1.08);
   opacity: 0.9;
 }
+
+/* ============================================
+   📱 MEDIA PAGE RESPONSIVE TASARIM
+   ============================================ */
+
+/* 🔹 TABLET (768px - 1024px) */
+@media (max-width: 1024px) {
+  .media-container {
+    padding: 60px 30px;
+  }
+  
+  .media-header {
+    padding: 40px 30px;
+  }
+  
+  .media-header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .media-header p {
+    font-size: 1rem;
+  }
+  
+  .section h2 {
+    font-size: 2.2rem;
+  }
+  
+  .video-card-fullwidth {
+    aspect-ratio: 16/9;
+  }
+  
+  .video-overlay h3 {
+    font-size: 2.2rem;
+  }
+  
+  .shoot-card-fullwidth {
+    min-height: 500px;
+  }
+  
+  .shoot-overlay h3 {
+    font-size: 2.2rem;
+  }
+  
+  .portfolio-grid-4x3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .portfolios-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+}
+
+/* 🔹 MOBİL (480px - 768px) */
+@media (max-width: 768px) {
+  .media-container {
+    padding: 50px 20px;
+    border-radius: 16px;
+  }
+  
+  .media-header {
+    padding: 30px 20px;
+    margin-bottom: 40px;
+  }
+  
+  .media-header h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .media-header p {
+    font-size: 0.95rem;
+  }
+  
+  .section {
+    margin-top: 50px;
+  }
+  
+  .section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+  
+  .section h2 + p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Video Carousel */
+  .video-carousel-container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .carousel-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .carousel-arrow-left {
+    left: 10px;
+  }
+  
+  .carousel-arrow-right {
+    right: 10px;
+  }
+  
+  .video-card-fullwidth {
+    aspect-ratio: 16/9;
+  }
+  
+  .video-overlay {
+    padding: 20px;
+  }
+  
+  .video-overlay h3 {
+    font-size: 1.6rem;
+  }
+  
+  .video-overlay p {
+    font-size: 0.8rem;
+  }
+  
+  .video-logos-top-right {
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+  }
+  
+  .youtube-logo-bottom {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  /* Shoot Carousel */
+  .shoot-carousel-container {
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .shoot-card-fullwidth {
+    min-height: 400px;
+  }
+  
+  .shoot-overlay {
+    bottom: 60px;
+    padding: 20px;
+  }
+  
+  .shoot-overlay h3 {
+    font-size: 1.6rem;
+  }
+  
+  .shoot-overlay p {
+    font-size: 0.8rem;
+  }
+  
+  /* Portfolio */
+  .portfolio-grid-4x3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+  }
+  
+  .portfolio-item-small {
+    aspect-ratio: 4/3;
+  }
+  
+  .portfolio-logo-small {
+    width: 15px;
+    height: 15px;
+    top: 2px;
+    left: 2px;
+  }
+  
+  .portfolios-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .single-portfolio {
+    padding: 20px;
+  }
+  
+  .team-header {
+    margin-bottom: 12px;
+  }
+  
+  .team-logo-img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  /* Modal */
+  .close-btn {
+    top: 20px;
+    right: 30px;
+    font-size: 24px;
+    padding: 5px 10px;
+  }
+  
+  .modal-img {
+    max-width: 95%;
+    max-height: 85vh;
+  }
+}
+
+/* 🔹 KÜÇÜK MOBİL (320px - 480px) */
+@media (max-width: 480px) {
+  .media-container {
+    padding: 40px 15px;
+    border-radius: 12px;
+  }
+  
+  .media-header {
+    padding: 25px 15px;
+    margin-bottom: 30px;
+  }
+  
+  .media-header h1 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  
+  .media-header p {
+    font-size: 0.85rem;
+  }
+  
+  .section {
+    margin-top: 40px;
+  }
+  
+  .section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .section h2 + p {
+    font-size: 0.85rem;
+  }
+  
+  /* Video Carousel */
+  .video-carousel-container {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .carousel-arrow {
+    width: 25px;
+    height: 25px;
+    font-size: 0.9rem;
+  }
+  
+  .carousel-arrow-left {
+    left: 5px;
+  }
+  
+  .carousel-arrow-right {
+    right: 5px;
+  }
+  
+  .video-overlay {
+    padding: 15px;
+  }
+  
+  .video-overlay h3 {
+    font-size: 1.3rem;
+  }
+  
+  .video-overlay p {
+    font-size: 0.75rem;
+  }
+  
+  .video-logos-top-right {
+    top: 8px;
+    right: 8px;
+    gap: 8px;
+  }
+  
+  .youtube-logo-bottom {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .youtube-logo-bottom svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Shoot Carousel */
+  .shoot-carousel-container {
+    margin-top: 25px;
+    margin-bottom: 40px;
+  }
+  
+  .shoot-card-fullwidth {
+    min-height: 300px;
+  }
+  
+  .shoot-overlay {
+    bottom: 50px;
+    padding: 15px;
+  }
+  
+  .shoot-overlay h3 {
+    font-size: 1.3rem;
+  }
+  
+  .shoot-overlay p {
+    font-size: 0.75rem;
+  }
+  
+  /* Portfolio */
+  .portfolio-grid-4x3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-top: 15px;
+  }
+  
+  .portfolio-logo-small {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .single-portfolio {
+    padding: 15px;
+  }
+  
+  .team-logo-img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  /* Modal */
+  .close-btn {
+    top: 15px;
+    right: 20px;
+    font-size: 20px;
+    padding: 4px 8px;
+  }
+  
+  .modal-img {
+    max-width: 98%;
+    max-height: 80vh;
+  }
+}
+
+/* 🔹 YATAY MOBİL (Landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+  .media-container {
+    padding: 40px 20px;
+  }
+  
+  .video-card-fullwidth {
+    aspect-ratio: 16/9;
+  }
+  
+  .shoot-card-fullwidth {
+    min-height: 350px;
+  }
+}

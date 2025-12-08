@@ -8179,3 +8179,698 @@ section {
   width: 150px;     /* eski 100px ise büyüt */
   height: auto;
 }
+
+/* ============================================
+   📱 KAPSAMLI RESPONSIVE TASARIM
+   ============================================ */
+
+/* 🔹 TABLET (768px - 1024px) */
+@media (max-width: 1024px) {
+  /* Navbar */
+  .navbar {
+    padding: 15px 30px;
+  }
+  
+  .nav-logo img {
+    width: 100px;
+  }
+  
+  .nav-item {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    margin-top: 80px;
+    height: 80vh;
+  }
+  
+  .etkinlik-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  .etkinlik-text p {
+    font-size: 1.1rem;
+  }
+  
+  /* Services */
+  .services-section {
+    padding: 60px 30px;
+  }
+  
+  .services-title {
+    font-size: 2.5rem;
+  }
+  
+  .service-card {
+    min-width: 280px;
+  }
+  
+  .service-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Alt Servisler */
+  .alt-servisler-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  /* Haberler */
+  .haberler-section {
+    padding: 60px 30px;
+  }
+  
+  .haber-card {
+    min-width: 300px;
+  }
+  
+  /* Footer */
+  .custom-footer .footer-container {
+    padding: 0 30px;
+  }
+  
+  /* Detay Sayfaları */
+  .detay-sayfa,
+  .servis-detay-container,
+  .etkinlik-detay-container,
+  .haber-detay-container {
+    padding: 100px 30px 40px;
+  }
+  
+  .detay-header-gradient img {
+    height: 350px;
+  }
+  
+  /* OurCrew Section */
+  .ourcrew-section {
+    padding: 70px 30px;
+  }
+  
+  .ourcrew-title {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+  }
+  
+  .crew-grid {
+    width: 90%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .crew-image img {
+    height: 320px;
+  }
+  
+  /* Esports Page */
+  .esports-page {
+    padding: 70px 50px;
+  }
+  
+  .esports-header h1 {
+    font-size: 2.3rem;
+  }
+  
+  .esports-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .player-card img {
+    height: 360px;
+  }
+}
+
+/* 🔹 MOBİL (480px - 768px) */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    padding: 12px 20px;
+  }
+  
+  .nav-logo img {
+    width: 80px;
+  }
+  
+  .nav-links {
+    margin-right: 0;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    margin-top: 70px;
+    height: 70vh;
+  }
+  
+  .etkinlik-horizontal-scroll {
+    height: 70vh;
+  }
+  
+  .etkinlik-card {
+    min-width: 100vw;
+  }
+  
+  .etkinlik-overlay h1 {
+    font-size: 2rem;
+  }
+  
+  .etkinlik-overlay p {
+    font-size: 0.95rem;
+  }
+  
+  .etkinlik-overlay button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .hikaye-kontroller {
+    bottom: 20px;
+    padding: 0 15px;
+  }
+  
+  .slider-btn {
+    font-size: 1.5rem;
+    padding: 6px 12px;
+  }
+  
+  .hikaye-progress {
+    gap: 5px;
+  }
+  
+  .progress-bar {
+    height: 3px;
+  }
+  
+  /* Sponsor Container */
+  .sponsor-container {
+    bottom: 10px;
+  }
+  
+  .sponsor-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* Services */
+  .services-section {
+    padding: 40px 15px;
+  }
+  
+  .services-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .services-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .services-slider {
+    padding: 0 10px;
+  }
+  
+  .services-wrapper {
+    gap: 15px;
+  }
+  
+  .service-card {
+    min-width: 250px;
+    padding: 20px;
+  }
+  
+  .service-card img {
+    height: 180px;
+  }
+  
+  .service-card h3 {
+    font-size: 1.3rem;
+    margin: 10px 0;
+  }
+  
+  .service-card p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .service-card button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+  
+  .services-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+  
+  /* Alt Servisler */
+  .alt-servisler-section {
+    padding: 40px 15px;
+  }
+  
+  .alt-servisler-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  
+  .alt-servisler-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .alt-servis-card {
+    padding: 20px;
+  }
+  
+  .alt-servis-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .alt-servis-card p {
+    font-size: 0.9rem;
+  }
+  
+  /* Haberler */
+  .haberler-section {
+    padding: 40px 15px;
+  }
+  
+  .haberler-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .haberler-slider-container {
+    padding: 0 10px;
+  }
+  
+  .haberler-slider-wrapper {
+    overflow: hidden;
+  }
+  
+  .haber-card {
+    min-width: 100%;
+    padding: 15px;
+  }
+  
+  .haber-image {
+    height: 200px;
+  }
+  
+  .haber-card h3 {
+    font-size: 1.2rem;
+    margin: 15px 0 10px;
+  }
+  
+  .haber-card p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .haber-card button {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+  
+  /* Footer */
+  .custom-footer {
+    padding: 40px 0 30px;
+  }
+  
+  .custom-footer .footer-container {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .footer-logo {
+    width: 120px;
+  }
+  
+  .footer-section {
+    margin-top: 60px;
+  }
+  
+  /* Detay Sayfaları */
+  .detay-sayfa,
+  .servis-detay-container,
+  .etkinlik-detay-container,
+  .haber-detay-container,
+  .esports-detail-container,
+  .influencer-detail-container,
+  .crew-detail-container {
+    padding: 90px 15px 30px;
+  }
+  
+  .detay-header-gradient img {
+    height: 250px;
+  }
+  
+  .servis-detay-content,
+  .haber-detay-content,
+  .etkinlik-detay-content {
+    padding: 20px 15px;
+  }
+  
+  .servis-detay-content h1,
+  .haber-detay-content h1,
+  .etkinlik-detay-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .servis-detay-content p,
+  .haber-detay-content p,
+  .etkinlik-detay-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .geri-btn {
+    font-size: 1.5rem;
+    padding: 8px 15px;
+    margin-top: 20px;
+  }
+  
+  /* Esports Detail */
+  .esports-detail-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .esports-detail-image {
+    height: 250px;
+  }
+  
+  .team-logos img {
+    width: 40px;
+  }
+  
+  /* Crew & Influencer Cards */
+  .crew-card,
+  .influencer-card {
+    padding: 20px;
+  }
+  
+  .crew-card img,
+  .influencer-card img {
+    height: 250px;
+  }
+  
+  .crew-card h3,
+  .influencer-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  /* OurCrew Section */
+  .ourcrew-section {
+    padding: 60px 20px;
+  }
+  
+  .ourcrew-title {
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+  }
+  
+  .crew-grid {
+    width: 95%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .crew-image img {
+    height: 300px;
+  }
+  
+  /* Esports Page */
+  .esports-page {
+    padding: 70px 40px;
+  }
+  
+  .esports-header {
+    margin-bottom: 50px;
+  }
+  
+  .esports-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .esports-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .player-card img {
+    height: 350px;
+  }
+}
+
+/* 🔹 KÜÇÜK MOBİL (320px - 480px) */
+@media (max-width: 480px) {
+  /* Navbar */
+  .navbar {
+    padding: 10px 15px;
+  }
+  
+  .nav-logo img {
+    width: 70px;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    margin-top: 60px;
+    height: 60vh;
+  }
+  
+  .etkinlik-horizontal-scroll {
+    height: 60vh;
+  }
+  
+  .etkinlik-overlay {
+    padding: 20px;
+  }
+  
+  .etkinlik-overlay h1 {
+    font-size: 1.6rem;
+  }
+  
+  .etkinlik-overlay p {
+    font-size: 0.85rem;
+  }
+  
+  .etkinlik-overlay button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .hikaye-kontroller {
+    bottom: 15px;
+    padding: 0 10px;
+  }
+  
+  .slider-btn {
+    font-size: 1.2rem;
+    padding: 5px 10px;
+  }
+  
+  .sponsor-logo {
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* Services */
+  .services-section {
+    padding: 30px 10px;
+  }
+  
+  .services-title {
+    font-size: 1.6rem;
+  }
+  
+  .services-icon {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .service-card {
+    min-width: 220px;
+    padding: 15px;
+  }
+  
+  .service-card img {
+    height: 150px;
+  }
+  
+  .service-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .service-card p {
+    font-size: 0.85rem;
+  }
+  
+  /* Alt Servisler */
+  .alt-servisler-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .alt-servis-card {
+    padding: 15px;
+  }
+  
+  /* Haberler */
+  .haberler-section h2 {
+    font-size: 1.6rem;
+  }
+  
+  .haber-card {
+    padding: 12px;
+  }
+  
+  .haber-image {
+    height: 180px;
+  }
+  
+  .haber-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  /* Footer */
+  .custom-footer {
+    padding: 30px 0 20px;
+  }
+  
+  .footer-logo {
+    width: 100px;
+  }
+  
+  /* Detay Sayfaları */
+  .detay-sayfa,
+  .servis-detay-container,
+  .etkinlik-detay-container,
+  .haber-detay-container {
+    padding: 80px 10px 20px;
+  }
+  
+  .detay-header-gradient img {
+    height: 200px;
+  }
+  
+  .servis-detay-content h1,
+  .haber-detay-content h1,
+  .etkinlik-detay-content h1 {
+    font-size: 1.5rem;
+  }
+  
+  .haber-detay-resim {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .esports-detail-image {
+    height: 200px;
+  }
+  
+  .crew-card img,
+  .influencer-card img {
+    height: 200px;
+  }
+  
+  /* OurCrew Section */
+  .ourcrew-section {
+    padding: 60px 15px;
+  }
+  
+  .ourcrew-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  
+  .crew-grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .crew-image img {
+    height: 280px;
+  }
+  
+  .crew-info {
+    padding: 20px;
+  }
+  
+  .crew-info h3 {
+    font-size: 1.3rem;
+  }
+  
+  .crew-info p {
+    font-size: 0.9rem;
+  }
+  
+  /* Esports Page */
+  .esports-page {
+    padding: 60px 20px;
+  }
+  
+  .esports-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+  
+  .esports-icon {
+    font-size: 40px;
+  }
+  
+  .esports-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .esports-header p {
+    font-size: 0.95rem;
+  }
+  
+  .esports-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .player-card img {
+    height: 300px;
+  }
+  
+  .player-overlay {
+    padding: 20px;
+  }
+  
+  .player-overlay h3 {
+    font-size: 1.2rem;
+  }
+  
+  .player-overlay p {
+    font-size: 0.85rem;
+  }
+}
+
+/* 🔹 YATAY MOBİL (Landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    height: 100vh;
+  }
+  
+  .etkinlik-horizontal-scroll {
+    height: 100vh;
+  }
+  
+  .etkinlik-overlay h1 {
+    font-size: 1.8rem;
+  }
+  
+  .etkinlik-overlay p {
+    font-size: 0.9rem;
+  }
+}
