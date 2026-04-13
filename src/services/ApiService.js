@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// Vercel/Railway: REACT_APP_API_URL must end with /api (e.g. https://host.up.railway.app/api).
+// Calls use `${API_URL}/ayarlar` → .../api/ayarlar. Host-only base breaks with Spring context path /api.
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 
 export const uploadToCloudinary = async (file, type = "genel") => {
