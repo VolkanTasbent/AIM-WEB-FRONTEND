@@ -1698,6 +1698,227 @@ main {
   padding-top: 20px;
 }
 
+.footer-bottom .footer-credit {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.footer-bottom .footer-credit a {
+  color: #e8e8e8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 204, 0, 0.45);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-bottom .footer-credit a:hover {
+  color: #ffcc00;
+  border-bottom-color: #ffcc00;
+}
+
+/* —— Static content pages (Works, References, Contact) —— */
+.content-page {
+  min-height: calc(100vh - 120px);
+  padding: 100px 24px 80px;
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, #2a0000 0%, #0a0000 45%, #000 100%);
+  color: #f5f5f5;
+}
+
+.content-page-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.content-page h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.content-page-lead {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: #c8c8c8;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+
+.content-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  text-align: left;
+  margin-top: 32px;
+}
+
+.content-page-card {
+  display: block;
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(60, 0, 0, 0.55), rgba(10, 0, 0, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+a.content-page-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(180, 0, 0, 0.25);
+  border-color: rgba(255, 204, 0, 0.35);
+}
+
+.content-page-card h2 {
+  font-size: 1.25rem;
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.content-page-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #b8b8b8;
+}
+
+.content-page-card .content-page-card-cta {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffcc00;
+}
+
+.content-page-list {
+  text-align: left;
+  max-width: 640px;
+  margin: 32px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.content-page-list li {
+  position: relative;
+  padding: 14px 0 14px 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.content-page-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.35em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffcc00;
+  opacity: 0.85;
+}
+
+.content-page-actions {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.content-page-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.content-page-actions .btn-primary {
+  background: #ffcc00;
+  color: #1a0000;
+}
+
+.content-page-actions .btn-primary:hover {
+  background: #ffd54f;
+  color: #000;
+}
+
+.content-page-actions .btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.content-page-actions .btn-ghost:hover {
+  border-color: #ffcc00;
+  color: #ffcc00;
+}
+
+.contact-offices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.contact-office {
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-office h3 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.contact-office p {
+  margin: 0;
+  color: #bbb;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.crew-empty {
+  max-width: 520px;
+  margin: 0 auto 48px;
+  padding: 40px 28px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px dashed rgba(255, 204, 0, 0.25);
+}
+
+.crew-empty p {
+  margin: 0 0 20px;
+  color: #ccc;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.crew-empty a {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: #ffcc00;
+  color: #1a0000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.crew-empty a:hover {
+  background: #ffd54f;
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .footer-container {
