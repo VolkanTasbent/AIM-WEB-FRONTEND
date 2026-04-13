@@ -986,17 +986,17 @@ twitterUrl: item.twitter || "",
         
         <nav className="admin-nav-menu">
           {mainSections.map((sec) => (
-            <a
+            <button
+              type="button"
               key={sec}
               onClick={() => {
                 setActiveSection(sec);
                 resetForm();
               }}
               className={`admin-nav-item ${activeSection === sec ? "active" : ""}`}
-              href="#"
             >
               {sectionNames[sec]}
-            </a>
+            </button>
           ))}
           
           {/* Medya Yönetimi Ana Başlığı */}
@@ -1007,17 +1007,17 @@ twitterUrl: item.twitter || "",
           {/* Medya Alt Kategorileri */}
           <div className="admin-nav-submenu">
             {mediaSections.map((sec) => (
-              <a
+              <button
+                type="button"
                 key={sec}
                 onClick={() => {
                   setActiveSection(sec);
                   resetForm();
                 }}
                 className={`admin-nav-subitem ${activeSection === sec ? "active" : ""}`}
-                href="#"
               >
                 {sec === 'video' ? '📹' : sec === 'shoot' ? '📸' : '🖼️'} {sectionNames[sec]}
-              </a>
+              </button>
             ))}
           </div>
         </nav>

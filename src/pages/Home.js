@@ -11,8 +11,6 @@ import {
 import Popup from "../components/Popup";
 import Footer from "../components/Footer";
 import "../App.css";
- import servicesIcon from "../assets/services.png";
-
 
 const Home = () => {
   const [etkinlikler, setEtkinlikler] = useState([]);
@@ -23,8 +21,6 @@ const Home = () => {
   const [altServisler, setAltServisler] = useState([]);
   const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
   const [aktifHaber, setAktifHaber] = useState(0);
-  const [kartGenisligi, setKartGenisligi] = useState(0);
-  const [aktifSayfa, setAktifSayfa] = useState(0);
 
   const sliderRef = useRef(null);
   const haberSliderRef = useRef(null);
@@ -33,7 +29,7 @@ const Home = () => {
 
   // Popup state
   const [popupIcerik, setPopupIcerik] = useState(null);
-  const [popupListe, setPopupListe] = useState([]);
+  const [popupListe] = useState([]);
   const [popupIndex, setPopupIndex] = useState(0);
 
   // 🔹 Backend verilerini çek
@@ -50,14 +46,6 @@ const Home = () => {
   const temizServisler = servisler.filter(
     (s) => s.baslik !== "UI/UX" && s.baslik !== "UIUX"
   );
-
-  const getServiceType = (title = "") => {
-    const normalized = title.toLowerCase();
-    if (normalized.includes("influ")) return "influencer";
-    if (normalized.includes("esport") || normalized.includes("esp")) return "esports";
-    if (normalized.includes("media") || normalized.includes("medya")) return "media";
-    return "";
-  };
 
   // 🔹 Hikaye slider otomatik geçiş
   useEffect(() => {
@@ -82,19 +70,8 @@ const Home = () => {
     }
   }, [aktifEtkinlik]);
 
-  // 🔹 Kart genişliği hesapla
   useEffect(() => {
-    const calculateCardWidth = () => {
-      const width = window.innerWidth;
-      if (width <= 768) return 100;
-      else if (width <= 1024) return 50;
-      return 33.333;
-    };
-
-    setKartGenisligi(calculateCardWidth());
-
     const handleResize = () => {
-      setKartGenisligi(calculateCardWidth());
       setAktifHaber(0);
     };
 
@@ -225,10 +202,12 @@ const Home = () => {
 
       {/* 💼 SERVICES */}
       <section id="services" className="services-section">
-        <h2 className="services-title">
-          <img src={servicesIcon} alt="Services icon" className="services-icon" />
-          Services
-        </h2>
+       <h2 className="services-title">
+  <img src="/assets/services-icon.svg" alt="icon" className="services-icon" />
+  Services
+</h2>
+
+
         <div className="services-slider">
           <button className="services-btn prev" onClick={() => kaydir(-1)}>‹</button>
 
@@ -237,7 +216,7 @@ const Home = () => {
               <div
                 key={srv.id}
                 className="service-card"
-                data-type={getServiceType(srv.baslik)}
+                data-type={srv.baslik}
               >
                 <img
                   src={srv.resimUrl || yedekResim}
