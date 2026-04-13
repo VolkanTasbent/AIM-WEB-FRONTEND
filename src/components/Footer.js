@@ -5,6 +5,8 @@ import { FaMapMarkerAlt } from "react-icons/fa"; // 🔹 FA5'ten geliyor
 import "../App.css";
 import aimLogo from "../assets/AIM-P-RGB.png"; // kendi logonu buraya koy
 
+const CREDIT_LINKEDIN = "https://www.linkedin.com/in/volkan-tasbent/";
+
 const Footer = () => {
   return (
     <footer className="custom-footer">
@@ -53,6 +55,11 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p>© 2025 AIM Agency. All Rights Reserved.</p>
+        <p className="footer-credit">
+          <a href={CREDIT_LINKEDIN} target="_blank" rel="noopener noreferrer">
+            Created by Volkan Taşbent
+          </a>
+        </p>
       </div>
     </footer>
   );
