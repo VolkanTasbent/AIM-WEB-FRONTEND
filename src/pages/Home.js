@@ -5,7 +5,6 @@ import {
   getSponsorlar,
   getServisler,
   getHaberler,
-  getAyarlar,
   getAltServisler,
 } from "../services/ApiService";
 import Popup from "../components/Popup";
@@ -16,7 +15,6 @@ const Home = () => {
   const [sponsorlar, setSponsorlar] = useState([]);
   const [servisler, setServisler] = useState([]);
   const [haberler, setHaberler] = useState([]);
-  const [ayarlar, setAyarlar] = useState([]);
   const [altServisler, setAltServisler] = useState([]);
   const [aktifEtkinlik, setAktifEtkinlik] = useState(0);
   const [aktifHaber, setAktifHaber] = useState(0);
@@ -37,7 +35,6 @@ const Home = () => {
     getSponsorlar().then((r) => setSponsorlar(r.data));
     getServisler().then((r) => setServisler(r.data));
     getHaberler().then((r) => setHaberler(r.data));
-    getAyarlar().then((r) => setAyarlar(r.data));
     getAltServisler().then((r) => setAltServisler(r.data));
   }, []);
 
