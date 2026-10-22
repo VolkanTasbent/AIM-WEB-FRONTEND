@@ -58,12 +58,13 @@ const Home = () => {
 
   // 🔹 Hikaye slider scroll
   useEffect(() => {
-    if (hikayeSliderRef.current) {
-      hikayeSliderRef.current.scrollTo({
-        left: aktifEtkinlik * window.innerWidth,
-        behavior: "smooth",
-      });
-    }
+    const el = hikayeSliderRef.current;
+    if (!el) return;
+    const cardWidth = el.clientWidth || window.innerWidth;
+    el.scrollTo({
+      left: aktifEtkinlik * cardWidth,
+      behavior: "smooth",
+    });
   }, [aktifEtkinlik]);
 
   useEffect(() => {

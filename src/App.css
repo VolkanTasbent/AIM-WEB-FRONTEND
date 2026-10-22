@@ -216,16 +216,27 @@ main {
 
 
 .sponsor-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
   overflow: hidden;
   white-space: nowrap;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px 0;
-  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  padding: 14px 0;
+  margin: 0;
+  pointer-events: none;
 }
 
 .sponsor-marquee {
-  display: inline-block;
-  animation: slide-left 20s linear infinite;
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: 0;
+  animation: slide-left 22s linear infinite;
+  -webkit-animation: slide-left 22s linear infinite;
+  will-change: transform;
 }
 
 @keyframes slide-left {
@@ -238,10 +249,15 @@ main {
 }
 
 .sponsor-logo {
-  height: 50px;
-  margin: 0 40px;
-  opacity: 0.8;
+  flex: 0 0 auto;
+  height: 48px;
+  width: auto;
+  max-width: 140px;
+  margin: 0 36px;
+  opacity: 0.9;
+  object-fit: contain;
   transition: opacity 0.3s;
+  pointer-events: auto;
 }
 
 .sponsor-logo:hover {
@@ -2263,11 +2279,19 @@ a.content-page-card:hover {
   overflow: hidden;
   background: #000;
   padding: 0;
+  height: calc(100vh - 80px);
+  height: calc(100dvh - 80px);
+  display: flex;
+  flex-direction: column;
 }
 
 .etkinlik-horizontal-scroll {
   display: flex;
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE ve Edge */
@@ -2279,7 +2303,9 @@ a.content-page-card:hover {
 
 .etkinlik-card {
   flex: 0 0 100%;
-  height: 100vh; /* tam ekran yüksekliği */
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
@@ -2288,7 +2314,8 @@ a.content-page-card:hover {
 .etkinlik-full-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* tam ekrana sığar */
+  object-fit: cover;
+  object-position: center center;
   transition: transform 0.5s ease;
 }
 
@@ -2296,10 +2323,56 @@ a.content-page-card:hover {
   transform: scale(1.02);
 }
 
+@media (hover: none) {
+  .etkinlik-card:hover .etkinlik-full-image {
+    transform: none;
+  }
+}
+
+.hikaye-kontroller {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 88px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  pointer-events: none;
+}
+
+.hikaye-kontroller .slider-btn,
+.hikaye-kontroller .hikaye-progress {
+  pointer-events: auto;
+}
+
+.hikaye-progress {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  margin: 0 16px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #d3bf76;
+}
+
 .etkinlik-overlay {
   position: absolute;
-  bottom: 10%;
+  bottom: 22%;
   left: 5%;
+  z-index: 3;
   color: white;
   background: rgba(0, 0, 0, 0.45);
   padding: 25px 40px;
@@ -8579,34 +8652,54 @@ section {
   
   /* Hero Section */
   .hero-section {
-    margin-top: 70px;
-    height: 70vh;
+    margin-top: 64px;
+    height: calc(100dvh - 64px);
+    height: calc(100vh - 64px);
   }
   
   .etkinlik-horizontal-scroll {
-    height: 70vh;
+    height: 100%;
   }
   
   .etkinlik-card {
-    min-width: 100vw;
+    min-width: 100%;
+    width: 100%;
+    height: 100%;
+  }
+
+  .etkinlik-full-image {
+    object-fit: cover;
+    object-position: center 30%;
   }
   
+  .etkinlik-overlay {
+    bottom: 26%;
+    left: 4%;
+    right: 4%;
+    max-width: none;
+    padding: 16px 18px;
+  }
+
   .etkinlik-overlay h1 {
-    font-size: 2rem;
+    font-size: 1.55rem;
   }
   
   .etkinlik-overlay p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
   .etkinlik-overlay button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 10px 18px;
+    font-size: 0.85rem;
   }
   
   .hikaye-kontroller {
-    bottom: 20px;
-    padding: 0 15px;
+    bottom: 78px;
+    padding: 0 10px;
   }
   
   .slider-btn {
@@ -8624,12 +8717,20 @@ section {
   
   /* Sponsor Container */
   .sponsor-container {
-    bottom: 10px;
+    bottom: 0;
+    padding: 10px 0;
+  }
+
+  .sponsor-marquee {
+    animation-duration: 18s;
+    -webkit-animation-duration: 18s;
   }
   
   .sponsor-logo {
-    width: 60px;
-    height: 60px;
+    height: 40px;
+    width: auto;
+    max-width: 110px;
+    margin: 0 22px;
   }
   
   /* Services */
@@ -8900,34 +9001,41 @@ section {
   
   /* Hero Section */
   .hero-section {
-    margin-top: 60px;
-    height: 60vh;
+    margin-top: 56px;
+    height: calc(100dvh - 56px);
+    height: calc(100vh - 56px);
   }
   
   .etkinlik-horizontal-scroll {
-    height: 60vh;
+    height: 100%;
+  }
+
+  .etkinlik-full-image {
+    object-position: center 28%;
   }
   
   .etkinlik-overlay {
-    padding: 20px;
+    bottom: 28%;
+    padding: 14px 16px;
   }
   
   .etkinlik-overlay h1 {
-    font-size: 1.6rem;
+    font-size: 1.35rem;
   }
   
   .etkinlik-overlay p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
   }
   
   .etkinlik-overlay button {
-    padding: 8px 16px;
-    font-size: 0.8rem;
+    padding: 8px 14px;
+    font-size: 0.78rem;
   }
   
   .hikaye-kontroller {
-    bottom: 15px;
-    padding: 0 10px;
+    bottom: 70px;
+    padding: 0 8px;
   }
   
   .slider-btn {
@@ -8936,8 +9044,9 @@ section {
   }
   
   .sponsor-logo {
-    width: 50px;
-    height: 50px;
+    height: 34px;
+    max-width: 96px;
+    margin: 0 16px;
   }
   
   /* Services */
@@ -9119,19 +9228,29 @@ section {
 /* 🔹 YATAY MOBİL (Landscape) */
 @media (max-width: 768px) and (orientation: landscape) {
   .hero-section {
-    height: 100vh;
+    height: calc(100dvh - 56px);
+    height: calc(100vh - 56px);
   }
   
   .etkinlik-horizontal-scroll {
-    height: 100vh;
+    height: 100%;
+  }
+
+  .etkinlik-overlay {
+    bottom: 32%;
   }
   
   .etkinlik-overlay h1 {
-    font-size: 1.8rem;
+    font-size: 1.35rem;
   }
   
   .etkinlik-overlay p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .hikaye-kontroller {
+    bottom: 64px;
   }
 }
 
