@@ -9,7 +9,6 @@ import {
   getAltServisler,
 } from "../services/ApiService";
 import Popup from "../components/Popup";
-import Footer from "../components/Footer";
 import "../App.css";
 
 const Home = () => {
@@ -317,11 +316,6 @@ const Home = () => {
             ›
           </button>
         </div>
-      </section>
-
-      {/* FOOTER */}
-      <section id="contact" className="footer-section">
-        {ayarlar.length > 0 && <Footer ayar={ayarlar[0]} />}
       </section>
 
       {/* POPUP */}

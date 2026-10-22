@@ -1,64 +1,38 @@
 .media-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.85)),
-    url("../assets/AIM-bg.png") center/cover fixed;
+  background-color: #000;
   color: #fff;
-  font-family: var(--font-body);
-  padding: 80px 50px;
+  font-family: "Poppins", sans-serif;
+  padding: 50px;
   max-width: 1400px;
   margin: 0 auto;
-  border-radius: 24px;
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.4);
 }
 
 /* 🧠 Başlık */
 .media-header {
-  background: rgba(0, 0, 0, 0.55);
-  padding: 50px 40px;
-  border-radius: 18px;
-  text-align: center;
-  margin-bottom: 60px;
-  border: 1px solid rgba(211, 191, 118, 0.35);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(90deg, #3c1361, #5b2a86);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: left;
+  margin-bottom: 40px;
 }
 .media-header h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 18px;
 }
 .media-header p {
-  margin: 0 auto;
+  margin-top: 10px;
   font-size: 1.1rem;
   color: #ddd;
-  max-width: 720px;
-  line-height: 1.6;
-  font-family: var(--font-body);
-}
-
-.section {
-  margin-top: 80px;
 }
 
 /* 🎞 Vlogs and Films */
 .section h2 {
-  font-size: 2.6rem;
-  margin: 0 0 35px 0;
-  color: var(--primary);
+  font-size: 2.4rem;
+  margin: 50px 0 25px 0;
+  color: #fff;
   text-align: center;
-  font-family: var(--font-heading);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-}
-
-.section h2 + p {
-  color: #bfbfbf;
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 20px;
-  font-family: var(--font-body);
 }
 
 .section p {
@@ -353,11 +327,6 @@
 /* Single portfolio container */
 .single-portfolio {
   width: 100%;
-  padding: 24px 26px;
-  border-radius: 18px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* 🪟 Modal */
@@ -422,371 +391,109 @@
   opacity: 0.9;
 }
 
-/* ============================================
-   📱 MEDIA PAGE RESPONSIVE TASARIM
-   ============================================ */
-
-/* 🔹 TABLET (768px - 1024px) */
+/* 📱 Media page responsive */
 @media (max-width: 1024px) {
   .media-container {
-    padding: 60px 30px;
+    padding: 30px 20px;
   }
-  
+
   .media-header {
-    padding: 40px 30px;
+    padding: 28px 20px;
   }
-  
+
   .media-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.1rem;
   }
-  
-  .media-header p {
-    font-size: 1rem;
-  }
-  
+
   .section h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    margin: 36px 0 18px;
   }
-  
-  .video-card-fullwidth {
-    aspect-ratio: 16/9;
-  }
-  
-  .video-overlay h3 {
-    font-size: 2.2rem;
-  }
-  
-  .shoot-card-fullwidth {
-    min-height: 500px;
-  }
-  
-  .shoot-overlay h3 {
-    font-size: 2.2rem;
-  }
-  
-  .portfolio-grid-4x3 {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-  
+
   .portfolios-row {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 28px;
   }
-  
-  .carousel-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 1.2rem;
+
+  .portfolio-grid-4x3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 }
 
-/* 🔹 MOBİL (480px - 768px) */
 @media (max-width: 768px) {
   .media-container {
-    padding: 50px 20px;
-    border-radius: 16px;
+    padding: 24px 12px;
+    margin-top: 10px;
   }
-  
+
   .media-header {
-    padding: 30px 20px;
-    margin-bottom: 40px;
+    padding: 22px 16px;
+    border-radius: 8px;
   }
-  
+
   .media-header h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    font-size: 1.7rem;
   }
-  
+
   .media-header p {
     font-size: 0.95rem;
   }
-  
-  .section {
-    margin-top: 50px;
-  }
-  
-  .section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-  }
-  
-  .section h2 + p {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-  }
-  
-  /* Video Carousel */
-  .video-carousel-container {
-    margin-top: 20px;
-    margin-bottom: 40px;
-  }
-  
-  .carousel-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 1rem;
-  }
-  
-  .carousel-arrow-left {
-    left: 10px;
-  }
-  
-  .carousel-arrow-right {
-    right: 10px;
-  }
-  
-  .video-card-fullwidth {
-    aspect-ratio: 16/9;
-  }
-  
-  .video-overlay {
-    padding: 20px;
-  }
-  
-  .video-overlay h3 {
-    font-size: 1.6rem;
-  }
-  
-  .video-overlay p {
-    font-size: 0.8rem;
-  }
-  
-  .video-logos-top-right {
-    top: 10px;
-    right: 10px;
-    gap: 10px;
-  }
-  
-  .youtube-logo-bottom {
-    bottom: 20px;
-    right: 20px;
-  }
-  
-  /* Shoot Carousel */
-  .shoot-carousel-container {
-    margin-top: 30px;
-    margin-bottom: 50px;
-  }
-  
-  .shoot-card-fullwidth {
-    min-height: 400px;
-  }
-  
-  .shoot-overlay {
-    bottom: 60px;
-    padding: 20px;
-  }
-  
-  .shoot-overlay h3 {
-    font-size: 1.6rem;
-  }
-  
-  .shoot-overlay p {
-    font-size: 0.8rem;
-  }
-  
-  /* Portfolio */
-  .portfolio-grid-4x3 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-top: 20px;
-  }
-  
-  .portfolio-item-small {
-    aspect-ratio: 4/3;
-  }
-  
-  .portfolio-logo-small {
-    width: 15px;
-    height: 15px;
-    top: 2px;
-    left: 2px;
-  }
-  
-  .portfolios-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .single-portfolio {
-    padding: 20px;
-  }
-  
-  .team-header {
-    margin-bottom: 12px;
-  }
-  
-  .team-logo-img {
-    width: 50px !important;
-    height: 50px !important;
-  }
-  
-  /* Modal */
-  .close-btn {
-    top: 20px;
-    right: 30px;
-    font-size: 24px;
-    padding: 5px 10px;
-  }
-  
-  .modal-img {
-    max-width: 95%;
-    max-height: 85vh;
-  }
-}
 
-/* 🔹 KÜÇÜK MOBİL (320px - 480px) */
-@media (max-width: 480px) {
-  .media-container {
-    padding: 40px 15px;
-    border-radius: 12px;
-  }
-  
-  .media-header {
-    padding: 25px 15px;
-    margin-bottom: 30px;
-  }
-  
-  .media-header h1 {
-    font-size: 1.6rem;
-    margin-bottom: 12px;
-  }
-  
-  .media-header p {
-    font-size: 0.85rem;
-  }
-  
-  .section {
-    margin-top: 40px;
-  }
-  
   .section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+    font-size: 1.45rem;
   }
-  
-  .section h2 + p {
-    font-size: 0.85rem;
-  }
-  
-  /* Video Carousel */
-  .video-carousel-container {
-    margin-top: 15px;
-    margin-bottom: 30px;
-  }
-  
+
   .carousel-arrow {
-    width: 25px;
-    height: 25px;
-    font-size: 0.9rem;
+    width: 34px;
+    height: 34px;
+    font-size: 1.15rem;
   }
-  
+
   .carousel-arrow-left {
-    left: 5px;
+    left: 6px;
   }
-  
+
   .carousel-arrow-right {
-    right: 5px;
+    right: 6px;
   }
-  
-  .video-overlay {
-    padding: 15px;
-  }
-  
-  .video-overlay h3 {
-    font-size: 1.3rem;
-  }
-  
-  .video-overlay p {
-    font-size: 0.75rem;
-  }
-  
-  .video-logos-top-right {
-    top: 8px;
-    right: 8px;
-    gap: 8px;
-  }
-  
-  .youtube-logo-bottom {
-    bottom: 15px;
-    right: 15px;
-  }
-  
-  .youtube-logo-bottom svg {
-    width: 30px;
-    height: 30px;
-  }
-  
-  /* Shoot Carousel */
-  .shoot-carousel-container {
-    margin-top: 25px;
-    margin-bottom: 40px;
-  }
-  
-  .shoot-card-fullwidth {
-    min-height: 300px;
-  }
-  
-  .shoot-overlay {
-    bottom: 50px;
-    padding: 15px;
-  }
-  
-  .shoot-overlay h3 {
-    font-size: 1.3rem;
-  }
-  
-  .shoot-overlay p {
-    font-size: 0.75rem;
-  }
-  
-  /* Portfolio */
+
   .portfolio-grid-4x3 {
     grid-template-columns: repeat(2, 1fr);
     gap: 6px;
-    margin-top: 15px;
   }
-  
-  .portfolio-logo-small {
-    width: 12px;
-    height: 12px;
-  }
-  
-  .single-portfolio {
-    padding: 15px;
-  }
-  
+
   .team-logo-img {
-    width: 40px !important;
-    height: 40px !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
   }
-  
-  /* Modal */
+
   .close-btn {
-    top: 15px;
-    right: 20px;
-    font-size: 20px;
-    padding: 4px 8px;
+    top: 16px;
+    right: 16px;
+    font-size: 26px;
   }
-  
+
   .modal-img {
-    max-width: 98%;
+    max-width: 94%;
     max-height: 80vh;
   }
 }
 
-/* 🔹 YATAY MOBİL (Landscape) */
-@media (max-width: 768px) and (orientation: landscape) {
+@media (max-width: 480px) {
   .media-container {
-    padding: 40px 20px;
+    padding: 16px 10px;
   }
-  
-  .video-card-fullwidth {
-    aspect-ratio: 16/9;
+
+  .media-header h1 {
+    font-size: 1.4rem;
   }
-  
-  .shoot-card-fullwidth {
-    min-height: 350px;
+
+  .portfolio-grid-4x3 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
