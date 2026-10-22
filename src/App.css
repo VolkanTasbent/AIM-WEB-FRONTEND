@@ -220,32 +220,26 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 6;
+  z-index: 8;
   overflow: hidden;
-  white-space: nowrap;
-  background: rgba(0, 0, 0, 0.72);
-  padding: 14px 0;
+  background: rgba(0, 0, 0, 0.78);
+  padding: 12px 0;
   margin: 0;
-  pointer-events: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .sponsor-marquee {
   display: flex;
   flex-wrap: nowrap;
+  align-items: center;
   width: max-content;
   gap: 0;
-  animation: slide-left 22s linear infinite;
-  -webkit-animation: slide-left 22s linear infinite;
   will-change: transform;
-}
-
-@keyframes slide-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Animasyon JS (requestAnimationFrame) ile — mobilde CSS animation takılmasın */
+  animation: none !important;
 }
 
 .sponsor-logo {
@@ -254,14 +248,23 @@ main {
   width: auto;
   max-width: 140px;
   margin: 0 36px;
-  opacity: 0.9;
+  opacity: 0.95;
   object-fit: contain;
-  transition: opacity 0.3s;
-  pointer-events: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-.sponsor-logo:hover {
-  opacity: 1;
+@media (max-width: 768px) {
+  .sponsor-container {
+    padding: 10px 0;
+  }
+
+  .sponsor-logo {
+    height: 36px;
+    max-width: 100px;
+    margin: 0 20px;
+  }
 }
 
 
@@ -8720,17 +8723,12 @@ section {
     bottom: 0;
     padding: 10px 0;
   }
-
-  .sponsor-marquee {
-    animation-duration: 18s;
-    -webkit-animation-duration: 18s;
-  }
   
   .sponsor-logo {
-    height: 40px;
+    height: 36px;
     width: auto;
-    max-width: 110px;
-    margin: 0 22px;
+    max-width: 100px;
+    margin: 0 20px;
   }
   
   /* Services */

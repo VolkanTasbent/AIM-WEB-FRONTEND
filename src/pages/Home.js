@@ -22,6 +22,7 @@ const Home = () => {
   const sliderRef = useRef(null);
   const haberSliderRef = useRef(null);
   const hikayeSliderRef = useRef(null);
+  const sponsorMarqueeRef = useRef(null);
   const navigate = useNavigate();
 
   // Popup state
@@ -75,6 +76,71 @@ const Home = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Sponsor marquee — CSS animasyonu mobilde sık takıldığı için JS ile kaydır
+  useEffect(() => {
+    const track = sponsorMarqueeRef.current;
+    if (!track || sponsorlar.length === 0) return;
+
+    let rafId = 0;
+    let x = 0;
+    const speed = 0.65;
+    let running = false;
+    let fallbackTimer = 0;
+
+    const tick = () => {
+      if (!running) return;
+      const half = track.scrollWidth / 2;
+      if (half > 0) {
+        x -= speed;
+        if (-x >= half) x += half;
+        track.style.transform = `translate3d(${x}px, 0, 0)`;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (running) return;
+      running = true;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(rafId);
+    };
+
+    const imgs = Array.from(track.querySelectorAll("img"));
+    let pending = imgs.length;
+    const onImgReady = () => {
+      pending -= 1;
+      if (pending <= 0) start();
+    };
+
+    if (pending === 0) start();
+    else {
+      imgs.forEach((img) => {
+        if (img.complete) onImgReady();
+        else {
+          img.addEventListener("load", onImgReady, { once: true });
+          img.addEventListener("error", onImgReady, { once: true });
+        }
+      });
+      fallbackTimer = window.setTimeout(start, 1000);
+    }
+
+    const onVis = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVis);
+      window.clearTimeout(fallbackTimer);
+    };
+  }, [sponsorlar]);
 
   // Services kaydırma
   const kaydir = (yon) => {
@@ -182,14 +248,15 @@ const Home = () => {
         </div>
 
         {/* Sponsor logoları */}
-        <div className="sponsor-container">
-          <div className="sponsor-marquee">
-            {sponsorlar.concat(sponsorlar).map((s, i) => (
+        <div className="sponsor-container" aria-hidden="true">
+          <div className="sponsor-marquee" ref={sponsorMarqueeRef}>
+            {[...sponsorlar, ...sponsorlar].map((s, i) => (
               <img
-                key={i}
+                key={`${s.id || "s"}-${i}`}
                 src={s.logoUrl || yedekResim}
-                alt="sponsor"
+                alt=""
                 className="sponsor-logo"
+                draggable={false}
                 onError={(e) => (e.target.src = yedekResim)}
               />
             ))}
